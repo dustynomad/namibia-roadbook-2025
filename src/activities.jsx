@@ -15,62 +15,117 @@ const ACTIVITIES = [
 	[
         	{
 		order: 1,
-		label: '12:00-14:00 - Ankunft / Mittagessen im Roadhouse, Oldtimer anschauen & Fotos',
+		label: '12:00-14:00 - Ankunft / Mittagessen im Roadhouse, Oldtimer anschauen & Fotos'
 		},
 		{
 		order: 2,
 		label: '15:00-18:00 Fotosessions & Walks',
 		notes: ['Main Viewpoint & kurze Rim-Walks',
 			'Ab 16 Uhr bestes Fotolicht.',
-			'Sonnenuntergang am Main Viewpoint oder Sunset Viewpoint.',]
+			'Sonnenuntergang am Main Viewpoint oder Sunset Viewpoint.']
 		},
 		{
 		order: 3,
 		label: 'Abends',
 		notes: ['Abendessen im "Auto-Restaurant" oder Selbstkochen.',
 			'Sex unter der Milchstrasse.']
-		},
-	],
+		}
+	]
     },
     {
       title: 'Tag 2 – Umgebung & Abwechslung',
-      items: [
+      items: 
+	[
         {
           order: 1,
-          label: '08:00: Frühstück im Camper',
-          mapQuery: 'Fish River Canyon Main Viewpoint Hobas'
+          label: '08:00: Frühstück im Camper'
         },
         {
           order: 2,
-          label: '08:30–11:30: Rim Road auf und ab fahren. Stoppen an kleineren, kaum bekannten Aussichtspunkten. Ideal, weil fast alleine',
-          mapQuery: 'Fish River Canyon Sunset Viewpoint'
+          label: '08:30–11:30: Rim Road',
+	  notes: ['auf und ab fahren. Stoppen an kleineren, kaum bekannten Aussichtspunkten.',
+		  'Ideal, weil fast alleine.']
         },
         {
           order: 3,
-          label: '12:30–15:30: Fahrt runter nach Ai-Ais Hot Springs → Relaxen im Thermalbad, Mittagessen.',
-          mapQuery: 'Fish River Canyon Rim Road Viewpoints'
-                },
-        {
-          order: 4,
-          label: '16:00–17:30: Rückfahrt Richtung Roadhouse, mit Stopps für Fotospots.',
-          mapQuery: 'Fish River Canyon Rim Road Viewpoints'
+          label: '12:30–15:30 Ais-Ais Hot Springs',
+	  notes: ['Fahrt runter nach Ai-Ais Hot Springs.',
+		  'Relaxen im Thermalbad, Mittagessen.']
         },
         {
+          order: 4,
+          label: '16:00–17:30 Rückfahrt',
+	  notes: ['Rückfahrt Richtung Roadhouse, mit Stopps für Fotospots.']
+        },
+	{
           order: 5,
-          label: '17:30–18:30: Zweiter Sundowner am Canyonrand (diesmal anderer Spot als am 1. Tag).',
-          mapQuery: 'Fish River Canyon Rim Road Viewpoints'
+          label: '17:30–18:30 Canyon Roadhouse',
+	  notes: ['Zweiter Sundowner am Canyonrand (diesmal anderer Spot als am 1. Tag).']
         },
         {
           order: 6,
-          label: 'Abends: Nochmals Abendessen & vielleicht Milchstraße-Fotografie direkt am Roadhouse (kaum Lichtverschmutzung).',
-          mapQuery: 'Fish River Canyon Rim Road Viewpoints'
+          label: 'Abends',
+	  notes: ['Nochmals Abendessen & vielleicht Milchstraße-Fotografie direkt am Roadhouse (kaum Lichtverschmutzung).']
 	}
       ]
     }
   ]
 },
  
+{
+  type: 'Aktivität',
+  name: 'Tagesroute Roadhouse --> Lüderitz',
+  city: 'on the road',
 
+  sections: [
+    {
+      title: 'Tagesplan',
+      items: 
+	[
+        	{
+		order: 1,
+		label: 'Frühstart (ca. 07:00–07:30)',
+		notes: 'Ziel: nicht zu spät in Lüderitz ankommen, damit ihr dort noch etwas seht'
+		},
+        	{
+		order: 2,
+		label: '1. Stopp – Garas Park (Quiver Tree Forest) (ca. 1,5 Std ab Roadhouse)',
+		notes: ['Direkt an der B4 bei Keetmanshoop',
+			'Fotogen: Köcherbäume, Aloen, skurrile Felsen.',
+			'Kurzer Abstecher (30–45 Min reichen).']
+		},
+		{
+		order: 3,
+		label: '2. Stopp – Namibische Wildpferde bei Garub (zwischen Aus und Lüderitz)',
+		notes: ['Absolut lohnenswert!',
+			'Beobachtungsplattform an der B4 bei Garub (ca. 20 km vor Aus).',
+			'Mit Glück sehen wir die Wildpferde am Wasserloch – einzigartig, weil es eine der wenigen Wildpferd-Populationen in Afrika ist.',
+			'Ideal für Fotos mit Teleobjektiv (früher Vormittag oder später Nachmittag sind die Chancen am besten, aber auch mittags sieht man oft welche).']
+		},
+		{
+		order: 4,
+		label: 'Mittagspause - Aus',
+		notes: ['Kleines Dorf, netter Stopp fürs Tanken, Lunch oder Snacks.',
+			'Klein-Aus Vista Lodge ist ein guter Platz mit Restaurant und Aussicht.']
+		},
+		{
+		order: 5,
+		label: 'Weiterfahrt - Wüste & Dünen Richtung Lüderitz',
+		notes: ['Ab Aus geht es 120 km durch die Namib → grandiose Fahrt!',
+			'Die Straße ist geteert, zieht sich durch weite Sandflächen mit Dünenfeldern.',
+			'Ab hier: Kamera bereithalten, die Landschaft ist sehr fotogen.']
+		},
+		{
+		order: 6,
+		label: 'Ankunft Lüderitz (ca. 15:00-16:00)',
+		notes: ['Unterkunft einchecken.',
+			'Spaziergang durch Lüderitz Hafen, bunten Häuser & koloniale Architektur.',
+			'Sundowner an der Waterfront oder Shark Island (geniale Aussicht, oft starker Wind).']
+		}		
+	]
+    }
+  ]
+},
 
 
  {
