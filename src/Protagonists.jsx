@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function Protagonists() {
   const people = [
-    { name: "Thomas", role: "Navigator & Fahrer", img: "/thomas.jpg" },
-    { name: "Evelüne", role: "Fotografin & Co-Pilotin", img: "/eve.jpg" },
+    { name: "Thomas", role: "Navigator & Fahrer", img: "img/thomas.jpg" },
+    { name: "Evelüne", role: "Fotografin & Co-Pilotin", img: "img/eve.jpg" },
     // weitere Personen …
   ]
 
@@ -13,7 +13,11 @@ export default function Protagonists() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {people.map((p,i)=>(
           <div key={i} className="rounded-xl shadow bg-white/70 p-4 flex flex-col items-center">
-            <img src={p.img} alt={p.name} className="w-32 h-32 rounded-full object-cover mb-2" />
+            <img 
+		src={`${base}${p.img}`}              
+		alt={p.name} 
+		className="w-32 h-32 rounded-full object-cover mb-2" 
+	    />
             <h3 className="text-xl font-semibold">{p.name}</h3>
             <p className="text-gray-600">{p.role}</p>
           </div>
