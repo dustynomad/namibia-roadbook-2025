@@ -19,9 +19,9 @@ const DAYS = [
     ],
     highlights: ["Erster Eindruck Namibia", "Ruhiger Start auf Farm"],
     alt: ["Abendessen in Windhoek möglich"],
- map: 
-    {embed: "https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d117830.87205297453!2d17.077474860882663!3d-22.645780407110703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x1c0b073c41ae1da1%3A0x4236762f58848efa!2sSafari%20Car%20Rental%2C%20Kappsfarm%2C%20Namibia!3m2!1d-22.5477217!2d17.253061!4m5!1s0x1c0b12234729fc19%3A0xccc4272e92645962!2sKrumhuk%2C%20P.O.Box%202630%2C%20Windhoek%2C%20Namibia!3m2!1d-22.743655!2d17.072954!5e0!3m2!1sde!2sch!4v1755700593607!5m2!1sde!2sch" 		
-    }
+    map: {
+	embed: "https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d117830.87205297453!2d17.077474860882663!3d-22.645780407110703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x1c0b073c41ae1da1%3A0x4236762f58848efa!2sSafari%20Car%20Rental%2C%20Kappsfarm%2C%20Namibia!3m2!1d-22.5477217!2d17.253061!4m5!1s0x1c0b12234729fc19%3A0xccc4272e92645962!2sKrumhuk%2C%20P.O.Box%202630%2C%20Windhoek%2C%20Namibia!3m2!1d-22.743655!2d17.072954!5e0!3m2!1sde!2sch!4v1755700593607!5m2!1sde!2sch"
+}
   },
   {
     day: 2,
@@ -351,14 +351,48 @@ function Roadbook() {
   )
 }
 
-function MapFrame({ src }) {
-  if (!src) return null;
+function MapFrame({ src, origin, destination }) {
+  const [ok, setOk] = useState(true);
+
+  // Fallback 1: simpler Embed über Such-Query
+  const fallbackEmbed = `https://maps.google.com/maps?q=${encodeURIComponent(
+    (origin ? origin + " to " : "") + (destination || "")
+  )}&z=9&output=embed`;
+
+  // Fallback 2: Direktlink für Navigation
+  const dirLink = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(
+    origin || ""
+  )}&destination=${encodeURIComponent(destination || "")}`;
+
+  if (!ok) {
+    return (
+      <div className="mt-3 rounded-xl border p-3 bg-white/60">
+        <iframe
+          loading="lazy"
+          title="Route (Fallback)"
+          src={fallbackEmbed}
+          className="w-full h-[360px] rounded-md border mb-3"
+        />
+        <a
+          href={dirLink}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full border hover:bg-gray-50"
+        >
+          Route in Google Maps öffnen
+        </a>
+      </div>
+    );
+  }
+
   return (
     <iframe
       loading="lazy"
+      title="Route"
       referrerPolicy="no-referrer-when-downgrade"
       src={src}
       className="w-full h-[360px] rounded-xl border mt-3"
+      onError={() => setOk(false)}
       allowFullScreen
     />
   );
