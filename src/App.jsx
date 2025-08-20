@@ -326,10 +326,10 @@ function DayCard({ d }) {
 function Navbar() {
   return (
     <nav className="flex gap-4 mb-6 border-b pb-2">
+      <Link to="/" className="hover:underline">Roadbook</Link>  
+      <Link to="/activities" className="hover:underline">Aktivitäten</Link>  
+      <Link to="/contacts" className="hover:underline">Infos</Link>   
       <Link to="/protagonists" className="hover:underline">Protagonisten</Link>
-      <Link to="/" className="hover:underline">Roadbook</Link>
-      <Link to="/activities" className="hover:underline">Aktivitäten</Link>   {/* neu */}
-      <Link to="/contacts" className="hover:underline">Infos</Link>   {/* neu */}
     </nav>
   )
 }
@@ -352,8 +352,8 @@ export default function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Roadbook />} />
- 	<Route path="/activities" element={<Aktivitäten />} />   {/* neu */}
-	<Route path="/contacts" element={<Contacts />} />   {/* neu */}
+ 	<Route path="/activities" element={<activities />} />   
+	<Route path="/contacts" element={<Contacts />} />   
         <Route path="/protagonists" element={<Protagonists />} /> 
      </Routes>
     </div>

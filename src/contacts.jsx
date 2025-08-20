@@ -150,30 +150,6 @@ const CONTACTS = [
     mapQuery: 'Ai Aiba Rockpainting Lodge',
     notes: 'Felsmalereien; Granitkuppen.'
   },
-
-  // --- Aktivitäten / Touren ---
-  {
-    type: 'Aktivität',
-    name: 'Sandwich Harbour 4x4 Tour',
-    city: 'Walvis Bay / Swakopmund',
-    address: 'Abholung i. d. R. Walvis Bay',
-    phone: '',
-    email: '',
-    website: '',
-    mapQuery: 'Sandwich Harbour Walvis Bay',
-    notes: 'Fix einplanen – Dünen treffen auf Atlantik.'
-  },
-  {
-    type: 'Aktivität',
-    name: 'Living Desert Tour',
-    city: 'Swakopmund',
-    address: '',
-    phone: '',
-    email: '',
-    website: '',
-    mapQuery: 'Living Desert Tour Swakopmund',
-    notes: 'Kleintiere der Wüste (Chamäleon, Geckos, …).'
-  },
 ]
 
 function encodeMap(q) {
