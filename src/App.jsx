@@ -32,8 +32,7 @@ const DAYS = [
     drive: "~3 h",
    map: {
   embeds: [
-    "https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d936300.0313028485!2d16.899995978892644!3d-23.553282756449562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x1c0b12234729fc19%3A0xccc4272e92645962!2sKrumhuk%2C%20P.O.Box%202630%2C%20Windhoek%2C%20Namibia!3m2!1d-22.743655!2d17.072954!4m5!1s0x1c0de3003bb57e57%3A0xe5660b2261b62c8f!2sBagatelle%20Kalahari%20Game%20Ranch%20Campsites%2C%20Namibia!3m2!1d-24.2911492!2d18.0277721!5e0!3m2!1sde!2sch!4v1755702586039!5m2!1sde!2sch",
-    "https://maps.google.com/maps?q=Krumhuk%20Guestfarm%20to%20Bagatelle%20Kalahari%20Game%20Ranch&z=9&output=embed"
+    "https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d936300.0313028485!2d16.899995978892644!3d-23.553282756449562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x1c0b12234729fc19%3A0xccc4272e92645962!2sKrumhuk%2C%20P.O.Box%202630%2C%20Windhoek%2C%20Namibia!3m2!1d-22.743655!2d17.072954!4m5!1s0x1c0de3003bb57e57%3A0xe5660b2261b62c8f!2sBagatelle%20Kalahari%20Game%20Ranch%20Campsites%2C%20Namibia!3m2!1d-24.2911492!2d18.0277721!5e0!3m2!1sde!2sch!4v1755702586039!5m2!1sde!2sch"
   ]
 },
     plan: [
@@ -68,12 +67,12 @@ map: {
   }
 },
     plan: [
-      "Fahrt über Mariental nach Keetmanshoop",
+      "Fahrt über Mariental ins Garas Camp",
       "Besuch Köcherbaumwald & Giant’s Playground",
-      "Weiterfahrt zum Garas Camp und Übernachtung"
+      "Rückfahrt zum Garas Camp und Übernachtung",	
     ],
     highlights: ["Köcherbaumwald", "Giant’s Playground"],
-    alt: ["Spaziergang in Keetmanshoop Stadt"]
+    alt: ["Spaziergang in Keetmanshoop Stadt", "Besuch vom Köcherbaumwald & Giant's Playground am Tag 4"]
   },
   {
     day: 4,
@@ -82,6 +81,11 @@ map: {
     end: "Cañon Roadhouse",
     distance: "~180 km",
     drive: "~2 h",
+map: {
+  embeds: [
+"https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d910340.9989927384!2d17.345361636977415!3d-26.96628093149138!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x1c1699a81dd74323%3A0xa7cf4e866221b827!2sGaras%20Park%20Camp%20-%20Quivertree%20Park%20Camp%2C%20Keetmanshoop%2C%20Namibia!3m2!1d-26.418754399999997!2d18.1904304!4m5!1s0x1c3e1d74933b20a9%3A0xc10f2ec8410425ab!2sCanyon%20Roadhouse%2C%20Gondwana%20Collection%20Namibia%2C%20Namibia!3m2!1d-27.5242786!2d17.814786899999998!5e0!3m2!1sde!2sch!4v1755705473686!5m2!1sde!2sch"
+]
+},
     plan: [
       "Gemütliche Fahrt Richtung Süden",
       "Nachmittags erster Blick in den Fish River Canyon",
