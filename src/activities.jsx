@@ -2,6 +2,21 @@ import React, { useMemo, useState } from 'react'
 
 /** Erste Version der Activities-Sammlung. */
 const ACTIVITIES = [
+
+
+  {
+    type: 'Aktivität',
+    name: '1st day at Fish River Canyon',
+    city: 'Fish River Canyon',
+    address: '',
+    phone: '',
+    email: '',
+    website: '',
+    mapQuery: 'Sandwich Harbour Walvis Bay',
+    notes: 'Ideale Fotospots: Main Viewpoint (Hobas / Fish River Canyon Viewpoint): Klassisches Postkartenmotiv mit der großen Flussschleife. Perfekt für Sonnenuntergangsfotos: Sunset Viewpoint (ca. 10 Min weiter westlich), Weniger Besucher, breiter Blick auf die Schlucht. Ideal ab 16 Uhr bis Sonnenuntergang. Punkte entlang der Rim Road:Mehrere kleine Haltepunkte zwischen Hobas und Main View.'
+  },
+
+
   {
     type: 'Aktivität',
     name: 'Sandwich Harbour 4x4 Tour',
