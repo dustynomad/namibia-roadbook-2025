@@ -400,6 +400,7 @@ function DayCard({ d }) {
       </div>
       {open && 
 	<div className="mt-2">
+		<p><b>Datum:</b> {d.date}</p>
 	        <p><b>Start:</b> {d.start} · <b>Ziel:</b> {d.end}</p>
         	<p><b>Distanz:</b> {d.distance} · <b>Fahrtzeit:</b> {d.drive}</p>
 	        <h4 className="font-medium mt-2">Tagesplan</h4>
