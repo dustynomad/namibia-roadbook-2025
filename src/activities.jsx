@@ -224,27 +224,58 @@ const ACTIVITIES = [
 		},
         	{
 		order: 2,
-		label: 'Alternative: Bootstour Halifax Island (Start meist 08:00–09:00, 2–3 Std)',
-		notes: ['Ziel: Kolonie von Brillenpinguinen, Delfine, Pelikane, manchmal Wale.',
-			'Fotogen: Köcherbäume, Aloen, skurrile Felsen.',
-			'Mit Katamaran oder kleineren Booten buchbar.',
-			'https://penguincatamarantours.wordpress.com/?utm_source=chatgpt.com',
-			'Preis ca. N$600 - vorab buchen']		
-		},
-		{
-		order: 3,
 		label: 'Mittag',
 		notes: ['tbd']
 		},
 		{
-		order: 4,
+		order: 3,
 		label: 'Nachmittag',
 		notes: ['Diaz Point / Große Bucht (falls am Vortag noch nicht) → hier rauhe Atlantikküste, Leuchtturm, oft Robben.',
 			'Agate Beach → Sandstrand mit Muscheln & Halbedelsteinen (Spaziergang möglich).',
 			'Offorad: Grosse Bucht und Sturmvogelbucht sind abgelegen, teils nur 4x4, sehr einsam.']
 		},
 		{
-		order: 5,
+		order: 4,
+		label: 'Abend',
+		notes: ['Letzter Sundowner → Tipp: Am Hafen oder bei der Felsenkirche, wo das Licht schön über die Bucht fällt.']
+		}	
+	]
+    }
+  ]
+},
+
+{
+  type: 'Aktivität',
+  name: 'Tag 8: Lüderitz Umgebung erkunden (2)',
+  city: 'Lüderitz',
+  sections: 
+  [
+    {
+      title: 'Vormittag',
+      items: 
+	[
+		{
+		order: 1,
+		label: 'Bootstour Halifax Island (Start meist 08:00–09:00, 2–3 Std)',
+		notes: ['Ziel: Kolonie von Brillenpinguinen, Delfine, Pelikane, manchmal Wale.',
+			'Fotogen: Köcherbäume, Aloen, skurrile Felsen.',
+			'Mit Katamaran oder kleineren Booten buchbar.',
+			'https://penguincatamarantours.wordpress.com/?utm_source=chatgpt.com',
+			'Preis ca. N$600 - vorab buchen']		
+		},        	{
+		order: 2,
+		label: 'Mittag',
+		notes: ['tbd']
+		},
+		{
+		order: 3,
+		label: 'Nachmittag',
+		notes: ['Diaz Point / Große Bucht (falls am Vortag noch nicht) → hier rauhe Atlantikküste, Leuchtturm, oft Robben.',
+			'Agate Beach → Sandstrand mit Muscheln & Halbedelsteinen (Spaziergang möglich).',
+			'Offraod: Grosse Bucht und Sturmvogelbucht sind abgelegen, teils nur 4x4, sehr einsam.']
+		},
+		{
+		order: 4,
 		label: 'Abend',
 		notes: ['Letzter Sundowner → Tipp: Am Hafen oder bei der Felsenkirche, wo das Licht schön über die Bucht fällt.']
 		}	
