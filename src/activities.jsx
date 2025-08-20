@@ -2,8 +2,6 @@ import React, { useMemo, useState } from 'react'
 
 /** Erste Version der Activities-Sammlung. */
 const ACTIVITIES = [
-
-
   {
   type: 'Aktivität',
   name: 'Fish River Canyon – Fotospots',
