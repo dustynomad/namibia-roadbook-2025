@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import Protagonists from './Protagonists.jsx'
-import Contacts from './Contacts.jsx'
+import Contacts from './contacts.jsx'
 
 const DAYS = [
   {
