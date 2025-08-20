@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import Protagonists from './Protagonists.jsx'
-import Contacts from './contacts.jsx'
+import contacts from './contacts.jsx'
 
 const DAYS = [
   {
@@ -327,7 +327,7 @@ function Navbar() {
     <nav className="flex gap-4 mb-6 border-b pb-2">
       <Link to="/" className="hover:underline">Roadbook</Link>
       <Link to="/protagonists" className="hover:underline">Protagonisten</Link>
-      <Link to="/contacts" className="hover:underline">Contacts</Link>   {/* neu */}
+      <Link to="/contacts" className="hover:underline">Infos</Link>   {/* neu */}
     </nav>
   )
 }
