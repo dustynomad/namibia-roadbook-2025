@@ -76,8 +76,8 @@ const ACTIVITIES = [
   type: 'Aktivität',
   name: 'Tagesroute Roadhouse --> Lüderitz',
   city: 'on the road',
-
-  sections: [
+  sections: 
+  [
     {
       title: 'Tagesplan',
       items: 
