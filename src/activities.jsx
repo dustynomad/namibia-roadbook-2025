@@ -11,10 +11,27 @@ const ACTIVITIES = [
   sections: [
     {
       title: 'Fotgrafie Tipps',
-      items: [
-        {
+      items: 
+	[
+        	{
 		order: 1,
-		label: 'trulla'}
+		label: 'Morgens (ca. 7-10 Uhr)',
+		notes: [
+	            'Weniger ideal, weil der Canyon Richtung Osten öffnet'
+	          ]
+		},
+		{
+		order: 2,
+		label: 'Nachmittags (ab 15 Uhr)',
+		notes: ['Bestes Licht, weil die Sonne von Westen kommt und den Canyon frontal anstrahlt',
+			'Optimal ab ca. 16–18 Uhr → kurz vor Sonnenuntergang.']
+		},
+		{
+		order: 3,
+		label: 'Sonnenuntergang (Golden Hour, ca. 18–18:30 je nach Jahreszeit)',
+		notes: ['Magisches Licht – die Felswände glühen regelrecht.',
+			'Lange Schatten im Canyon, tolle Kontraste.']
+		},
 	],
     },
     {
