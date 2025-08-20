@@ -10,6 +10,14 @@ const ACTIVITIES = [
   notes: 'Beste Lichtstimmung meist nachmittags bis Sonnenuntergang.',
   sections: [
     {
+      title: 'Fotgrafie Tipps',
+      items: [
+        {
+		order: 1,
+		label: 'trulla'}
+	],
+    },
+    {
       title: 'Ideale Fotospots',
       items: [
         {
