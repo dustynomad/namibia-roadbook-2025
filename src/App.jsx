@@ -48,14 +48,13 @@ const DAYS = [
     end: "Garas Camp bei Keetmanshoop",
     distance: "~300 km",
     drive: "~3,5 h",
-    campground: {
-	embed:"https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d922980.4497998086!2d17.349120526631253!3d-25.358162710199462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x1c0de213193d679f%3A0x6f54664e072437e!2sBagatelle%20Kalahari%20Game%20Ranch%2C%20Mariental%2C%20Namibia!3m2!1d-24.300519899999998!2d18.0330066!4m5!1s0x1c1699a81dd74323%3A0xa7cf4e866221b827!2sGaras%20Park%20Camp%20-%20Quivertree%20Park%20Camp%2C%20Keetmanshoop%2C%20Namibia!3m2!1d-26.418754399999997!2d18.1904304!5e0!3m2!1sde!2sch!4v1755703378468!5m2!1sde!2sch"
-},
-
-    sightseeing: {
-	embed: "https://www.google.com/maps/embed?pb=!1m34!1m12!1m3!1d114273.65309576788!2d18.127897193750943!3d-26.486281499569987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m19!3e0!4m5!1s0x1c1699a81dd74323%3A0xa7cf4e866221b827!2sGaras%20Park%20Camp%20-%20Quivertree%20Park%20Camp%2C%20Keetmanshoop%2C%20Namibia!3m2!1d-26.418754399999997!2d18.1904304!4m5!1s0x1c169a0bc1d33927%3A0x33b07961b9748e2!2sQuiver%20Tree%20Forest%2C%20Namibia!3m2!1d-26.466666699999998!2d18.233333299999998!4m5!1s0x1c1690c29f6f03d5%3A0x905dff10ec36a813!2sGiant&#39;s%20Playground%2C%20Namibia!3m2!1d-26.465821!2d18.2718009!5e0!3m2!1sde!2sch!4v1755703264972!5m2!1sde!2sch"
-},
-
+    map: {
+	embeds: 
+	[
+"https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d922980.4497998086!2d17.349120526631253!3d-25.358162710199462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x1c0de213193d679f%3A0x6f54664e072437e!2sBagatelle%20Kalahari%20Game%20Ranch%2C%20Mariental%2C%20Namibia!3m2!1d-24.300519899999998!2d18.0330066!4m5!1s0x1c1699a81dd74323%3A0xa7cf4e866221b827!2sGaras%20Park%20Camp%20-%20Quivertree%20Park%20Camp%2C%20Keetmanshoop%2C%20Namibia!3m2!1d-26.418754399999997!2d18.1904304!5e0!3m2!1sde!2sch!4v1755703378468!5m2!1sde!2sch"
+,
+"https://www.google.com/maps/embed?pb=!1m34!1m12!1m3!1d114273.65309576788!2d18.127897193750943!3d-26.486281499569987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m19!3e0!4m5!1s0x1c1699a81dd74323%3A0xa7cf4e866221b827!2sGaras%20Park%20Camp%20-%20Quivertree%20Park%20Camp%2C%20Keetmanshoop%2C%20Namibia!3m2!1d-26.418754399999997!2d18.1904304!4m5!1s0x1c169a0bc1d33927%3A0x33b07961b9748e2!2sQuiver%20Tree%20Forest%2C%20Namibia!3m2!1d-26.466666699999998!2d18.233333299999998!4m5!1s0x1c1690c29f6f03d5%3A0x905dff10ec36a813!2sGiant&#39;s%20Playground%2C%20Namibia!3m2!1d-26.465821!2d18.2718009!5e0!3m2!1sde!2sch!4v1755703264972!5m2!1sde!2sch"
+]},
     plan: [
       "Fahrt über Mariental nach Keetmanshoop",
       "Besuch Köcherbaumwald & Giant’s Playground",
@@ -333,7 +332,25 @@ function DayCard({ d }) {
         	<ul className="list-disc ml-5">{d.plan.map((p,i)=><li key={i}>{p}</li>)}</ul>
 	        {d.highlights.length>0 && (<><h4 className="font-medium mt-2">Highlights</h4><ul className="list-disc ml-5">{d.highlights.map((h,i)=><li key={i}>{h}</li>)}</ul></>)}
 	        {d.alt.length>0 && (<><h4 className="font-medium mt-2">Alternativen</h4><ul className="list-disc ml-5">{d.alt.map((a,i)=><li key={i}>{a}</li>)}</ul></>)}
-		{d.map?.embed && <MapFrame src={d.map.embed} />}     
+		{(() => {
+		  const embeds = d.map?.embeds
+		    ? d.map.embeds
+		    : (d.map?.embed ? [d.map.embed] : []);
+
+		  return embeds.length ? (
+		    <div className="mt-2 grid gap-3">
+		      {embeds.map((url, i) => (
+		        <MapFrame
+		          key={i}
+		          src={url}
+		          origin={d.start}
+		          destination={d.end}
+		          title={`Route Tag ${d.day} – Karte ${i + 1}`}
+		        />
+		      ))}
+		    </div>
+		  ) : null;
+		})()}     
 	</div>}
     </div>
   );
@@ -362,15 +379,13 @@ function Roadbook() {
   )
 }
 
-function MapFrame({ src, origin, destination }) {
+function MapFrame({ src, origin, destination, title }) {
   const [ok, setOk] = useState(true);
 
-  // Fallback 1: simpler Embed über Such-Query
   const fallbackEmbed = `https://maps.google.com/maps?q=${encodeURIComponent(
     (origin ? origin + " to " : "") + (destination || "")
   )}&z=9&output=embed`;
 
-  // Fallback 2: Direktlink für Navigation
   const dirLink = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(
     origin || ""
   )}&destination=${encodeURIComponent(destination || "")}`;
@@ -380,7 +395,7 @@ function MapFrame({ src, origin, destination }) {
       <div className="mt-3 rounded-xl border p-3 bg-white/60">
         <iframe
           loading="lazy"
-          title="Route (Fallback)"
+          title={`${title || "Route"} (Fallback)`}
           src={fallbackEmbed}
           className="w-full h-[360px] rounded-md border mb-3"
         />
@@ -399,7 +414,7 @@ function MapFrame({ src, origin, destination }) {
   return (
     <iframe
       loading="lazy"
-      title="Route"
+      title={title || "Route"}
       referrerPolicy="no-referrer-when-downgrade"
       src={src}
       className="w-full h-[360px] rounded-xl border mt-3"
