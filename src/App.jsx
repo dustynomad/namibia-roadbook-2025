@@ -33,9 +33,9 @@ const DAYS = [
     distance: "~250 km",
     drive: "~3 h",
    map: {
-	embed:  [
+	embed:  
     "https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d936300.0313028485!2d16.899995978892644!3d-23.553282756449562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x1c0b12234729fc19%3A0xccc4272e92645962!2sKrumhuk%2C%20P.O.Box%202630%2C%20Windhoek%2C%20Namibia!3m2!1d-22.743655!2d17.072954!4m5!1s0x1c0de3003bb57e57%3A0xe5660b2261b62c8f!2sBagatelle%20Kalahari%20Game%20Ranch%20Campsites%2C%20Namibia!3m2!1d-24.2911492!2d18.0277721!5e0!3m2!1sde!2sch!4v1755702586039!5m2!1sde!2sch"
-  ]
+  
 },
     plan: [
       "Morgens Abfahrt Richtung Süden",
@@ -79,10 +79,10 @@ map: {
   },
   {
     day: 4,
-    title: "Garas Camp → Fish River Canyon (Cañon Roadhouse)",
+    title: "Garas Camp → Fish River Canyon (Canyon Roadhouse)",
     date: "07.09",
     start: "Garas Camp",
-    end: "Cañon Roadhouse",
+    end: "Canyon Roadhouse",
     distance: "~180 km",
     drive: "~2 h",
  map: {
@@ -100,7 +100,7 @@ map: {
   },
   {
     day: 5,
-    title: "Fish River Canyon (Cañon Roadhouse)",
+    title: "Fish River Canyon (Canyon Roadhouse)",
     date: "08.09",
     start: "",
     end: "",
@@ -116,9 +116,9 @@ map: {
   },
   {
     day: 6,
-    title: "Fish River Canyon → Lüderitz (Tag 1)",
+    title: "Fish River Canyon → Lüderitz",
     date: "09.09",
-    start: "Cañon Roadhouse",
+    start: "Canyon Roadhouse",
     end: "Lüderitz - Zur Waterkant Guesthouse",
     distance: "~400 km",
     drive: "~5 h",
@@ -143,10 +143,10 @@ map: {
     day: 7,
     title: "Lüderitz (Tag 2)",
     date: "10.09",
-    start: "Lüderitz",
-    end: "Lüderitz",
-    distance: "lokal",
-    drive: "kurz",
+    start: "",
+    end: "",
+    distance: "",
+    drive: "",
     plan: [
       "Besuch der Geisterstadt Kolmanskop am Morgen",
       "Stadtrundgang Lüderitz",
@@ -159,13 +159,12 @@ map: {
     day: 8,
     title: "Lüderitz (Tag 3)",
     date: "11.09",
-    start: "Lüderitz",
-    end: "Lüderitz",
-    distance: "lokal",
-    drive: "kurz",
+    start: "",
+    end: "",
+    distance: "",
+    drive: "",
     plan: [
-      "Besuch der Geisterstadt Kolmanskop am Morgen",
-      "Stadtrundgang Lüderitz",
+      "Ausflug mit dem Boot",
       "Nachmittags Diaz Point und Küste erkunden"
     ],
     highlights: ["Kolmanskop", "Atlantikküste", "Frischer Fisch & Austern"],
@@ -178,8 +177,11 @@ map: {
     date: "12.09",
     start: "Lüderitz",
     end: "Namtib Desert Lodge / Camping Hunters Rest",
-    distance: "~300 km",
-    drive: "~4 h",
+    distance: "~243 km",
+    drive: "~3.5 h",
+map: {	embed: 
+"https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d854128.6420106287!2d15.5741993292159!3d-26.4137273791366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x1c6cbdfc5ef202ad%3A0x9db89c3a9c44b630!2sCamping%20Namtib%20Desert%20Lodge%2C%20Namibia!3m2!1d-26.019517999999998!2d16.2476277!4m5!1s0x1c6be69ac15fd6cf%3A0x8c797b95278c27fb!2sPension%20Zur%20Waterkant%20(B%26B)%2C%20P.O.%20Box%201055%20(Bremer%20Str.)%20Bremer%2C%20Luderitz%2C%20Namibia!3m2!1d-26.643523199999997!2d15.1597485!5e1!3m2!1sde!2sch!4v1755729119872!5m2!1sde!2sch"
+},
     plan: [
       "Rückfahrt über Aus und kleine Schotterstraßen",
       "Nachmittags Ankunft in der Namib Wüste auf dem Campingplatz",
@@ -198,7 +200,7 @@ map: {
     drive: "",
     plan: [
       "Wir schauen uns die Gegend an. Am besten wäre es eine Karte dabei zu haben. Evtl. gibt es hier kein Internet",
-      "Sex in den Dünen? Nacktfotos von Eve",
+      "Sex in den Dünen? Nacktfotos von Eve"
     ],
     highlights: ["Weite Wüstenlandschaft", "Fotosession"],
     alt: []
@@ -212,6 +214,11 @@ map: {
     end: "Little Sossus Campsite",
     distance: "~250 km",
     drive: "~4 h",
+map: {
+	embeds:  [
+"https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d1024122.908235336!2d15.657861990567861!3d-25.44470754515139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x1c6cbdfc5ef202ad%3A0x9db89c3a9c44b630!2sCamping%20Namtib%20Desert%20Lodge%2C%20Namibia!3m2!1d-26.019517999999998!2d16.2476277!4m5!1s0x1c729b2c224ee73d%3A0xdac4d718df58ddbf!2sLittle%20Sossus%20Campsite%2C%20Namibia!3m2!1d-24.6616343!2d15.975375099999999!5e1!3m2!1sde!2sch!4v1755729374049!5m2!1sde!2sch",
+"https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d22774.87795330235!2d15.973197119668745!3d-24.6632490974709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e0!4m3!3m2!1d-24.6663741!2d15.991471599999999!4m5!1s0x1c729b2c224ee73d%3A0xdac4d718df58ddbf!2sLittle%20Sossus%20Campsite%2C%20Namibia!3m2!1d-24.6616343!2d15.975375099999999!5e1!3m2!1sde!2sch!4v1755729500503!5m2!1sde!2sch"
+]},
     plan: [
       "Fahrt durch die Namib-Wüste",
       "Nachmittags Besuch Sesriem Canyon"
@@ -240,8 +247,12 @@ map: {
     date: "16.09",
     start: "Little Sossus Campsite",
     end: "Mirabib Campsite",
-    distance: "~120 km (hin/retour im Park)",
-    drive: "~2 h",
+    distance: "~241 km ",
+    drive: "~3,5 h",
+ map: {
+	embed:  [
+"https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d1465545.1586719186!2d15.19749224996463!3d-23.97335359909229!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x1c729b2c224ee73d%3A0xdac4d718df58ddbf!2sLittle%20Sossus%20Campsite%2C%20Namibia!3m2!1d-24.6616343!2d15.975375099999999!4m5!1s0x1c73f4645af483d1%3A0xb3d3be92f94565db!2sMirabib%20Campsite%2C%20Namibia!3m2!1d-23.4540538!2d15.3520069!5e1!3m2!1sde!2sch!4v1755729577131!5m2!1sde!2sch"
+]},
     plan: [
       "",
       "Nachmittags Relaxen oder Sundowner"
