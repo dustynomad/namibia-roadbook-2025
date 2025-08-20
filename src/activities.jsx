@@ -5,16 +5,46 @@ const ACTIVITIES = [
 
 
   {
-    type: 'Aktivität',
-    name: '1st day at Fish River Canyon',
-    city: 'Fish River Canyon',
-    address: '',
-    phone: '',
-    email: '',
-    website: '',
-    mapQuery: 'Sandwich Harbour Walvis Bay',
-    notes: 'Ideale Fotospots: Main Viewpoint (Hobas / Fish River Canyon Viewpoint): Klassisches Postkartenmotiv mit der großen Flussschleife. Perfekt für Sonnenuntergangsfotos: Sunset Viewpoint (ca. 10 Min weiter westlich), Weniger Besucher, breiter Blick auf die Schlucht. Ideal ab 16 Uhr bis Sonnenuntergang. Punkte entlang der Rim Road:Mehrere kleine Haltepunkte zwischen Hobas und Main View.'
-  },
+  type: 'Aktivität',
+  name: 'Fish River Canyon – Fotospots',
+  city: 'Hobas / Viewpoints',
+  address: 'Fish River Canyon Viewpoints (Hobas)',
+  notes: 'Beste Lichtstimmung meist nachmittags bis Sonnenuntergang.',
+  sections: [
+    {
+      title: 'Ideale Fotospots',
+      items: [
+        {
+          order: 1,
+          label: 'Main Viewpoint (Hobas / Fish River Canyon Viewpoint)',
+          notes: [
+            'Klassisches Postkartenmotiv mit der großen Flussschleife.',
+            'Perfekt für Sonnenuntergangsfotos.'
+          ],
+          mapQuery: 'Fish River Canyon Main Viewpoint Hobas'
+        },
+        {
+          order: 2,
+          label: 'Sunset Viewpoint (ca. 10 Min westlich)',
+          notes: [
+            'Weniger Besucher, breiter Blick auf die Schlucht.',
+            'Ideal ab 16 Uhr bis Sonnenuntergang.'
+          ],
+          mapQuery: 'Fish River Canyon Sunset Viewpoint'
+        },
+        {
+          order: 3,
+          label: 'Punkte entlang der Rim Road',
+          notes: [
+            'Mehrere kleine Haltepunkte zwischen Hobas und Main View.',
+            'Für Detailaufnahmen mit Teleobjektiv (Schichten, Felsformationen).'
+          ],
+          mapQuery: 'Fish River Canyon Rim Road Viewpoints'
+        }
+      ]
+    }
+  ]
+},
 
 
   {
@@ -71,7 +101,41 @@ function ItemCard({ c }) {
           {c.website && <p><span className="font-medium">Website:</span> <a className="underline" href={c.website} target="_blank" rel="noreferrer">{c.website}</a></p>}
           {mapHref && <p><span className="font-medium">Karte:</span> <a className="underline" href={mapHref} target="_blank" rel="noreferrer">In Google Maps öffnen</a></p>}
           {c.notes && <p><span className="font-medium">Notizen:</span> {c.notes}</p>}
-        </div>
+
+          {Array.isArray(c.sections) && c.sections.length > 0 && (
+            <div className="mt-4 space-y-4">
+              {c.sections.map((sec, sIdx) => (
+                <div key={sIdx}>
+                  <h4 className="font-medium mb-2">{sec.title}</h4>
+                  <ol className="list-decimal ml-6 space-y-2">
+                    {sec.items?.slice().sort((a,b)=>(a.order??999)-(b.order??999)).map((it, iIdx) => {
+                      const pointHref = encodeMap(it.mapQuery || it.label || '')
+                      return (
+                        <li key={iIdx}>
+                          <div className="font-semibold">{it.label}</div>
+                          {Array.isArray(it.notes) && it.notes.length > 0 && (
+                            <ul className="list-disc ml-5 mt-1">
+                              {it.notes.map((n, nIdx) => <li key={nIdx}>{n}</li>)}
+                            </ul>
+                          )}
+                          {it.mapQuery && (
+                            <div className="mt-1">
+                              <a className="underline text-sm" href={pointHref} target="_blank" rel="noreferrer">
+                                In Google Maps öffnen
+                              </a>
+                            </div>
+                          )}
+                        </li>
+                      )
+                    })}
+                  </ol>
+                </div>
+              ))}
+            </div>
+          )}
+          {/* --- Ende Section-Liste --- */}       
+
+ </div>
       )}
     </div>
   )
