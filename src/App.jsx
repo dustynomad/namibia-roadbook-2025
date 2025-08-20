@@ -350,12 +350,12 @@ export default function App() {
   return (
     <div className="max-w-3xl mx-auto p-6">
       <Navbar />
-<Routes>
-  <Route path="/" element={<Roadbook />} />
-  <Route path="/activities" element={<Activities />} />  {/* <-- groß */}
-  <Route path="/contacts" element={<Contacts />} />
-  <Route path="/protagonists" element={<Protagonists />} />
-</Routes>
+	<Routes>
+	  <Route path="/" element={<Roadbook />} />
+	  <Route path="/activities" element={<Activities />} />  {/* <-- groß */}
+	  <Route path="/contacts" element={<Contacts />} />
+	  <Route path="/protagonists" element={<Protagonists />} />
+	</Routes>
     </div>
   )
 }
