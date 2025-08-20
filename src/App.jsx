@@ -76,7 +76,7 @@ map: {
   },
   {
     day: 4,
-    title: "Garas Camp → Fish River Canyon (Cañon Roadhouse)",
+    title: "Garas Camp → Fish River Canyon (Cañon Roadhouse) --> Activities",
     start: "Garas Camp",
     end: "Cañon Roadhouse",
     distance: "~180 km",
@@ -96,7 +96,7 @@ map: {
   },
   {
     day: 5,
-    title: "Fish River Canyon (Cañon Roadhouse)",
+    title: "Fish River Canyon (Cañon Roadhouse) --> Activities",
     start: "Cañon Roadhouse",
     end: "Cañon Roadhouse",
     distance: "lokal",
@@ -111,7 +111,7 @@ map: {
   },
   {
     day: 6,
-    title: "Fish River Canyon → Lüderitz",
+    title: "Fish River Canyon → Lüderitz --> Activities",
     start: "Cañon Roadhouse",
     end: "Lüderitz",
     distance: "~400 km",

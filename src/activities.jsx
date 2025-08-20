@@ -4,7 +4,7 @@ import React, { useMemo, useState } from 'react'
 const ACTIVITIES = [
 {
   type: 'Aktivität',
-  name: 'Fish River Canyon – Programm',
+  name: 'Tag 4 & 5: Fish River Canyon – Programm',
   city: 'Canyon Roadhouse',
   address: 'Fish River Canyon Roadhouse',
   notes: '2-Tages Programm',
@@ -71,62 +71,6 @@ const ACTIVITIES = [
     }
   ]
 },
- 
-{
-  type: 'Aktivität',
-  name: 'Tagesroute Roadhouse --> Lüderitz',
-  city: 'on the road',
-  sections: 
-  [
-    {
-      title: 'Tagesplan',
-      items: 
-	[
-        	{
-		order: 1,
-		label: 'Frühstart (ca. 07:00–07:30)',
-		notes: 'Ziel: nicht zu spät in Lüderitz ankommen, damit ihr dort noch etwas seht'
-		},
-        	{
-		order: 2,
-		label: '1. Stopp – Garas Park (Quiver Tree Forest) (ca. 1,5 Std ab Roadhouse)',
-		notes: ['Direkt an der B4 bei Keetmanshoop',
-			'Fotogen: Köcherbäume, Aloen, skurrile Felsen.',
-			'Kurzer Abstecher (30–45 Min reichen).']
-		},
-		{
-		order: 3,
-		label: '2. Stopp – Namibische Wildpferde bei Garub (zwischen Aus und Lüderitz)',
-		notes: ['Absolut lohnenswert!',
-			'Beobachtungsplattform an der B4 bei Garub (ca. 20 km vor Aus).',
-			'Mit Glück sehen wir die Wildpferde am Wasserloch – einzigartig, weil es eine der wenigen Wildpferd-Populationen in Afrika ist.',
-			'Ideal für Fotos mit Teleobjektiv (früher Vormittag oder später Nachmittag sind die Chancen am besten, aber auch mittags sieht man oft welche).']
-		},
-		{
-		order: 4,
-		label: 'Mittagspause - Aus',
-		notes: ['Kleines Dorf, netter Stopp fürs Tanken, Lunch oder Snacks.',
-			'Klein-Aus Vista Lodge ist ein guter Platz mit Restaurant und Aussicht.']
-		},
-		{
-		order: 5,
-		label: 'Weiterfahrt - Wüste & Dünen Richtung Lüderitz',
-		notes: ['Ab Aus geht es 120 km durch die Namib → grandiose Fahrt!',
-			'Die Straße ist geteert, zieht sich durch weite Sandflächen mit Dünenfeldern.',
-			'Ab hier: Kamera bereithalten, die Landschaft ist sehr fotogen.']
-		},
-		{
-		order: 6,
-		label: 'Ankunft Lüderitz (ca. 15:00-16:00)',
-		notes: ['Unterkunft einchecken.',
-			'Spaziergang durch Lüderitz Hafen, bunten Häuser & koloniale Architektur.',
-			'Sundowner an der Waterfront oder Shark Island (geniale Aussicht, oft starker Wind).']
-		}		
-	]
-    }
-  ]
-},
-
 
  {
   type: 'Aktivität',
@@ -194,7 +138,118 @@ const ACTIVITIES = [
     }
   ]
 },
+ 
+{
+  type: 'Aktivität',
+  name: 'Tag 6: Tagesroute Roadhouse --> Lüderitz',
+  city: 'on the road',
+  sections: 
+  [
+    {
+      title: 'Tagesplan',
+      items: 
+	[
+        	{
+		order: 1,
+		label: 'Frühstart (ca. 07:00–07:30)',
+		notes: 'Ziel: nicht zu spät in Lüderitz ankommen, damit ihr dort noch etwas seht'
+		},
+        	{
+		order: 2,
+		label: '1. Stopp – Garas Park (Quiver Tree Forest) (ca. 1,5 Std ab Roadhouse)',
+		notes: ['Direkt an der B4 bei Keetmanshoop',
+			'Fotogen: Köcherbäume, Aloen, skurrile Felsen.',
+			'Kurzer Abstecher (30–45 Min reichen).']
+		},
+		{
+		order: 3,
+		label: '2. Stopp – Namibische Wildpferde bei Garub (zwischen Aus und Lüderitz)',
+		notes: ['Absolut lohnenswert!',
+			'Beobachtungsplattform an der B4 bei Garub (ca. 20 km vor Aus).',
+			'Mit Glück sehen wir die Wildpferde am Wasserloch – einzigartig, weil es eine der wenigen Wildpferd-Populationen in Afrika ist.',
+			'Ideal für Fotos mit Teleobjektiv (früher Vormittag oder später Nachmittag sind die Chancen am besten, aber auch mittags sieht man oft welche).']
+		},
+		{
+		order: 4,
+		label: 'Mittagspause - Aus',
+		notes: ['Kleines Dorf, netter Stopp fürs Tanken, Lunch oder Snacks.',
+			'Klein-Aus Vista Lodge ist ein guter Platz mit Restaurant und Aussicht.']
+		},
+		{
+		order: 5,
+		label: 'Weiterfahrt - Wüste & Dünen Richtung Lüderitz',
+		notes: ['Ab Aus geht es 120 km durch die Namib → grandiose Fahrt!',
+			'Die Straße ist geteert, zieht sich durch weite Sandflächen mit Dünenfeldern.',
+			'Ab hier: Kamera bereithalten, die Landschaft ist sehr fotogen.']
+		},
+		{
+		order: 6,
+		label: 'Ankunft Lüderitz (ca. 15:00-16:00)',
+		notes: ['Unterkunft einchecken.']
+		},
+		{
+		order: 7,
+		label: 'Stadtrundgang)',
+		notes: ['Goerke-Haus (Kolonialvilla mit Blick über die Stadt).',
+			'Felsenkirche (1906 erbaut, Wahrzeichen hoch über Lüderitz).',
+			'Spaziergang durch die bunten Straßenzüge.']
+		},		
+		{
+		order: 8,
+		label: 'Abend)',
+		notes: ['Sundowner an der Waterfront oder Shark Island (geniale Aussicht, oft starker Wind).',
+			'Essen: "Essence of Namibia" oder "Barrles" (beliebt bei Reisenden.']
+		}		
+	]
+    }
+  ]
+},
 
+{
+  type: 'Aktivität',
+  name: 'Tag 7: Lüderitz Umgebung erkunden',
+  city: 'Lüderitz',
+  sections: 
+  [
+    {
+      title: 'Vormittag',
+      items: 
+	[
+        	{
+		order: 1,
+		label: 'Kolmanskop Ghost Town (ca. 15 Min von Lüderitz)',
+		notes: ['Führung am Morgen (meist 09:30 Uhr).',
+			'Danach Zeit für Fotografie: verlassene Häuser, vom Sand verschluckt.',
+			'Tipp: Weitwinkel für Innenräume, Tele für Details.']
+		},
+        	{
+		order: 2,
+		label: 'Alternative: Bootstour Halifax Island (Start meist 08:00–09:00, 2–3 Std)',
+		notes: ['Ziel: Kolonie von Brillenpinguinen, Delfine, Pelikane, manchmal Wale.',
+			'Fotogen: Köcherbäume, Aloen, skurrile Felsen.',
+			'Mit Katamaran oder kleineren Booten buchbar.']
+		},
+		{
+		order: 3,
+		label: 'Mittag',
+		notes: ['tbd']
+		},
+		{
+		order: 4,
+		label: 'Nachmittag',
+		notes: ['Diaz Point / Große Bucht (falls am Vortag noch nicht) → hier rauhe Atlantikküste, Leuchtturm, oft Robben.',
+			'Agate Beach → Sandstrand mit Muscheln & Halbedelsteinen (Spaziergang möglich).',
+			'Offorad: Grosse Bucht und Sturmvogelbucht sind abgelegen, teils nur 4x4, sehr einsam.']
+		},
+		{
+		order: 5,
+		label: 'Abend',
+		notes: ['Letzter Sundowner → Tipp: Am Hafen oder bei der Felsenkirche, wo das Licht schön über die Bucht fällt.']
+		}	
+	]
+    }
+  ]
+},
 
   {
     type: 'Aktivität',
