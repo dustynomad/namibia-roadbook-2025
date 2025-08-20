@@ -1,11 +1,7 @@
 import React, { useMemo, useState } from 'react'
 
-/** Erste Version der Activities-Sammlung.
- *  Fülle/ergänze einfach die Felder – du kannst beliebig Einträge hinzufügen.
- */
-const ACTIVITY = [
-  
-  // --- Aktivitäten / Touren ---
+/** Erste Version der Activities-Sammlung. */
+const ACTIVITIES = [
   {
     type: 'Aktivität',
     name: 'Sandwich Harbour 4x4 Tour',
@@ -36,7 +32,7 @@ function encodeMap(q) {
 
 function ItemCard({ c }) {
   const [open, setOpen] = useState(false)
-  const telHref = c.phone ? `tel:${c.phone.replace(/\\s+/g,'')}` : null
+  const telHref = c.phone ? `tel:${c.phone.replace(/\s+/g,'')}` : null
   const mailHref = c.email ? `mailto:${c.email}` : null
   const mapHref = encodeMap(c.mapQuery || c.address || `${c.name} ${c.city}`)
 
@@ -66,13 +62,13 @@ function ItemCard({ c }) {
   )
 }
 
-export default function Activity() {
+export default function Activities() {
   const [query, setQuery] = useState('')
   const [filter, setFilter] = useState('Alle')
 
   const filtered = useMemo(() => {
     const q = query.toLowerCase()
-    return ACTIVITY.filter(c => {
+    return ACTIVITIES.filter(c => {
       const matchesText = [c.type, c.name, c.city, c.address, c.notes].filter(Boolean).join(' ').toLowerCase().includes(q)
       const matchesType = filter === 'Alle' || c.type === filter
       return matchesText && matchesType
@@ -81,8 +77,8 @@ export default function Activity() {
 
   return (
     <div className="max-w-3xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-2">Kontakte & Locations</h1>
-      <p className="text-gray-600 mb-4">Adressen, Telefonnummern und hilfreiche Orte entlang eurer Route.</p>
+      <h1 className="text-3xl font-bold mb-2">Aktivitäten</h1>
+      <p className="text-gray-600 mb-4">Touren & Erlebnisse entlang eurer Route.</p>
 
       <div className="flex flex-col md:flex-row gap-2 md:items-center mb-4">
         <input
@@ -93,10 +89,7 @@ export default function Activity() {
         />
         <select value={filter} onChange={e=>setFilter(e.target.value)} className="rounded-xl border px-3 py-2 bg-white/80">
           <option>Alle</option>
-          <option>Unterkunft</option>
           <option>Aktivität</option>
-          <option>Service</option>
-          <option>Notfall</option>
         </select>
       </div>
 

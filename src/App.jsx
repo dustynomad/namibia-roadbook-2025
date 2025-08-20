@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import Protagonists from './Protagonists.jsx'
-import contacts from './contacts.jsx'
-import activities from './activities.jsx'
+import Contacts from './contacts.jsx'     // <-- groß importieren
+import Activities from './activities.jsx' // <-- groß importieren
 
 const DAYS = [
   {
@@ -350,12 +350,12 @@ export default function App() {
   return (
     <div className="max-w-3xl mx-auto p-6">
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Roadbook />} />
- 	<Route path="/activities" element={<activities />} />   
-	<Route path="/contacts" element={<Contacts />} />   
-        <Route path="/protagonists" element={<Protagonists />} /> 
-     </Routes>
+<Routes>
+  <Route path="/" element={<Roadbook />} />
+  <Route path="/activities" element={<Activities />} />  {/* <-- groß */}
+  <Route path="/contacts" element={<Contacts />} />
+  <Route path="/protagonists" element={<Protagonists />} />
+</Routes>
     </div>
   )
 }
