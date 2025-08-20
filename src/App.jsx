@@ -8,6 +8,7 @@ const DAYS = [
   {
     day: 1,
     title: "Ankunft in Windhoek → Krumhuk Guestfarm",
+    date: "04.09",	
     start: "Flughafen Windhoek (Hosea Kutako)",
     end: "Krumhuk Guestfarm",
     distance: "~45 km",
@@ -26,6 +27,7 @@ const DAYS = [
   {
     day: 2,
     title: "Krumhuk → Bagatelle Kalahari Game Ranch",
+    date: "05.09",
     start: "Krumhuk Guestfarm",
     end: "Bagatelle Kalahari",
     distance: "~250 km",
@@ -46,6 +48,7 @@ const DAYS = [
   {
     day: 3,
     title: "Bagatelle → Keetmanshoop → Garas Camp",
+    date: "06.09",
     start: "Bagatelle",
     end: "Garas Camp bei Keetmanshoop",
     distance: "~300 km",
@@ -77,6 +80,7 @@ map: {
   {
     day: 4,
     title: "Garas Camp → Fish River Canyon (Cañon Roadhouse) --> Activities",
+    date: "07.09",
     start: "Garas Camp",
     end: "Cañon Roadhouse",
     distance: "~180 km",
@@ -97,6 +101,7 @@ map: {
   {
     day: 5,
     title: "Fish River Canyon (Cañon Roadhouse) --> Activities",
+    date: "08.09",
     start: "Cañon Roadhouse",
     end: "Cañon Roadhouse",
     distance: "lokal",
@@ -111,9 +116,10 @@ map: {
   },
   {
     day: 6,
-    title: "Fish River Canyon → Lüderitz --> Activities",
+    title: "Fish River Canyon → Lüderitz (Tag 1)",
+    date: "09.09",
     start: "Cañon Roadhouse",
-    end: "Lüderitz",
+    end: "Lüderitz - Zur Waterkant Guesthouse",
     distance: "~400 km",
     drive: "~5 h",
     plan: [
@@ -126,7 +132,8 @@ map: {
   },
   {
     day: 7,
-    title: "Lüderitz (Kolmanskop & Küste)",
+    title: "Lüderitz (Tag 2)",
+    date: "10.09",
     start: "Lüderitz",
     end: "Lüderitz",
     distance: "lokal",
@@ -141,9 +148,27 @@ map: {
   },
   {
     day: 8,
-    title: "Lüderitz → Helmeringhausen",
+    title: "Lüderitz (Tag 3)",
+    date: "11.09",
     start: "Lüderitz",
-    end: "Helmeringhausen",
+    end: "Lüderitz",
+    distance: "lokal",
+    drive: "kurz",
+    plan: [
+      "Besuch der Geisterstadt Kolmanskop am Morgen",
+      "Stadtrundgang Lüderitz",
+      "Nachmittags Diaz Point und Küste erkunden"
+    ],
+    highlights: ["Kolmanskop", "Atlantikküste", "Frischer Fisch & Austern"],
+    alt: []
+  },
+
+  {
+    day: 9,
+    title: "Lüderitz → Hunters Rest namtib",
+    date: "12.09",
+    start: "Lüderitz",
+    end: "Namtib Desert Lodge / Camping Hunters Rest",
     distance: "~300 km",
     drive: "~4 h",
     plan: [
@@ -154,10 +179,27 @@ map: {
     alt: []
   },
   {
-    day: 9,
-    title: "Helmeringhausen → Sesriem",
-    start: "Helmeringhausen",
-    end: "Sesriem",
+    day: 10,
+    title: "Hunters Rest namtib Tag 1",
+    date: "13.09",
+    start: "Lüderitz",
+    end: "Namtib Desert Lodge",
+    distance: "~300 km",
+    drive: "~4 h",
+    plan: [
+      "Rückfahrt über Aus und kleine Schotterstraßen",
+      "Nachmittags Ankunft Helmeringhausen (bekannt für Apfelkuchen)",
+    ],
+    highlights: ["Weite Wüstenlandschaft", "Kleiner Ort mit Charme"],
+    alt: []
+  },
+
+  {
+    day: 11,
+    title: "Hunters Rest → Sesriem",
+    date: "14.09",
+    start: "Hunters Rest Camp",
+    end: "Little Sossus Campsite",
     distance: "~250 km",
     drive: "~4 h",
     plan: [
@@ -168,10 +210,26 @@ map: {
     alt: []
   },
   {
-    day: 10,
-    title: "Sossusvlei & Deadvlei (Übernachtung Sesriem)",
+    day: 12,
+    title: "Sesriem",
+    date: "15.09",
+    start: "",
+    end: "",
+    distance: "~250 km",
+    drive: "~4 h",
+    plan: [
+      "Fahrt durch die Namib-Wüste",
+      "Nachmittags Besuch Sesriem Canyon"
+    ],
+    highlights: ["Namib-Wüste", "Sesriem Canyon"],
+    alt: []
+  },
+  {
+    day: 13,
+    title: "Sesriem → Mirabib Campsite",
+    date: "16.09",
     start: "Sesriem",
-    end: "Sesriem",
+    end: "Mirabib Campsite",
     distance: "~120 km (hin/retour im Park)",
     drive: "~2 h",
     plan: [

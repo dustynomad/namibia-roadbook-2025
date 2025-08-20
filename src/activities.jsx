@@ -227,7 +227,9 @@ const ACTIVITIES = [
 		label: 'Alternative: Bootstour Halifax Island (Start meist 08:00–09:00, 2–3 Std)',
 		notes: ['Ziel: Kolonie von Brillenpinguinen, Delfine, Pelikane, manchmal Wale.',
 			'Fotogen: Köcherbäume, Aloen, skurrile Felsen.',
-			'Mit Katamaran oder kleineren Booten buchbar.']
+			'Mit Katamaran oder kleineren Booten buchbar.',
+			'https://penguincatamarantours.wordpress.com/?utm_source=chatgpt.com',
+			'Preis ca. N$600 - vorab buchen']		
 		},
 		{
 		order: 3,
