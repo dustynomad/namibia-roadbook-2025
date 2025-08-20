@@ -321,18 +321,6 @@ function DayCard({ d }) {
   );
 }
 
-export default function App() {
-  const [query,setQuery] = useState("");
-  const filtered = useMemo(()=>!query?DAYS:DAYS.filter(d=>(d.title+d.start+d.end).toLowerCase().includes(query.toLowerCase())),[query]);
-  return (
-    <div className="max-w-3xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-4">Namibia Roadbook 2025</h1>
-      <input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Suche..." className="border px-2 py-1 mb-4 w-full"/>
-      <div className="space-y-4">{filtered.map(d=><DayCard key={d.day} d={d}/>)}</div>
-    </div>
-  );
-}
-
 function Navbar() {
   return (
     <nav className="flex gap-4 mb-6 border-b pb-2">

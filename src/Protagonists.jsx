@@ -3,7 +3,7 @@ import React from 'react'
 export default function Protagonists() {
   const people = [
     { name: "Thomas", role: "Navigator & Fahrer", img: "/thomas.jpg" },
-    { name: "Evelüne", role: "Fotografin & Co-Pilotin", img: "/anna.jpg" },
+    { name: "Evelüne", role: "Fotografin & Co-Pilotin", img: "/eve.jpg" },
     // weitere Personen …
   ]
 
