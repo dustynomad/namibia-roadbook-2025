@@ -47,7 +47,7 @@ const DAYS = [
   },
   {
     day: 3,
-    title: "Bagatelle → Keetmanshoop → Garas Camp",
+    title: "Bagatelle → Garas Camp",
     date: "06.09",
     start: "Bagatelle",
     end: "Garas Camp bei Keetmanshoop",
@@ -79,7 +79,7 @@ map: {
   },
   {
     day: 4,
-    title: "Garas Camp → Fish River Canyon (Cañon Roadhouse) --> Activities",
+    title: "Garas Camp → Fish River Canyon (Cañon Roadhouse)",
     date: "07.09",
     start: "Garas Camp",
     end: "Cañon Roadhouse",
@@ -100,10 +100,10 @@ map: {
   },
   {
     day: 5,
-    title: "Fish River Canyon (Cañon Roadhouse) --> Activities",
+    title: "Fish River Canyon (Cañon Roadhouse)",
     date: "08.09",
-    start: "Cañon Roadhouse",
-    end: "Cañon Roadhouse",
+    start: "",
+    end: "",
     distance: "lokal",
     drive: "kurz",
     plan: [
@@ -418,6 +418,7 @@ function DayCard({ d }) {
 		        <MapFrame
 		          key={i}
 		          src={url}
+			  date={d.date}
 		          origin={d.start}
 		          destination={d.end}
 		          title={`Route Tag ${d.day} – Karte ${i + 1}`}
@@ -444,7 +445,7 @@ function Navbar() {
 
 function Roadbook() {
   const [query,setQuery] = useState("")
-  const filtered = useMemo(()=>!query?DAYS:DAYS.filter(d=>(d.title+d.start+d.end).toLowerCase().includes(query.toLowerCase())),[query])
+  const filtered = useMemo(()=>!query?DAYS:DAYS.filter(d=>(d.title+d.date+d.start+d.end).toLowerCase().includes(query.toLowerCase())),[query])
   return (
     <>
       <h1 className="text-3xl font-bold mb-4">Namibia Roadbook 2025</h1>
