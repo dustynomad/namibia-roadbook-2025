@@ -4,8 +4,8 @@ import eve   from './assets/people/eve.jpg'
 
 export default function Protagonists() {
   const people = [
-    { name: 'Thomas', role: 'Navigator & Fahrer',  img: thomas },
-    { name: 'Anna',   role: 'Fotografin & Co-Pilotin', img: eve },
+    { name: 'Thomas', role: 'Navigator & Fahrer',  	img: thomas },
+    { name: 'Eve',    role: 'Fotografin & Co-Pilotin', 	img: eve },
   ]
 
   return (
