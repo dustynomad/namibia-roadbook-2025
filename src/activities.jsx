@@ -141,7 +141,7 @@ const ACTIVITIES = [
  
 {
   type: 'Aktivität',
-  name: 'Tag 6: Tagesroute Roadhouse --> Lüderitz',
+  name: 'Tag 6: Tagesroute Roadhouse → Lüderitz',
   city: 'on the road',
   sections: 
   [
@@ -221,21 +221,33 @@ const ACTIVITIES = [
 		notes: ['Führung am Morgen (meist 09:30 Uhr).',
 			'Danach Zeit für Fotografie: verlassene Häuser, vom Sand verschluckt.',
 			'Tipp: Weitwinkel für Innenräume, Tele für Details.']
-		},
-        	{
-		order: 2,
-		label: 'Mittag',
-		notes: ['tbd']
-		},
+		}
+	]
+    },
+    {
+	title: 'Mittag',
+	items:
+	[
 		{
-		order: 3,
+		order: 1,
+		label: 'Mittagessen',
+		notes: ['tbd']
+		}
+	]
+    },
+    {
+	title: 'Nachmittg & Abend',
+	items:
+	[
+		{
+		order: 1,
 		label: 'Nachmittag',
 		notes: ['Diaz Point / Große Bucht (falls am Vortag noch nicht) → hier rauhe Atlantikküste, Leuchtturm, oft Robben.',
 			'Agate Beach → Sandstrand mit Muscheln & Halbedelsteinen (Spaziergang möglich).',
 			'Offorad: Grosse Bucht und Sturmvogelbucht sind abgelegen, teils nur 4x4, sehr einsam.']
 		},
 		{
-		order: 4,
+		order: 2,
 		label: 'Abend',
 		notes: ['Letzter Sundowner → Tipp: Am Hafen oder bei der Felsenkirche, wo das Licht schön über die Bucht fällt.']
 		}	
