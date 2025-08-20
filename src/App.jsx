@@ -173,24 +173,25 @@ map: {
     drive: "~4 h",
     plan: [
       "Rückfahrt über Aus und kleine Schotterstraßen",
-      "Nachmittags Ankunft Helmeringhausen (bekannt für Apfelkuchen)",
+      "Nachmittags Ankunft in der Namib Wüste auf dem Campingplatz",
+      "CheckIn wird in der Desert Lodge sein, die sich gleich nebenan befindet"
     ],
-    highlights: ["Weite Wüstenlandschaft", "Kleiner Ort mit Charme"],
+    highlights: ["Weite Wüstenlandschaft", "Nichts ausser Sand"],
     alt: []
   },
   {
     day: 10,
     title: "Hunters Rest namtib Tag 1",
     date: "13.09",
-    start: "Lüderitz",
-    end: "Namtib Desert Lodge",
-    distance: "~300 km",
-    drive: "~4 h",
+    start: "",
+    end: "",
+    distance: "",
+    drive: "",
     plan: [
-      "Rückfahrt über Aus und kleine Schotterstraßen",
-      "Nachmittags Ankunft Helmeringhausen (bekannt für Apfelkuchen)",
+      "Wir schauen uns die Gegend an. Am besten wäre es eine Karte dabei zu haben. Evtl. gibt es hier kein Internet",
+      "Sex in den Dünen? Nacktfotos von Eve",
     ],
-    highlights: ["Weite Wüstenlandschaft", "Kleiner Ort mit Charme"],
+    highlights: ["Weite Wüstenlandschaft", "Fotosession"],
     alt: []
   },
 
@@ -211,57 +212,56 @@ map: {
   },
   {
     day: 12,
-    title: "Sesriem",
+    title: "Little Sossus Campsite (Tag 1)",
     date: "15.09",
     start: "",
     end: "",
-    distance: "~250 km",
+    distance: "",
     drive: "~4 h",
     plan: [
-      "Fahrt durch die Namib-Wüste",
-      "Nachmittags Besuch Sesriem Canyon"
+      "",
+      ""
     ],
     highlights: ["Namib-Wüste", "Sesriem Canyon"],
     alt: []
   },
   {
     day: 13,
-    title: "Sesriem → Mirabib Campsite",
+    title: "Sesriem → Desert (Mirabib Campsite)",
     date: "16.09",
-    start: "Sesriem",
+    start: "Little Sossus Campsite",
     end: "Mirabib Campsite",
     distance: "~120 km (hin/retour im Park)",
     drive: "~2 h",
     plan: [
-      "Frühe Einfahrt ins Sossusvlei",
-      "Besteigung Düne 45 oder Big Daddy",
-      "Besuch Deadvlei",
+      "",
       "Nachmittags Relaxen oder Sundowner"
     ],
     highlights: ["Sossusvlei", "Deadvlei", "Dünenlandschaft"],
     alt: []
   },
   {
-    day: 11,
-    title: "Sesriem → Solitaire → Swakopmund",
-    start: "Sesriem",
-    end: "Swakopmund",
+    day: 14,
+    title: "Desert → Walvis Bay",
+    date: "17.09",   
+    start: "Mirabib Campsite",
+    end: "Walvis Bay",
     distance: "~350 km",
     drive: "~5 h",
     plan: [
-      "Fahrt über Solitaire (legendärer Apfelkuchen!)",
-      "Über Gaub- und Kuiseb-Pass Richtung Küste",
-      "Ankunft in Swakopmund am Nachmittag"
+      "Fahrt durch die Wüste",
+      "Ankunft in Walvis Bay am Nachmittag"
     ],
     highlights: ["Namib Naukluft Landschaft", "Solitaire", "Küstennebel"],
     alt: []
   },
   {
-    day: 12,
-    title: "Swakopmund & Walvis Bay (Sandwich Harbour Tour)",
-    start: "Swakopmund",
-    end: "Swakopmund",
-    distance: "lokal",
+    day: 15,
+    title: "Walvis Bay → Swakopmund",
+    date: "18.09",
+    start: "Walvis Bay",
+    end: "Swakopmund, Driftwood Guesthouse",
+    distance: "",
     drive: "Tour mit Anbieter",
     plan: [
       "Halbtages- oder Ganztagestour nach Sandwich Harbour (Wüste trifft Ozean!)",
@@ -272,117 +272,66 @@ map: {
     alt: ["Quadbiken, Wüstensafari"]
   },
   {
-    day: 13,
-    title: "Swakopmund → Spitzkoppe",
-    start: "Swakopmund",
-    end: "Spitzkoppe",
-    distance: "~150 km",
-    drive: "~2 h",
+    day: 16,
+    title: "Sandwich Harbour Day",
+    date: "19.09",
+    start: "",
+    end: "",
+    distance: "",
+    drive: "Tour mit Anbieter",
     plan: [
-      "Fahrt ins Landesinnere",
-      "Nachmittags Wanderung rund um die Spitzkoppe",
-      "Sundowner am Felsen"
+      "Halbtages- oder Ganztagestour nach Sandwich Harbour (Wüste trifft Ozean!)",
+      "Stadterkundung Swakopmund",
+      "Cape Cross erkunden",	
+      "Abendessen in einem Seafood-Restaurant"
     ],
-    highlights: ["Spitzkoppe – das Matterhorn Namibias"],
-    alt: []
+    highlights: ["Sandwich Harbour", "Atlantikküste", "Cape Cross"],
+    alt: ["Quadbiken, Wüstensafari"]
   },
   {
-    day: 14,
-    title: "Spitzkoppe → Brandberg",
-    start: "Spitzkoppe",
-    end: "Brandberg",
+    day: 17,
+    title: "Swakopmund → Community Campsite",
+    date: "20.09",
+    start: "Driftwood Guesthouse",
+    end: "Uis, Elephanat Rock Community Campsite",
     distance: "~180 km",
     drive: "~2,5 h",
     plan: [
-      "Fahrt Richtung Brandberg",
-      "Wanderung zu den White Lady Felsmalereien"
+      "es ist noch nichts gebucht. Wir werden je nachdem schauen, was frei ist",
+      "Elephant Rock Community Campsite",
+      "Daureb Isib Campsite",
+      "Desert House, Uis"
     ],
     highlights: ["Brandbergmassiv", "San-Felszeichnungen"],
     alt: []
   },
   {
-    day: 15,
-    title: "Brandberg → Twyfelfontein",
-    start: "Brandberg",
-    end: "Twyfelfontein",
-    distance: "~200 km",
-    drive: "~3 h",
-    plan: [
-      "Fahrt durch das Damaraland",
-      "Besuch der Felsgravuren von Twyfelfontein (UNESCO Welterbe)",
-      "Besichtigung Organ Pipes & Burnt Mountain"
-    ],
-    highlights: ["Twyfelfontein", "Organ Pipes", "Wüstenelefanten (mit Glück)"],
-    alt: []
-  },
-  {
-    day: 16,
-    title: "Twyfelfontein → Etosha Süd (Okaukuejo)",
-    start: "Twyfelfontein",
-    end: "Okaukuejo, Etosha Nationalpark",
-    distance: "~350 km",
-    drive: "~5 h",
-    plan: [
-      "Längere Fahrt Richtung Etosha",
-      "Nachmittags erstes Gate-Drive im Park",
-      "Abends Tiere am Wasserloch von Okaukuejo beobachten"
-    ],
-    highlights: ["Etosha Nationalpark", "Wasserloch Okaukuejo"],
-    alt: []
-  },
-  {
-    day: 17,
-    title: "Etosha Nationalpark (Safari)",
-    start: "Okaukuejo",
-    end: "Okaukuejo",
-    distance: "lokal im Park",
-    drive: "selbst geplant",
-    plan: [
-      "Ganztägige Pirschfahrten im Etosha",
-      "Tiere an Wasserlöchern beobachten"
-    ],
-    highlights: ["Elefanten, Löwen, Nashörner (mit Glück)"],
-    alt: []
-  },
-  {
     day: 18,
-    title: "Etosha → Waterberg Plateau",
-    start: "Okaukuejo",
-    end: "Waterberg Plateau Lodge",
+    title: "Community Campsite/Uis → Ai Aiba Rockpinating Lodge",
+    date: "21.09",
+    start: "Uis",
+    end: "50 km vor Windhoek",
     distance: "~300 km",
     drive: "~4 h",
     plan: [
-      "Fahrt Richtung Otjiwarongo",
-      "Nachmittags Wanderung auf dem Waterberg Plateau"
+      "Ausspannen und alles herrichten für den Abflug",
+      "",
+      "Abendessen in Joe’s Beerhouse"
     ],
-    highlights: ["Waterberg Plateau", "Wanderungen"],
+    highlights: [""],
     alt: []
   },
   {
     day: 19,
-    title: "Waterberg → Windhoek",
-    start: "Waterberg Plateau",
-    end: "Windhoek",
-    distance: "~300 km",
-    drive: "~4 h",
-    plan: [
-      "Rückfahrt nach Windhoek",
-      "Nachmittags letzte Einkäufe oder Stadtbesichtigung",
-      "Abendessen in Joe’s Beerhouse"
-    ],
-    highlights: ["Windhoek Stadt"],
-    alt: []
-  },
-  {
-    day: 20,
     title: "Abflug ab Windhoek",
-    start: "Windhoek",
+    start: "Uis",
     end: "Flughafen Windhoek (Hosea Kutako)",
+    date: "22.09",
     distance: "~45 km",
     drive: "~40 Min",
     plan: [
-      "Fahrt zum Flughafen",
       "Mietwagenrückgabe",
+      "Fahrt zum Flughafen",
       "Heimflug"
     ],
     highlights: ["Letzter Blick auf Namibia"],
