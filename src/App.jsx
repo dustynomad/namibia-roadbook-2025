@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import Protagonists from './Protagonists.jsx'
+import Contacts from './Contacts.jsx'
 
 const DAYS = [
   {
@@ -326,19 +327,8 @@ function Navbar() {
     <nav className="flex gap-4 mb-6 border-b pb-2">
       <Link to="/" className="hover:underline">Roadbook</Link>
       <Link to="/protagonists" className="hover:underline">Protagonisten</Link>
+      <Link to="/contacts" className="hover:underline">Contacts</Link>   {/* neu */}
     </nav>
-  )
-}
-
-export default function App() {
-  return (
-    <div className="max-w-3xl mx-auto p-6">
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Roadbook />} />
-        <Route path="/protagonists" element={<Protagonists />} />
-      </Routes>
-    </div>
   )
 }
 
@@ -351,5 +341,18 @@ function Roadbook() {
       <input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Suche..." className="border px-2 py-1 mb-4 w-full"/>
       <div className="space-y-4">{filtered.map(d=><DayCard key={d.day} d={d}/>)}</div>
     </>
+  )
+}
+
+export default function App() {
+  return (
+    <div className="max-w-3xl mx-auto p-6">
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Roadbook />} />
+        <Route path="/protagonists" element={<Protagonists />} />
+	<Route path="/contacts" element={<Contacts />} />   {/* neu */}
+      </Routes>
+    </div>
   )
 }
