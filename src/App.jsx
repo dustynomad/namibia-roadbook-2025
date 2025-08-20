@@ -18,7 +18,10 @@ const DAYS = [
       "Nachmittags Erholung oder kleine Farmtour"
     ],
     highlights: ["Erster Eindruck Namibia", "Ruhiger Start auf Farm"],
-    alt: ["Abendessen in Windhoek möglich"]
+    alt: ["Abendessen in Windhoek möglich"],
+ map: 
+    {embed: "https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d117830.87205297453!2d17.077474860882663!3d-22.645780407110703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x1c0b073c41ae1da1%3A0x4236762f58848efa!2sSafari%20Car%20Rental%2C%20Kappsfarm%2C%20Namibia!3m2!1d-22.5477217!2d17.253061!4m5!1s0x1c0b12234729fc19%3A0xccc4272e92645962!2sKrumhuk%2C%20P.O.Box%202630%2C%20Windhoek%2C%20Namibia!3m2!1d-22.743655!2d17.072954!5e0!3m2!1sde!2sch!4v1755700593607!5m2!1sde!2sch" 		
+    }
   },
   {
     day: 2,
@@ -311,14 +314,16 @@ function DayCard({ d }) {
         <div><h3 className="text-xl font-semibold">Tag {d.day} – {d.title}</h3></div>
         <button onClick={()=>setOpen(!open)} className="text-sm border px-2">{open?"Schließen":"Details"}</button>
       </div>
-      {open && <div className="mt-2">
-        <p><b>Start:</b> {d.start} · <b>Ziel:</b> {d.end}</p>
-        <p><b>Distanz:</b> {d.distance} · <b>Fahrtzeit:</b> {d.drive}</p>
-        <h4 className="font-medium mt-2">Tagesplan</h4>
-        <ul className="list-disc ml-5">{d.plan.map((p,i)=><li key={i}>{p}</li>)}</ul>
-        {d.highlights.length>0 && (<><h4 className="font-medium mt-2">Highlights</h4><ul className="list-disc ml-5">{d.highlights.map((h,i)=><li key={i}>{h}</li>)}</ul></>)}
-        {d.alt.length>0 && (<><h4 className="font-medium mt-2">Alternativen</h4><ul className="list-disc ml-5">{d.alt.map((a,i)=><li key={i}>{a}</li>)}</ul></>)}
-      </div>}
+      {open && 
+	<div className="mt-2">
+	        <p><b>Start:</b> {d.start} · <b>Ziel:</b> {d.end}</p>
+        	<p><b>Distanz:</b> {d.distance} · <b>Fahrtzeit:</b> {d.drive}</p>
+	        <h4 className="font-medium mt-2">Tagesplan</h4>
+        	<ul className="list-disc ml-5">{d.plan.map((p,i)=><li key={i}>{p}</li>)}</ul>
+	        {d.highlights.length>0 && (<><h4 className="font-medium mt-2">Highlights</h4><ul className="list-disc ml-5">{d.highlights.map((h,i)=><li key={i}>{h}</li>)}</ul></>)}
+	        {d.alt.length>0 && (<><h4 className="font-medium mt-2">Alternativen</h4><ul className="list-disc ml-5">{d.alt.map((a,i)=><li key={i}>{a}</li>)}</ul></>)}
+		{d.map?.embed && <MapFrame src={d.map.embed} />}     
+	</div>}
     </div>
   );
 }
@@ -344,6 +349,19 @@ function Roadbook() {
       <div className="space-y-4">{filtered.map(d=><DayCard key={d.day} d={d}/>)}</div>
     </>
   )
+}
+
+function MapFrame({ src }) {
+  if (!src) return null;
+  return (
+    <iframe
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade"
+      src={src}
+      className="w-full h-[360px] rounded-xl border mt-3"
+      allowFullScreen
+    />
+  );
 }
 
 export default function App() {
