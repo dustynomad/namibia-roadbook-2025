@@ -2,7 +2,78 @@ import React, { useMemo, useState } from 'react'
 
 /** Erste Version der Activities-Sammlung. */
 const ACTIVITIES = [
-  {
+{
+  type: 'Aktivität',
+  name: 'Fish River Canyon – Programm',
+  city: 'Canyon Roadhouse',
+  address: 'Fish River Canyon Roadhouse',
+  notes: '2-Tages Programm',
+  sections: [
+    {
+      title: 'Tag 1 - Canyon erleben & Sonnenuntergang',
+      items: 
+	[
+        	{
+		order: 1,
+		label: '12:00-14:00 - Ankunft / Mittagessen im Roadhouse, Oldtimer anschauen & Fotos',
+		},
+		{
+		order: 2,
+		label: '15:00-18:00 Fotosessions & Walks',
+		notes: ['Main Viewpoint & kurze Rim-Walks',
+			'Ab 16 Uhr bestes Fotolicht.',
+			'Sonnenuntergang am Main Viewpoint oder Sunset Viewpoint.',]
+		},
+		{
+		order: 3,
+		label: 'Abends',
+		notes: ['Abendessen im "Auto-Restaurant" oder Selbstkochen.',
+			'Sex unter der Milchstrasse.']
+		},
+	],
+    },
+    {
+      title: 'Tag 2 – Umgebung & Abwechslung',
+      items: [
+        {
+          order: 1,
+          label: '08:00: Frühstück im Camper',
+          mapQuery: 'Fish River Canyon Main Viewpoint Hobas'
+        },
+        {
+          order: 2,
+          label: '08:30–11:30: Rim Road auf und ab fahren. Stoppen an kleineren, kaum bekannten Aussichtspunkten. Ideal, weil fast alleine',
+          mapQuery: 'Fish River Canyon Sunset Viewpoint'
+        },
+        {
+          order: 3,
+          label: '12:30–15:30: Fahrt runter nach Ai-Ais Hot Springs → Relaxen im Thermalbad, Mittagessen.',
+          mapQuery: 'Fish River Canyon Rim Road Viewpoints'
+                },
+        {
+          order: 4,
+          label: '16:00–17:30: Rückfahrt Richtung Roadhouse, mit Stopps für Fotospots.',
+          mapQuery: 'Fish River Canyon Rim Road Viewpoints'
+        },
+        {
+          order: 5,
+          label: '17:30–18:30: Zweiter Sundowner am Canyonrand (diesmal anderer Spot als am 1. Tag).',
+          mapQuery: 'Fish River Canyon Rim Road Viewpoints'
+        },
+        {
+          order: 6,
+          label: 'Abends: Nochmals Abendessen & vielleicht Milchstraße-Fotografie direkt am Roadhouse (kaum Lichtverschmutzung).',
+          mapQuery: 'Fish River Canyon Rim Road Viewpoints'
+	}
+      ]
+    }
+  ]
+},
+ 
+
+
+
+ {
   type: 'Aktivität',
   name: 'Fish River Canyon – Fotospots',
   city: 'Hobas / Viewpoints',
