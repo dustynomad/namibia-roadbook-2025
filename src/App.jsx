@@ -165,7 +165,8 @@ map: {
     drive: "",
     plan: [
       "Ausflug mit dem Boot",
-      "Nachmittags Diaz Point und Küste erkunden"
+      "Nachmittags Diaz Point und Küste erkunden",
+      "Einkaufen für Namtib - die nächsten Tage Selbstversorger"	
     ],
     highlights: ["Kolmanskop", "Atlantikküste", "Halifax Island", "Bunte Altstadt"],
     alt: ["Ausflug zum Bogenfels"]
@@ -183,9 +184,15 @@ map: {	embed:
 "https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d854128.6420106287!2d15.5741993292159!3d-26.4137273791366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x1c6cbdfc5ef202ad%3A0x9db89c3a9c44b630!2sCamping%20Namtib%20Desert%20Lodge%2C%20Namibia!3m2!1d-26.019517999999998!2d16.2476277!4m5!1s0x1c6be69ac15fd6cf%3A0x8c797b95278c27fb!2sPension%20Zur%20Waterkant%20(B%26B)%2C%20P.O.%20Box%201055%20(Bremer%20Str.)%20Bremer%2C%20Luderitz%2C%20Namibia!3m2!1d-26.643523199999997!2d15.1597485!5e1!3m2!1sde!2sch!4v1755729119872!5m2!1sde!2sch"
 },
     plan: [
-      "Rückfahrt über Aus und kleine Schotterstraßen",
-      "Nachmittags Ankunft in der Namib Wüste auf dem Campingplatz",
-      "CheckIn wird in der Desert Lodge sein, die sich gleich nebenan befindet"
+      "07:00–08:00 – Frühstück & Abfahrt aus Lüderitz - Tanken und Vorräte auffüllen!!",
+      "08:00–10:00 – Fahrt Lüderitz → Aus (ca. 120 km, 1,5–2 Std)",
+      "10:00–11:00 – Stopp Garub Wildpferde (ca. 20 km vor Aus) - oder sein lassen und weiterfahren",
+      "11:00–12:00 – Aus (Klein-Aus Vista)",
+      "12:00–14:30 – Fahrt Aus → Namtib (ca. 100 km, 1,5–2 Std)",
+      "14:30–15:00 – Ankunft Namtib Biosphere Reserve / Huntes Rest Camp",
+      "16:30–18:30 – Nachmittagsaktivität - Kleine Wanderung",	
+      "Abend       - Lagerfeuer am Camp, Abendessen",
+      "Nacht       - Sex unter dem Sternenhimmel. Nacktfotos von Eve machen"
     ],
     highlights: ["Weite Wüstenlandschaft", "Nichts ausser Sand"],
     alt: []
@@ -199,8 +206,10 @@ map: {	embed:
     distance: "",
     drive: "",
     plan: [
-      "Wir schauen uns die Gegend an. Am besten wäre es eine Karte dabei zu haben. Evtl. gibt es hier kein Internet",
-      "Sex in den Dünen? Nacktfotos von Eve"
+      "06:30–08:30 – Sunrise & Morning Walk",
+      "09:30–12:30 – Farm & Scenic Drive / Wanderung",
+      "12:30–15:30 – Siesta / Ruhepause",
+      "16:30–18:30 – Afternoon Activity"
     ],
     highlights: ["Weite Wüstenlandschaft", "Fotosession"],
     alt: []
@@ -221,9 +230,10 @@ map: {
 ]},
     plan: [
       "Fahrt durch die Namib-Wüste",
-      "Nachmittags Besuch Sesriem Canyon"
+      "erst spätes Ankommen",
+      "Camp ist eingerichtet für Lebensmittel, Evtl. kann man auch in der zuugehärigen Lodge Essen gehen"	
     ],
-    highlights: ["Namib-Wüste", "Sesriem Canyon"],
+    highlights: ["Namib-Wüste"],
     alt: []
   },
   {

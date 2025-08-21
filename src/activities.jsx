@@ -295,6 +295,56 @@ const ACTIVITIES = [
   ]
 },
 
+{
+  type: 'Aktivität',
+  name: 'Tag 9: Namtib Biosphere Reserve / Huntes Rest Camp ',
+  city: 'Namtib',
+  sections: 
+  [
+    {
+      title: 'Infos',
+      items: 
+	[
+		{
+		order: 1,
+		label: 'Landschaft & Natur',
+		notes: ['Privat geführtes Naturschutzgebiet (ca. 16.500 ha) – liegt zwischen Namib-Wüste und Tirasbergen.',
+			'Sehr abwechslungsreich: rote Sanddünen, weite Ebenen, bizarre Granitberge, kleine Täler.',
+			'Absolut ruhig und abgeschieden – perfekt nach der Küste in Lüderitz.']		
+		},        	
+		{
+		order: 2,
+		label: 'Tierwelt',
+		notes: ['Kein „Big Five“-Gebiet, dafür Wildtiere wie Oryx, Springbock, Strauße, Kudus, Bergzebras, Schakale, zahlreiche Vögel.',
+			'Gute Chance, Tiere direkt von der Unterkunft oder bei einer Wanderung zu sehen.']
+		},
+		{
+		order: 3,
+		label: 'Unterkunft & Camp',
+		notes: ['Huntes Rest Camp = einfache, charmante Selbstversorger-Campingplätze mit schöner Lage.',
+			'Viel Platz, Schatten durch Bäume, Feuerstellen, saubere Sanitäranlagen.']
+		},
+		{
+		order: 4,
+		label: 'Aktivitäten',
+		notes: ['Self-Drive Scenic Drives durch die Farm (Pisten sind gut befahrbar, auch ohne Hardcore-4x4).',
+			'Wandern: markierte Trails von leicht bis anspruchsvoll (z. B. in die Tirasberge, spektakuläre Aussicht!).',
+			'Sternenhimmel: eine der dunkelsten Regionen Namibias → ideal für Astrofotografie.',
+			'Farmleben kennenlernen: Die Besitzerfamilie Hälbich bewirtschaftet das Land ökologisch nachhaltig – man erfährt viel über Landnutzung und Schutz.']
+		},
+		{
+		order: 5,
+		label: 'Fotomotive',
+		notes: ['Sonnenauf- und -untergänge über den roten Tirasbergen.',
+			'Weite Ebenen mit vereinzelten Kameldornbäumen.',
+			'Tiere in offener Landschaft (besonders Oryx-Silhouetten im Gegenlicht).',
+			'Nachtaufnahmen der Milchstraße.']
+		}	
+	]
+    }
+  ]
+},
+
   {
     type: 'Aktivität',
     name: 'Sandwich Harbour 4x4 Tour',
