@@ -194,7 +194,7 @@ map: {	embed:
       "Abend       - Lagerfeuer am Camp, Abendessen",
       "Nacht       - Sex unter dem Sternenhimmel. Nacktfotos von Eve machen"
     ],
-    highlights: ["Weite Wüstenlandschaft", "Nichts ausser Sand"],
+    highlights: ["D707 - Panoramastrasse"],
     alt: []
   },
   {
@@ -264,10 +264,15 @@ map: {
 "https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d1465545.1586719186!2d15.19749224996463!3d-23.97335359909229!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x1c729b2c224ee73d%3A0xdac4d718df58ddbf!2sLittle%20Sossus%20Campsite%2C%20Namibia!3m2!1d-24.6616343!2d15.975375099999999!4m5!1s0x1c73f4645af483d1%3A0xb3d3be92f94565db!2sMirabib%20Campsite%2C%20Namibia!3m2!1d-23.4540538!2d15.3520069!5e1!3m2!1sde!2sch!4v1755729577131!5m2!1sde!2sch"
 ]},
     plan: [
-      "",
-      "Nachmittags Relaxen oder Sundowner"
-    ],
-    highlights: ["Sossusvlei", "Deadvlei", "Dünenlandschaft"],
+	"07:30 Abfahrt Little Sossus",
+	"08:00–09:30 Sesriem Canyon oder Elim Dune",
+	"11:00 Stopp in Solitaire (Kaffee, Apfelkuchen, Tanken, Fotos)",
+	"12:30–13:00 Mittagspause (Picknick oder kleine Lodge unterwegs)",
+	"13:30–15:30 Fahrt über Gaub & Kuiseb-Pass mit Fotostopps",
+	"16:00–17:00 Ankunft Mirabib Campsite → Sundowner am Felsen",
+	"Abends Lagerfeuer + Sternenhimmel"
+	],
+    highlights: ["Sesriem Canyon", "Elim Dune", "Solitäir (C19/C14) Apfelkuchen", "Tropic of Capricorn Sign", "Gaub Pass & Gaub Canyon", "The Grotto" ,"Kuiseb Pass & Canyon", "Mirabib Felsen"],
     alt: []
   },
   {
