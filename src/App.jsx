@@ -141,7 +141,7 @@ map: {
 
   {
     day: 7,
-    title: "Lüderitz (Tag 2)",
+    title: "Lüderitz (Tag 1)",
     date: "10.09",
     start: "",
     end: "",
@@ -153,11 +153,11 @@ map: {
       "Nachmittags Diaz Point und Küste erkunden"
     ],
     highlights: ["Kolmanskop", "Atlantikküste", "Frischer Fisch & Austern"],
-    alt: []
+    alt: ["Ausflug zum Bogenfels"]
   },
   {
     day: 8,
-    title: "Lüderitz (Tag 3)",
+    title: "Lüderitz (Tag 2)",
     date: "11.09",
     start: "",
     end: "",
@@ -167,8 +167,8 @@ map: {
       "Ausflug mit dem Boot",
       "Nachmittags Diaz Point und Küste erkunden"
     ],
-    highlights: ["Kolmanskop", "Atlantikküste", "Frischer Fisch & Austern"],
-    alt: []
+    highlights: ["Kolmanskop", "Atlantikküste", "Halifax Island", "Bunte Altstadt"],
+    alt: ["Ausflug zum Bogenfels"]
   },
 
   {

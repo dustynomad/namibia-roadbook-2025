@@ -189,17 +189,9 @@ const ACTIVITIES = [
 		},
 		{
 		order: 7,
-		label: 'Stadtrundgang)',
-		notes: ['Goerke-Haus (Kolonialvilla mit Blick über die Stadt).',
-			'Felsenkirche (1906 erbaut, Wahrzeichen hoch über Lüderitz).',
-			'Spaziergang durch die bunten Straßenzüge.']
-		},		
-		{
-		order: 8,
-		label: 'Abend)',
-		notes: ['Sundowner an der Waterfront oder Shark Island (geniale Aussicht, oft starker Wind).',
-			'Essen: "Essence of Namibia" oder "Barrles" (beliebt bei Reisenden.']
-		}		
+		label: 'Optional)',
+		notes: ['evtl. den Stadtrundgang von Morgen vorziehen oder einfach nichts tun']
+		}
 	]
     }
   ]
@@ -207,7 +199,7 @@ const ACTIVITIES = [
 
 {
   type: 'Aktivität',
-  name: 'Tag 7: Lüderitz Umgebung erkunden',
+  name: 'Tag 7: Lüderitz Tag 1 - Stadt, Geschichte, Geisterstadt',
   city: 'Lüderitz',
   sections: 
   [
@@ -231,25 +223,33 @@ const ACTIVITIES = [
 		{
 		order: 1,
 		label: 'Mittagessen',
-		notes: ['tbd']
+		notes: ['Zurück nach Lüderitz. Lunch z. B. bei „Diaz Coffee Shop“ oder an der Waterfront.']
 		}
 	]
     },
     {
-	title: 'Nachmittg & Abend',
+	title: 'Nachmittag',
 	items:
-	[
+	[		
 		{
 		order: 1,
-		label: 'Nachmittag',
-		notes: ['Diaz Point / Große Bucht (falls am Vortag noch nicht) → hier rauhe Atlantikküste, Leuchtturm, oft Robben.',
-			'Agate Beach → Sandstrand mit Muscheln & Halbedelsteinen (Spaziergang möglich).',
-			'Offorad: Grosse Bucht und Sturmvogelbucht sind abgelegen, teils nur 4x4, sehr einsam.']
+		label: 'Stadtrundgang',
+		notes: ['Goerke-Haus (Kolonialvilla mit Blick über die Stadt).',
+			'Felsenkirche (1906 erbaut, Wahrzeichen hoch über Lüderitz).',
+			'Spaziergang durch die bunten Straßenzüge.']
 		},
 		{
 		order: 2,
+		label: 'Optional',
+		notes: ['Dias Point rausfahren (ca. 20 km)',
+			'Nachbildung des Stein-Kreuzes des portugiesischen Seefahrers Bartolomeu Dias.',
+			'Dramatische Küste!']
+		},
+		{
+		order: 3,
 		label: 'Abend',
-		notes: ['Letzter Sundowner → Tipp: Am Hafen oder bei der Felsenkirche, wo das Licht schön über die Bucht fällt.']
+		notes: ['Sundowner am Shark Island oder direkt an der Waterfront.',
+			'Essen: „Essence of Namibia“ oder „Barrels“ (beliebt bei Reisenden).']
 		}	
 	]
     }
@@ -258,7 +258,7 @@ const ACTIVITIES = [
 
 {
   type: 'Aktivität',
-  name: 'Tag 8: Lüderitz Umgebung erkunden (2)',
+  name: 'Tag 8: Lüderitz Tag 2 - Natur, Küste & Pinguine ',
   city: 'Lüderitz',
   sections: 
   [
@@ -270,21 +270,20 @@ const ACTIVITIES = [
 		order: 1,
 		label: 'Bootstour Halifax Island (Start meist 08:00–09:00, 2–3 Std)',
 		notes: ['Ziel: Kolonie von Brillenpinguinen, Delfine, Pelikane, manchmal Wale.',
-			'Fotogen: Köcherbäume, Aloen, skurrile Felsen.',
 			'Mit Katamaran oder kleineren Booten buchbar.',
 			'https://penguincatamarantours.wordpress.com/?utm_source=chatgpt.com',
 			'Preis ca. N$600 - vorab buchen']		
 		},        	{
 		order: 2,
 		label: 'Mittag',
-		notes: ['tbd']
+		notes: ['Zurück in Lüderitz. Lunch & kurze Pause.']
 		},
 		{
 		order: 3,
 		label: 'Nachmittag',
 		notes: ['Diaz Point / Große Bucht (falls am Vortag noch nicht) → hier rauhe Atlantikküste, Leuchtturm, oft Robben.',
 			'Agate Beach → Sandstrand mit Muscheln & Halbedelsteinen (Spaziergang möglich).',
-			'Offraod: Grosse Bucht und Sturmvogelbucht sind abgelegen, teils nur 4x4, sehr einsam.']
+			'Offroad: Grosse Bucht und Sturmvogelbucht sind abgelegen, teils nur 4x4, sehr einsam.']
 		},
 		{
 		order: 4,
