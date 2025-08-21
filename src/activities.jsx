@@ -73,7 +73,7 @@ const ACTIVITIES = [
 },
 
  {
-  type: 'Aktivität',
+  type: 'Info',
   name: 'Fish River Canyon – Fotospots',
   city: 'Hobas / Viewpoints',
   address: 'Fish River Canyon Viewpoints (Hobas)',
@@ -144,7 +144,7 @@ const ACTIVITIES = [
   name: 'Tag 4 & 5: Ausflug nach Ais Ais zu den Hot Springs',
   city: 'Ais Ais',
   address: 'Ais Ais Hot Springs',
-  notes: ['Alternativer Ausflug','Dauer, ca. 1/2 Tag'],
+  notes: ['Alternativer Ausflug',' Dauer, ca. 1/2 Tag'],
   sections: [
     {
       title: 'Ais Ais Hot Springs',
@@ -157,13 +157,10 @@ const ACTIVITIES = [
 		{
 		order: 2,
 		label: 'Links abbiegen auf C37/D324 (42.2km)',
-		notes: ['']
 		},
 		{
 		order: 3,
 		label: 'Rechts abbiegen auf C10/M97 (22.7km)',
-		notes: ['Abendessen im "Auto-Restaurant" oder Selbstkochen.',
-			'Sex unter der Milchstrasse.']
 		}
 	]
     }    
@@ -445,6 +442,15 @@ function encodeMap(q) {
   return q ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}` : ''
 }
 
+function TypeBadge({ type }) {
+  const base = "inline-block text-[11px] px-2 py-[2px] rounded-full border align-middle";
+  const tone =
+    type === 'Aktivität' ? "border-emerald-400 text-emerald-700 bg-emerald-50" :
+    type === 'Info'       ? "border-indigo-400 text-indigo-700 bg-indigo-50" :
+                            "border-gray-300 text-gray-700 bg-gray-50";
+  return <span className={`${base} ${tone}`}>{type}</span>
+}
+
 function ItemCard({ c }) {
   const [open, setOpen] = useState(false)
   const telHref = c.phone ? `tel:${c.phone.replace(/\s+/g,'')}` : null
@@ -512,13 +518,21 @@ function ItemCard({ c }) {
 }
 
 export default function Activities() {
-  const [query, setQuery] = useState('')
+  const [query, setQuery]   = useState('')
   const [filter, setFilter] = useState('Alle')
+
+  // Typen-Liste dynamisch aus den Daten (zukunftssicher: neue Typen erscheinen automatisch)
+  const typeOptions = useMemo(() => {
+    const uniq = Array.from(new Set(ACTIVITIES.map(a => a.type))).sort()
+    return ['Alle', ...uniq]
+  }, [])
 
   const filtered = useMemo(() => {
     const q = query.toLowerCase()
     return ACTIVITIES.filter(c => {
-      const matchesText = [c.type, c.name, c.city, c.address, c.notes].filter(Boolean).join(' ').toLowerCase().includes(q)
+      const matchesText =
+        [c.type, c.name, c.city, c.address, c.notes].filter(Boolean)
+          .join(' ').toLowerCase().includes(q)
       const matchesType = filter === 'Alle' || c.type === filter
       return matchesText && matchesType
     })
@@ -526,8 +540,8 @@ export default function Activities() {
 
   return (
     <div className="max-w-3xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-2">Aktivitäten</h1>
-      <p className="text-gray-600 mb-4">Touren & Erlebnisse entlang eurer Route.</p>
+      <h1 className="text-3xl font-bold mb-2">Aktivitäten & Infos</h1>
+      <p className="text-gray-600 mb-4">Touren, Tipps und Hintergrundinfos entlang eurer Route.</p>
 
       <div className="flex flex-col md:flex-row gap-2 md:items-center mb-4">
         <input
@@ -536,15 +550,20 @@ export default function Activities() {
           placeholder="Suche nach Name, Ort, Notiz…"
           className="w-full md:w-80 rounded-xl border px-4 py-2 bg-white/80 focus:outline-none"
         />
-        <select value={filter} onChange={e=>setFilter(e.target.value)} className="rounded-xl border px-3 py-2 bg-white/80">
-          <option>Alle</option>
-          <option>Aktivität</option>
+        <select
+          value={filter}
+          onChange={e=>setFilter(e.target.value)}
+          className="rounded-xl border px-3 py-2 bg-white/80"
+        >
+          {typeOptions.map(t => <option key={t}>{t}</option>)}
         </select>
       </div>
 
       <div className="grid gap-3">
-        {filtered.map((c, i) => <ItemCard key={`${c.name}-${i}`} c={c} />)}
-        {filtered.length === 0 && <p className="text-sm text-gray-500">Keine Treffer – Suchbegriff ändern oder Filter zurücksetzen.</p>}
+        {filtered.map((c, i) => <ItemCard key={`${c.type}-${c.name}-${i}`} c={c} />)}
+        {filtered.length === 0 && (
+          <p className="text-sm text-gray-500">Keine Treffer – Suchbegriff ändern oder Filter zurücksetzen.</p>
+        )}
       </div>
     </div>
   )
