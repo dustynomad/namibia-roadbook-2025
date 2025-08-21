@@ -301,6 +301,47 @@ const ACTIVITIES = [
   city: 'Namtib',
   sections: 
   [
+{
+      title: 'Tagesplan am 2.Tag',
+      items: 
+	[
+		{
+		order: 1,
+		label: '06:30–08:30 – Sunrise & Morning Walk',
+		notes: ['Früh aufstehen lohnt sich → die Tirasberge im Morgenlicht sind magisch.',
+			'Kurze Wanderung auf einem markierten Trail (es gibt einfache Spazierwege direkt vom Camp aus).',
+			'Tiere sind morgens am aktivsten → gute Chancen auf Oryx, Springböcke, Strauße, Kudus.',
+			'Danach gemütliches Frühstück am Zeltplatz.']		
+		},        	
+		{
+		order: 2,
+		label: '09:30–12:30 – Farm & Scenic Drive / Wanderung',
+		notes: ['Möglichkeit 1: Mit dem Auto einen Scenic Drive über die Farm machen (es gibt interne Farmwege, gut ausgeschildert, keine Offroad-Extremtour).',
+			'Möglichkeit 2: Längere Wanderung in die Tirasberge (ca. 2–3 Std).',
+			'Highlights: bizarre Granitformationen, weite Täler, fantastische Panoramablicke.']
+		},
+		{
+		order: 3,
+		label: '12:30–15:30 – Siesta / Ruhepause',
+		notes: ['Mittags ist es sehr heiß → ideal für Schattenplatz, Lesen, Tagebuch, kleines Nickerchen.',
+			'Im Camp gibt’s schöne Ruheplätze unter Bäumen.']
+		},
+		{
+		order: 4,
+		label: '6:30–18:30 – Afternoon Activity',
+		notes: ['Nochmals ein Scenic Drive oder ein kürzerer Spaziergang ins Abendlicht.',
+			'Fotografisch spannend: Oryx-Silhouetten vor rotem Himmel, Berge im Sonnenuntergang.',
+			'Golden Hour in den Tirasbergen ist ein Top-Fotospot.']
+		},
+		{
+		order: 5,
+		label: 'Abend',
+		notes: ['Abendessen am Lagerfeuer (Selbstversorgung im Huntes Rest).',
+			'Danach: Sternenhimmel genießen – Namtib liegt in einem der dunkelsten Himmelsgebiete der Welt → Milchstraße mit bloßem Auge, Astrofotografie möglich.']
+		}	
+	]
+    },
+
     {
       title: 'Infos',
       items: 
