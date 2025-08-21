@@ -426,7 +426,7 @@ function Navbar() {
     <nav className="flex gap-4 mb-6 border-b pb-2">
       <Link to="/" className="hover:underline">Roadbook</Link>  
       <Link to="/activities" className="hover:underline">Aktivitäten</Link>  
-      <Link to="/contacts" className="hover:underline">Infos</Link>   
+      <Link to="/contacts" className="hover:underline">Kontakte & Adressen</Link>   
       <Link to="/protagonists" className="hover:underline">Protagonisten</Link>
     </nav>
   )
