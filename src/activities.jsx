@@ -141,6 +141,37 @@ const ACTIVITIES = [
  
 {
   type: 'Aktivität',
+  name: 'Tag 4 & 5: Ausflug nach Ais Ais zu den Hot Springs',
+  city: 'Ais Ais',
+  address: 'Ais Ais Hot Springs',
+  notes: ['Alternativer Ausflug','Dauer, ca. 1/2 Tag'],
+  sections: [
+    {
+      title: 'Ais Ais Hot Springs',
+      items: 
+	[
+        	{
+		order: 1,
+		label: 'Auf D601 nach Südwesten Richtung D324 starten (13.6km)'
+		},
+		{
+		order: 2,
+		label: 'Links abbiegen auf C37/D324 (42.2km)',
+		notes: ['']
+		},
+		{
+		order: 3,
+		label: 'Rechts abbiegen auf C10/M97 (22.7km)',
+		notes: ['Abendessen im "Auto-Restaurant" oder Selbstkochen.',
+			'Sex unter der Milchstrasse.']
+		}
+	]
+    }    
+  ]
+},
+
+{
+  type: 'Aktivität',
   name: 'Tag 6: Tagesroute Roadhouse → Lüderitz',
   city: 'on the road',
   sections: 
