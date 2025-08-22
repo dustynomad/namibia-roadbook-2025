@@ -414,17 +414,17 @@ const ACTIVITIES = [
   ]
 },
 
-  {
-    type: 'Info',
-    name: 'Namib-Naukluft-Nationalpark (Mirabib Campsite)',
-    city: 'Mirabib Campsite',
-    address: '-23.45403194178891, 15.351591186449658',
+
+{
+  type: 'Aktivität',
+  name: 'Tag 10: Namib-Naukluft-Nationalpark (Mirabib Campsite)',
+  city: 'Mirabib Campsite',
   sections: 
   [
-	{
-      	title: 'Infos',
-      	items: 
-	[
+      {
+      title: 'Tagesplan am 2.Tag',
+      items: 
+      [
 		{
 		order: 1,
 		label: 'Wüste & Weite',
@@ -438,27 +438,31 @@ const ACTIVITIES = [
 			'Felsformationen & Erosion: Die glattgeschliffenen Felswände, Überhänge und kleine Höhlen rund um Mirabib sind ideale Fotomotive – besonders bei Sonnenauf- und -untergang.']
 		}	
 	]
-	}
-	,
-	{
-	title: 'Aktivität',
-      	items: 
+    },
+
+    {
+      title: 'Infos',
+      items: 
 	[
 		{
 		order: 1,
 		label: 'Ausflug',
 		notes: ['Ausflug zum Kuiseb River (Homeb): Ca. 30–40 km entfernt. Dort gibt es Baumgruppen, grüne Inseln und viele Vögel. Ein starker Kontrast zur trockenen Ebene bei Mirabib.']
-		},
+		},        	
 		{
 		order: 2,
 		label: 'Sundowner',
 		notes: ['Sundowner auf dem Felsen: Unbedingt den Sonnenuntergang von oben erleben – die Farben wechseln von orange zu tiefrot, während die Ebenen im Schatten versinken.',
 			'Abendessen am Lagerfeuer: Am besten vorher selbst Holz mitbringen, da es vor Ort kaum Brennmaterial gibt.']
-		}        	
+		}	
 	]
-	}  
-    ]
+    }
+  ]
 },
+
+
+
+
 
   {
     type: 'Aktivität',
