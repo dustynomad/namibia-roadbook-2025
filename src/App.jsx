@@ -258,7 +258,7 @@ map: {
   },
   {
     day: 13,
-    title: "Sesriem → Desert (Mirabib Campsite)",
+    title: "Sesriem → Namib-Naukluft-Nationalpark (Mirabib Campsite)",
     date: "16.09",
     start: "Little Sossus Campsite",
     end: "Mirabib Campsite",
@@ -282,7 +282,7 @@ map: {
   },
   {
     day: 14,
-    title: "Desert → Walvis Bay",
+    title: "Namib-Naukluft-Nationalpark (Mirabib Campsite) → Walvis Bay",
     date: "17.09",   
     start: "Mirabib Campsite",
     end: "Walvis Bay",

@@ -415,6 +415,57 @@ const ACTIVITIES = [
 },
 
   {
+    type: 'Info',
+    name: 'Namib-Naukluft-Nationalpark (Mirabib Campsite)',
+    city: 'Mirabib Campsite',
+    address: '-23.45403194178891, 15.351591186449658',
+    phone: '',
+    email: '',
+    website: '',
+    mapQuery: '-23.45403194178891, 15.351591186449658',
+    notes: ['Sternenhimmel: Einer der dunkelsten Orte Namibias. Die Milchstraße ist hier mit bloßem Auge unglaublich klar zu sehen.',
+	'Ruhe & Einsamkeit: Du bist in einer der abgelegensten Gegenden des Parks – kein Licht, keine Geräusche außer Wind und Natur.'],
+  sections: 
+  [
+	{
+      	title: 'Infos',
+      	items: 
+	[
+		{
+		order: 1,
+		label: 'Wüste & Weite',
+		notes: ['Homeb Plains: Die umgebenden Ebenen sind karg und weitläufig, perfekt für Sonnenuntergänge, Sternenhimmel und Weitwinkel-Fotografie.',
+			'Gravel Plains: Charakteristische Kies- und Geröllflächen, die in der Sonne wie eine riesige Schotterwüste funkeln.']
+		},        	
+		{
+		order: 2,
+		label: 'Landschaft & Geologie',
+		notes: ['Mirabib-Inselberg: Der riesige, runde Granitfelsen ist das Zentrum des Camps. Du kannst ihn besteigen – oben hast du eine fantastische Rundumsicht über die Homeb Plains und die endlose Namib.',
+			'Felsformationen & Erosion: Die glattgeschliffenen Felswände, Überhänge und kleine Höhlen rund um Mirabib sind ideale Fotomotive – besonders bei Sonnenauf- und -untergang.']
+		}	
+	]
+	},
+	{
+	title: 'Aktivität',
+      	items: 
+	[
+		{
+		order: 1,
+		label: 'Ausflug',
+		notes: ['Ausflug zum Kuiseb River (Homeb): Ca. 30–40 km entfernt. Dort gibt es Baumgruppen, grüne Inseln und viele Vögel. Ein starker Kontrast zur trockenen Ebene bei Mirabib.']
+		},
+		{
+		order: 2,
+		label: 'Sundowner',
+		notes: ['Sundowner auf dem Felsen: Unbedingt den Sonnenuntergang von oben erleben – die Farben wechseln von orange zu tiefrot, während die Ebenen im Schatten versinken.',
+			'Abendessen am Lagerfeuer: Am besten vorher selbst Holz mitbringen, da es vor Ort kaum Brennmaterial gibt.']
+		}        	
+	]
+	}  
+    ]
+},
+
+  {
     type: 'Aktivität',
     name: 'Sandwich Harbour 4x4 Tour',
     city: 'Walvis Bay / Swakopmund',
