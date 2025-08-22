@@ -329,10 +329,10 @@ const ACTIVITIES = [
   city: 'Namtib',
   sections: 
   [
-{
+      {
       title: 'Tagesplan am 2.Tag',
       items: 
-	[
+      [
 		{
 		order: 1,
 		label: '06:30–08:30 – Sunrise & Morning Walk',
@@ -419,12 +419,6 @@ const ACTIVITIES = [
     name: 'Namib-Naukluft-Nationalpark (Mirabib Campsite)',
     city: 'Mirabib Campsite',
     address: '-23.45403194178891, 15.351591186449658',
-    phone: '',
-    email: '',
-    website: '',
-    mapQuery: '-23.45403194178891, 15.351591186449658',
-    notes: ['Sternenhimmel: Einer der dunkelsten Orte Namibias. Die Milchstraße ist hier mit bloßem Auge unglaublich klar zu sehen.',
-	'Ruhe & Einsamkeit: Du bist in einer der abgelegensten Gegenden des Parks – kein Licht, keine Geräusche außer Wind und Natur.'],
   sections: 
   [
 	{
@@ -444,7 +438,8 @@ const ACTIVITIES = [
 			'Felsformationen & Erosion: Die glattgeschliffenen Felswände, Überhänge und kleine Höhlen rund um Mirabib sind ideale Fotomotive – besonders bei Sonnenauf- und -untergang.']
 		}	
 	]
-	},
+	}
+	,
 	{
 	title: 'Aktivität',
       	items: 
