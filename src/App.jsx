@@ -292,6 +292,7 @@ map: {
 	embed:  [
 "https://www.google.com/maps/embed?pb=!1m42!1m12!1m3!1d738001.5567153336!2d14.618462182196886!3d-23.258706092291302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m27!3e0!4m5!1s0x1c73f4645af483d1%3A0xb3d3be92f94565db!2sMirabib%20Campsite%2C%20Namibia!3m2!1d-23.4540538!2d15.3520069!4m5!1s0x1c73fd6ee01372f9%3A0x96ec515a9b127377!2sC2QW%2B8R3%20Namib%20Desert%20Atmospheric%20Observatory%20(NDAO)%2C%20Gobabeb%2C%20Namibia!3m2!1d-23.561744599999997!2d15.0470575!4m3!3m2!1d-23.3361219!2d14.826174199999999!4m5!1s0x1c76b1c66aa379db%3A0xe596d081b1be7b16!2sMount%20Swartbankberg%2C%20Nuhoab%2C%20Namibia!3m2!1d-23.3016223!2d14.8265272!4m3!3m2!1d-22.955135799999997!2d14.519480699999999!5e1!3m2!1sde!2sch!4v1755875130348!5m2!1sde!2sch"]},
     plan: [
+      "Brennholz vorher besorgen! Im Campingplatz wahrscheinlich kein Brennholz vorhanden --> Lagerfeuer am Abend",
       "Zurück zur D2186, nach 3.1 km rechts abbiegen",
       "Zwischenstop Namib Desert Observatorium (40km)",
       "Nach dem Observatorium Links halten auf die D1983",
