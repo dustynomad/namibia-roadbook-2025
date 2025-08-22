@@ -422,7 +422,7 @@ const ACTIVITIES = [
   sections: 
   [
       {
-      title: 'Tagesplan am 2.Tag',
+      title: 'Info',
       items: 
       [
 		{
@@ -441,7 +441,7 @@ const ACTIVITIES = [
     },
 
     {
-      title: 'Infos',
+      title: 'Aktivität',
       items: 
 	[
 		{
