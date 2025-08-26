@@ -391,33 +391,21 @@ map: {
 
 function DayCard({ d, forceOpen = false }) {
   const [open, setOpen] = useState(false);
-  const shown = forceOpen || open;        // << neu
+  const shown = forceOpen || open; // <<< entscheidend
 
   return (
     <div className="rounded-2xl shadow p-5 bg-white/70 border page-keep">
       <div className="flex justify-between">
-        <div><h3 className="text-xl font-semibold">Tag {d.day} – {d.title}</h3></div>
-
-        {/* Toggle nicht im Print zeigen */}
-        <button
-          onClick={() => setOpen(!open)}
-          className="text-sm border px-2 no-print"
-        >
+        <h3 className="text-xl font-semibold">Tag {d.day} – {d.title}</h3>
+        <button onClick={()=>setOpen(!open)} className="text-sm border px-2 no-print">
           {shown ? "Schließen" : "Details"}
         </button>
       </div>
 
-      {shown && (   /* << vorher stand hier open */
+      {shown && (
         <div className="mt-2">
-          {/* ... dein bestehender Inhalt … */}
-          {/* Map bleibt wie gehabt – wird per print CSS ausgeblendet */}
-          {d.map?.embeds && d.map.embeds.map((url,i)=>(
-            <MapFrame key={i} src={url} origin={d.start} destination={d.end} title={`Tag ${d.day} – Karte ${i+1}`} />
-          ))}
-          {!d.map?.embeds && d.map?.embed && (
-            <MapFrame src={d.map.embed} origin={d.start} destination={d.end} />
-          )}
-          {/* Directions-Button bleibt erhalten (versteckt sich im Print automatisch) */}
+          {/* ... dein bestehender Detail-Content ... */}
+          {/* Karten etc. bleiben; im Print blenden wir iframes per CSS aus */}
         </div>
       )}
     </div>
@@ -425,7 +413,6 @@ function DayCard({ d, forceOpen = false }) {
 }
 
 function PrintView() {
-  // Druckdialog automatisch öffnen
   useEffect(() => {
     const t = setTimeout(() => window.print(), 600);
     return () => clearTimeout(t);
@@ -436,7 +423,7 @@ function PrintView() {
       <h1 className="text-3xl font-bold mb-4">Namibia Roadbook 2025 – PDF</h1>
       {DAYS.map(d => (
         <div key={d.day} className="mb-6">
-          <DayCard d={d} forceOpen />   {/* alles aufgeklappt */}
+          <DayCard d={d} forceOpen />   {/* <<< alle Details offen */}
           <div className="page-break"></div>
         </div>
       ))}
