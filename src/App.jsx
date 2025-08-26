@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useState, useEffect } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import Protagonists from './Protagonists.jsx'
 import Contacts from './contacts.jsx'     // <-- groß importieren
@@ -389,44 +389,57 @@ map: {
   }
 ]
 
-function DayCard({ d }) {
-  const [open,setOpen] = useState(false);
+function DayCard({ d, forceOpen = false }) {
+  const [open, setOpen] = useState(false);
+  const shown = forceOpen || open;        // << neu
+
   return (
-    <div className="rounded-2xl shadow p-5 bg-white/70 border">
+    <div className="rounded-2xl shadow p-5 bg-white/70 border page-keep">
       <div className="flex justify-between">
         <div><h3 className="text-xl font-semibold">Tag {d.day} – {d.title}</h3></div>
-        <button onClick={()=>setOpen(!open)} className="text-sm border px-2">{open?"Schließen":"Details"}</button>
-      </div>
-      {open && 
-	<div className="mt-2">
-		<p><b>Datum:</b> {d.date}</p>
-	        <p><b>Start:</b> {d.start} · <b>Ziel:</b> {d.end}</p>
-        	<p><b>Distanz:</b> {d.distance} · <b>Fahrtzeit:</b> {d.drive}</p>
-	        <h4 className="font-medium mt-2">Tagesplan</h4>
-        	<ul className="list-disc ml-5">{d.plan.map((p,i)=><li key={i}>{p}</li>)}</ul>
-	        {d.highlights.length>0 && (<><h4 className="font-medium mt-2">Highlights</h4><ul className="list-disc ml-5">{d.highlights.map((h,i)=><li key={i}>{h}</li>)}</ul></>)}
-	        {d.alt.length>0 && (<><h4 className="font-medium mt-2">Alternativen</h4><ul className="list-disc ml-5">{d.alt.map((a,i)=><li key={i}>{a}</li>)}</ul></>)}
-		{(() => {
-		  const embeds = d.map?.embeds
-		    ? d.map.embeds
-		    : (d.map?.embed ? [d.map.embed] : []);
 
-		  return embeds.length ? (
-		    <div className="mt-2 grid gap-3">
-		      {embeds.map((url, i) => (
-		        <MapFrame
-		          key={i}
-		          src={url}
-			  date={d.date}
-		          origin={d.start}
-		          destination={d.end}
-		          title={`Route Tag ${d.day} – Karte ${i + 1}`}
-		        />
-		      ))}
-		    </div>
-		  ) : null;
-		})()}     
-	</div>}
+        {/* Toggle nicht im Print zeigen */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="text-sm border px-2 no-print"
+        >
+          {shown ? "Schließen" : "Details"}
+        </button>
+      </div>
+
+      {shown && (   /* << vorher stand hier open */
+        <div className="mt-2">
+          {/* ... dein bestehender Inhalt … */}
+          {/* Map bleibt wie gehabt – wird per print CSS ausgeblendet */}
+          {d.map?.embeds && d.map.embeds.map((url,i)=>(
+            <MapFrame key={i} src={url} origin={d.start} destination={d.end} title={`Tag ${d.day} – Karte ${i+1}`} />
+          ))}
+          {!d.map?.embeds && d.map?.embed && (
+            <MapFrame src={d.map.embed} origin={d.start} destination={d.end} />
+          )}
+          {/* Directions-Button bleibt erhalten (versteckt sich im Print automatisch) */}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function PrintView() {
+  // Druckdialog automatisch öffnen
+  useEffect(() => {
+    const t = setTimeout(() => window.print(), 600);
+    return () => clearTimeout(t);
+  }, []);
+
+  return (
+    <div className="max-w-3xl mx-auto p-6">
+      <h1 className="text-3xl font-bold mb-4">Namibia Roadbook 2025 – PDF</h1>
+      {DAYS.map(d => (
+        <div key={d.day} className="mb-6">
+          <DayCard d={d} forceOpen />   {/* alles aufgeklappt */}
+          <div className="page-break"></div>
+        </div>
+      ))}
     </div>
   );
 }
@@ -434,12 +447,13 @@ function DayCard({ d }) {
 function Navbar() {
   return (
     <nav className="flex gap-4 mb-6 border-b pb-2">
-      <Link to="/" className="hover:underline">Roadbook</Link>  
-      <Link to="/activities" className="hover:underline">Aktivitäten</Link>  
-      <Link to="/contacts" className="hover:underline">Kontakte & Adressen</Link>   
+      <Link to="/" className="hover:underline">Roadbook</Link>
+      <Link to="/activities" className="hover:underline">Aktivitäten</Link>
+      <Link to="/contacts" className="hover:underline">Infos</Link>
       <Link to="/protagonists" className="hover:underline">Protagonisten</Link>
+      <Link to="/print" className="hover:underline no-print">PDF</Link> {/* neu */}
     </nav>
-  )
+  );
 }
 
 function Roadbook() {
@@ -503,12 +517,13 @@ export default function App() {
   return (
     <div className="max-w-3xl mx-auto p-6">
       <Navbar />
-	<Routes>
-	  <Route path="/" element={<Roadbook />} />
-	  <Route path="/activities" element={<Activities />} />  {/* <-- groß */}
-	  <Route path="/contacts" element={<Contacts />} />
-	  <Route path="/protagonists" element={<Protagonists />} />
-	</Routes>
+<Routes>
+  <Route path="/" element={<Roadbook />} />
+  <Route path="/activities" element={<Activities />} />
+  <Route path="/contacts" element={<Contacts />} />
+  <Route path="/protagonists" element={<Protagonists />} />
+  <Route path="/print" element={<PrintView />} />  {/* neu */}
+</Routes>
     </div>
   )
 }

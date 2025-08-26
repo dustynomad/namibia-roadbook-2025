@@ -1,0 +1,40 @@
+/* --- Basis (optional) --- */
+html, body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: #f8fafc; /* sehr helles Grau */
+  color: #0f172a;      /* sehr dunkles Blau/Schwarz */
+}
+
+/* Karten/Boxen nicht mitten auf der Seite umbrechen */
+.page-keep { break-inside: avoid; }
+
+/* erzwungener Seitenumbruch an dieser Stelle */
+.page-break { break-after: page; }
+
+/* --- Druckansicht --- */
+@media print {
+  /* Navigation/Bedienelemente im PDF ausblenden */
+  nav,
+  .no-print,
+  button,
+  input,
+  select {
+    display: none !important;
+  }
+
+  /* exakte Farben im Print */
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* iFrames (z. B. Google Maps) im PDF ausblenden – die drucken meist unschön */
+  iframe { display: none !important; }
+
+  /* jede Karte/Section sauber, ohne „zerreißen“ */
+  .page-keep { break-inside: avoid; }
+
+  /* wo du explizit trennen willst */
+  .page-break { break-after: page; }
+
+  /* Schatten reduzieren, damit’s klarer wirkt auf Papier */
+  .shadow, .shadow-md, .shadow-lg { box-shadow: none !important; }
+}
