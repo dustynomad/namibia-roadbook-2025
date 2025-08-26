@@ -1,8 +1,67 @@
-import React, { useMemo, useState, useEffect } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
+import Activities from './activities.jsx'
+import Contacts from './contacts.jsx'
 import Protagonists from './Protagonists.jsx'
-import Contacts from './contacts.jsx'     // <-- groß importieren
-import Activities from './activities.jsx' // <-- groß importieren
+
+/* =========================================================
+   Hilfsfunktionen
+========================================================= */
+
+// Directions-URL bauen (für Button)
+function buildGmapsDirUrl({ origin, destination, waypoints = [] }) {
+  const p = new URLSearchParams()
+  p.set('api', '1')
+  if (origin) p.set('origin', origin)
+  if (destination) p.set('destination', destination)
+  if (waypoints.length) p.set('waypoints', waypoints.join('|'))
+  return `https://www.google.com/maps/dir/?${p.toString()}`
+}
+
+// Robust eingebettete Karte (pb-Embeds + Fallback auf q=)
+function MapFrame({ src, origin, destination, title }) {
+  const [ok, setOk] = useState(true)
+
+  const fallbackEmbed = `https://maps.google.com/maps?q=${encodeURIComponent(
+    (origin ? origin + ' to ' : '') + (destination || '')
+  )}&z=9&output=embed`
+
+  const dirLink = buildGmapsDirUrl({ origin, destination })
+
+  if (!ok) {
+    return (
+      <div className="mt-3 rounded-xl border p-3 bg-white/60">
+        <iframe
+          loading="lazy"
+          title={`${title || 'Route'} (Fallback)`}
+          src={fallbackEmbed}
+          className="w-full h-[360px] rounded-md border mb-3"
+        />
+        <a
+          href={dirLink}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full border hover:bg-gray-50"
+          title="Route in Google Maps öffnen"
+        >
+          🗺️ Route in Google Maps öffnen
+        </a>
+      </div>
+    )
+  }
+
+  return (
+    <iframe
+      loading="lazy"
+      title={title || 'Route'}
+      referrerPolicy="no-referrer-when-downgrade"
+      src={src}
+      className="w-full h-[360px] rounded-xl border mt-3"
+      onError={() => setOk(false)}
+      allowFullScreen
+    />
+  )
+}
 
 const DAYS = [
   {
@@ -389,10 +448,9 @@ map: {
   }
 ]
 
-/* DayCard muss forceOpen unterstützen */
 function DayCard({ d, forceOpen = false }) {
-  const [open, setOpen] = useState(false);
-  const shown = forceOpen || open;
+  const [open, setOpen] = useState(false)
+  const shown = forceOpen || open // <= zeigt Details zuverlässig
 
   return (
     <div className="rounded-2xl shadow p-5 bg-white/70 border page-keep">
@@ -405,26 +463,105 @@ function DayCard({ d, forceOpen = false }) {
 
       {shown && (
         <div className="mt-2">
-          {/* … dein bestehender Detail-Content … */}
-          {/* Falls du MapFrame nutzt: */}
-          {Array.isArray(d.map?.embeds) && d.map.embeds.map((url,i)=>(
-            <MapFrame key={i} src={url} origin={d.start} destination={d.end} title={`Tag ${d.day} – Karte ${i+1}`} />
-          ))}
-          {!d.map?.embeds && d.map?.embed && (
-            <MapFrame src={d.map.embed} origin={d.start} destination={d.end} />
+          <p><b>Start:</b> {d.start} · <b>Ziel:</b> {d.end}</p>
+          <p><b>Distanz:</b> {d.distance} · <b>Fahrtzeit:</b> {d.drive}</p>
+
+          {Array.isArray(d.plan) && d.plan.length > 0 && (
+            <>
+              <h4 className="font-medium mt-2">Tagesplan</h4>
+              <ul className="list-disc ml-5">{d.plan.map((p,i)=><li key={i}>{p}</li>)}</ul>
+            </>
           )}
+
+          {Array.isArray(d.highlights) && d.highlights.length > 0 && (
+            <>
+              <h4 className="font-medium mt-2">Highlights</h4>
+              <ul className="list-disc ml-5">{d.highlights.map((h,i)=><li key={i}>{h}</li>)}</ul>
+            </>
+          )}
+
+          {Array.isArray(d.alt) && d.alt.length > 0 && (
+            <>
+              <h4 className="font-medium mt-2">Alternativen</h4>
+              <ul className="list-disc ml-5">{d.alt.map((a,i)=><li key={i}>{a}</li>)}</ul>
+            </>
+          )}
+
+          {/* Karten (ein oder mehrere) */}
+          {Array.isArray(d.map?.embeds) && d.map.embeds.length > 0 && (
+            <div className="mt-3 grid gap-3">
+              {d.map.embeds.map((url, i) => (
+                <MapFrame
+                  key={i}
+                  src={url}
+                  origin={d.start}
+                  destination={d.end}
+                  title={`Tag ${d.day} – Karte ${i+1}`}
+                />
+              ))}
+            </div>
+          )}
+          {!d.map?.embeds && d.map?.embed && (
+            <MapFrame src={d.map.embed} origin={d.start} destination={d.end} title={`Tag ${d.day} – Karte`} />
+          )}
+
+          {/* Directions-Button (nutzt map.dir, sonst start/end) */}
+          {(() => {
+            const dir = d.map?.dir ?? { origin: d.start, destination: d.end, waypoints: [] }
+            if (!dir.origin || !dir.destination) return null
+            const href = buildGmapsDirUrl(dir)
+            return (
+              <a
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 text-sm mt-3 px-3 py-1 rounded-full border hover:bg-gray-50"
+                title="Route in Google Maps öffnen"
+              >
+                🗺️ Route in Google Maps öffnen
+              </a>
+            )
+          })()}
         </div>
       )}
     </div>
-  );
+  )
 }
 
-/* Lokale Print-Ansicht: Styles nur hier, nicht global */
+function Roadbook() {
+  const [query, setQuery] = useState("")
+  const filtered = useMemo(() => {
+    if (!query.trim()) return DAYS
+    const q = query.toLowerCase()
+    return DAYS.filter(d => (d.title + d.start + d.end).toLowerCase().includes(q))
+  }, [query])
+  return (
+    <>
+      <h1 className="text-3xl font-bold mb-4">Namibia Roadbook 2025</h1>
+      <input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Suche..." className="border px-2 py-1 mb-4 w-full"/>
+      <div className="space-y-4">{filtered.map(d => <DayCard key={d.day} d={d} />)}</div>
+    </>
+  )
+}
+
+function Navbar() {
+  return (
+    <nav className="flex gap-4 mb-6 border-b pb-2">
+      <Link to="/" className="hover:underline">Roadbook</Link>
+      <Link to="/activities" className="hover:underline">Aktivitäten</Link>
+      <Link to="/contacts" className="hover:underline">Infos</Link>
+      <Link to="/protagonists" className="hover:underline">Protagonisten</Link>
+      <Link to="/print" className="hover:underline no-print">PDF</Link>
+    </nav>
+  )
+}
+
+/* Print-Ansicht – lokal gescoped; beeinflusst die normale Seite NICHT */
 function PrintView() {
   useEffect(() => {
-    const t = setTimeout(() => window.print(), 600);
-    return () => clearTimeout(t);
-  }, []);
+    const t = setTimeout(() => window.print(), 600)
+    return () => clearTimeout(t)
+  }, [])
 
   return (
     <div className="print-view">
@@ -437,7 +574,7 @@ function PrintView() {
           .print-view select {
             display: none !important;
           }
-          .print-view iframe { display: none !important; } /* Maps nur im PDF ausblenden */
+          .print-view iframe { display: none !important; }
           .print-view { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
           .print-view .shadow, .print-view .shadow-md, .print-view .shadow-lg { box-shadow: none !important; }
           .print-view .page-break { break-after: page; }
@@ -449,95 +586,26 @@ function PrintView() {
         <h1 className="text-3xl font-bold mb-4">Namibia Roadbook 2025 – PDF</h1>
         {DAYS.map(d => (
           <div key={d.day} className="mb-6">
-            <DayCard d={d} forceOpen />   {/* Details garantiert offen */}
+            <DayCard d={d} forceOpen />
             <div className="page-break"></div>
           </div>
         ))}
       </div>
     </div>
-  );
-}
-
-function Navbar() {
-  return (
-    <nav className="flex gap-4 mb-6 border-b pb-2">
-      <Link to="/" className="hover:underline">Roadbook</Link>
-      <Link to="/activities" className="hover:underline">Aktivitäten</Link>
-      <Link to="/contacts" className="hover:underline">Infos</Link>
-      <Link to="/protagonists" className="hover:underline">Protagonisten</Link>
-      <Link to="/print" className="hover:underline no-print">PDF</Link> {/* neu */}
-    </nav>
-  );
-}
-
-function Roadbook() {
-  const [query,setQuery] = useState("")
-  const filtered = useMemo(()=>!query?DAYS:DAYS.filter(d=>(d.title+d.date+d.start+d.end).toLowerCase().includes(query.toLowerCase())),[query])
-  return (
-    <>
-      <h1 className="text-3xl font-bold mb-4">Namibia Roadbook 2025</h1>
-      <input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Suche..." className="border px-2 py-1 mb-4 w-full"/>
-      <div className="space-y-4">{filtered.map(d=><DayCard key={d.day} d={d}/>)}</div>
-    </>
   )
-}
-
-function MapFrame({ src, origin, destination, title }) {
-  const [ok, setOk] = useState(true);
-
-  const fallbackEmbed = `https://maps.google.com/maps?q=${encodeURIComponent(
-    (origin ? origin + " to " : "") + (destination || "")
-  )}&z=9&output=embed`;
-
-  const dirLink = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(
-    origin || ""
-  )}&destination=${encodeURIComponent(destination || "")}`;
-
-  if (!ok) {
-    return (
-      <div className="mt-3 rounded-xl border p-3 bg-white/60">
-        <iframe
-          loading="lazy"
-          title={`${title || "Route"} (Fallback)`}
-          src={fallbackEmbed}
-          className="w-full h-[360px] rounded-md border mb-3"
-        />
-        <a
-          href={dirLink}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full border hover:bg-gray-50"
-        >
-          Route in Google Maps öffnen
-        </a>
-      </div>
-    );
-  }
-
-  return (
-    <iframe
-      loading="lazy"
-      title={title || "Route"}
-      referrerPolicy="no-referrer-when-downgrade"
-      src={src}
-      className="w-full h-[360px] rounded-xl border mt-3"
-      onError={() => setOk(false)}
-      allowFullScreen
-    />
-  );
 }
 
 export default function App() {
   return (
     <div className="max-w-3xl mx-auto p-6">
       <Navbar />
-<Routes>
-  <Route path="/" element={<Roadbook />} />
-  <Route path="/activities" element={<Activities />} />
-  <Route path="/contacts" element={<Contacts />} />
-  <Route path="/protagonists" element={<Protagonists />} />
-  <Route path="/print" element={<PrintView />} />  {/* neu */}
-</Routes>
+      <Routes>
+        <Route path="/" element={<Roadbook />} />
+        <Route path="/activities" element={<Activities />} />
+        <Route path="/contacts" element={<Contacts />} />
+        <Route path="/protagonists" element={<Protagonists />} />
+        <Route path="/print" element={<PrintView />} />
+      </Routes>
     </div>
   )
 }
