@@ -4,9 +4,7 @@ import Activities from './activities.jsx'
 import Contacts from './contacts.jsx'
 import Protagonists from './Protagonists.jsx'
 
-/* =========================================================
-   Hilfsfunktionen
-========================================================= */
+/* ==================== Helpers ==================== */
 
 // Directions-URL bauen (für Button)
 function buildGmapsDirUrl({ origin, destination, waypoints = [] }) {
@@ -18,8 +16,8 @@ function buildGmapsDirUrl({ origin, destination, waypoints = [] }) {
   return `https://www.google.com/maps/dir/?${p.toString()}`
 }
 
-// Robust eingebettete Karte (pb-Embeds + Fallback auf q=)
-function MapFrame({ src, origin, destination, title }) {
+// Robuste Karte mit optionalem Eager-Load & onLoad-Callback (für Print)
+function MapFrame({ src, origin, destination, title, forceEager = false, onLoad }) {
   const [ok, setOk] = useState(true)
 
   const fallbackEmbed = `https://maps.google.com/maps?q=${encodeURIComponent(
@@ -32,7 +30,8 @@ function MapFrame({ src, origin, destination, title }) {
     return (
       <div className="mt-3 rounded-xl border p-3 bg-white/60">
         <iframe
-          loading="lazy"
+          loading={forceEager ? 'eager' : 'lazy'}
+          onLoad={onLoad}
           title={`${title || 'Route'} (Fallback)`}
           src={fallbackEmbed}
           className="w-full h-[360px] rounded-md border mb-3"
@@ -52,7 +51,8 @@ function MapFrame({ src, origin, destination, title }) {
 
   return (
     <iframe
-      loading="lazy"
+      loading={forceEager ? 'eager' : 'lazy'}   // <<< im Print eager
+      onLoad={onLoad}
       title={title || 'Route'}
       referrerPolicy="no-referrer-when-downgrade"
       src={src}
@@ -448,9 +448,11 @@ map: {
   }
 ]
 
-function DayCard({ d, forceOpen = false }) {
+/* ==================== Komponenten ==================== */
+
+function DayCard({ d, forceOpen = false, printMode = false, onMapLoad }) {
   const [open, setOpen] = useState(false)
-  const shown = forceOpen || open // <= zeigt Details zuverlässig
+  const shown = forceOpen || open
 
   return (
     <div className="rounded-2xl shadow p-5 bg-white/70 border page-keep">
@@ -487,7 +489,7 @@ function DayCard({ d, forceOpen = false }) {
             </>
           )}
 
-          {/* Karten (ein oder mehrere) */}
+          {/* Karten */}
           {Array.isArray(d.map?.embeds) && d.map.embeds.length > 0 && (
             <div className="mt-3 grid gap-3">
               {d.map.embeds.map((url, i) => (
@@ -497,15 +499,24 @@ function DayCard({ d, forceOpen = false }) {
                   origin={d.start}
                   destination={d.end}
                   title={`Tag ${d.day} – Karte ${i+1}`}
+                  forceEager={printMode}
+                  onLoad={onMapLoad}
                 />
               ))}
             </div>
           )}
           {!d.map?.embeds && d.map?.embed && (
-            <MapFrame src={d.map.embed} origin={d.start} destination={d.end} title={`Tag ${d.day} – Karte`} />
+            <MapFrame
+              src={d.map.embed}
+              origin={d.start}
+              destination={d.end}
+              title={`Tag ${d.day} – Karte`}
+              forceEager={printMode}
+              onLoad={onMapLoad}
+            />
           )}
 
-          {/* Directions-Button (nutzt map.dir, sonst start/end) */}
+          {/* Directions */}
           {(() => {
             const dir = d.map?.dir ?? { origin: d.start, destination: d.end, waypoints: [] }
             if (!dir.origin || !dir.destination) return null
@@ -556,15 +567,46 @@ function Navbar() {
   )
 }
 
-/* Print-Ansicht – lokal gescoped; beeinflusst die normale Seite NICHT */
+/* ==================== Print-Ansicht ==================== */
+/* - Keine globalen Print-CSS mehr! 
+   - Wir warten, bis die meisten iFrames geladen sind (oder 3s Fallback), dann window.print().
+*/
 function PrintView() {
-  useEffect(() => {
-    const t = setTimeout(() => window.print(), 600)
-    return () => clearTimeout(t)
+  // Wie viele iFrames wird diese Ansicht ungefähr rendern?
+  const totalIframes = useMemo(() => {
+    return DAYS.reduce((acc, d) => {
+      const n = Array.isArray(d.map?.embeds) ? d.map.embeds.length : (d.map?.embed ? 1 : 0)
+      return acc + n
+    }, 0)
   }, [])
+
+  const [loaded, setLoaded] = useState(0)
+
+  useEffect(() => {
+    // Fallback: selbst wenn onLoad nicht für alle feuert, nach 3s drucken
+    const timer = setTimeout(() => window.print(), 3000)
+    return () => clearTimeout(timer)
+  }, [])
+
+  useEffect(() => {
+    if (totalIframes === 0) {
+      const t = setTimeout(() => window.print(), 600)
+      return () => clearTimeout(t)
+    }
+  }, [totalIframes])
+
+  useEffect(() => {
+    if (totalIframes > 0 && loaded >= totalIframes) {
+      const t = setTimeout(() => window.print(), 200) // kleine Pufferzeit
+      return () => clearTimeout(t)
+    }
+  }, [loaded, totalIframes])
+
+  const handleMapLoad = () => setLoaded(x => x + 1)
 
   return (
     <div className="print-view">
+      {/* Print-spezifische Styles nur hier, NICHT global */}
       <style>{`
         @media print {
           .print-view nav,
@@ -574,19 +616,25 @@ function PrintView() {
           .print-view select {
             display: none !important;
           }
-          .print-view iframe { display: none !important; }
           .print-view { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
           .print-view .shadow, .print-view .shadow-md, .print-view .shadow-lg { box-shadow: none !important; }
           .print-view .page-break { break-after: page; }
           .print-view .page-keep { break-inside: avoid; }
+          /* Wichtig: Wir VERSTECKEN iFrames NICHT mehr – damit Maps im PDF erscheinen */
         }
       `}</style>
 
       <div className="max-w-3xl mx-auto p-6">
-        <h1 className="text-3xl font-bold mb-4">Namibia Roadbook 2025 – PDF</h1>
+        <h1 className="text-3xl font-bold mb-2">Namibia Roadbook 2025 – PDF</h1>
+        {totalIframes > 0 && (
+          <p className="text-sm text-gray-500 no-print">
+            Karten laden für den PDF-Export… ({loaded}/{totalIframes})
+          </p>
+        )}
+
         {DAYS.map(d => (
           <div key={d.day} className="mb-6">
-            <DayCard d={d} forceOpen />
+            <DayCard d={d} forceOpen printMode onMapLoad={handleMapLoad} />
             <div className="page-break"></div>
           </div>
         ))}
@@ -594,6 +642,8 @@ function PrintView() {
     </div>
   )
 }
+
+/* ==================== App ==================== */
 
 export default function App() {
   return (
