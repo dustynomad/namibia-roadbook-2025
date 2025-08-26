@@ -391,7 +391,7 @@ map: {
 
 function DayCard({ d, forceOpen = false }) {
   const [open, setOpen] = useState(false);
-  const shown = forceOpen || open; // <<< entscheidend
+  const shown = forceOpen || open;
 
   return (
     <div className="rounded-2xl shadow p-5 bg-white/70 border page-keep">
@@ -404,8 +404,14 @@ function DayCard({ d, forceOpen = false }) {
 
       {shown && (
         <div className="mt-2">
-          {/* ... dein bestehender Detail-Content ... */}
-          {/* Karten etc. bleiben; im Print blenden wir iframes per CSS aus */}
+          {/* ... dein Detail-Inhalt ... */}
+          {/* Map(s) – im Print (nur in .print-view) ausgeblendet */}
+          {Array.isArray(d.map?.embeds) && d.map.embeds.map((url,i)=>(
+            <MapFrame key={i} src={url} origin={d.start} destination={d.end} title={`Tag ${d.day} – Karte ${i+1}`} />
+          ))}
+          {!d.map?.embeds && d.map?.embed && (
+            <MapFrame src={d.map.embed} origin={d.start} destination={d.end} />
+          )}
         </div>
       )}
     </div>
@@ -419,14 +425,16 @@ function PrintView() {
   }, []);
 
   return (
-    <div className="max-w-3xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-4">Namibia Roadbook 2025 – PDF</h1>
-      {DAYS.map(d => (
-        <div key={d.day} className="mb-6">
-          <DayCard d={d} forceOpen />   {/* <<< alle Details offen */}
-          <div className="page-break"></div>
-        </div>
-      ))}
+    <div className="print-view">       {/*  ⬅️ WICHTIG: Container-Klasse */}
+      <div className="max-w-3xl mx-auto p-6">
+        <h1 className="text-3xl font-bold mb-4">Namibia Roadbook 2025 – PDF</h1>
+        {DAYS.map(d => (
+          <div key={d.day} className="mb-6">
+            <DayCard d={d} forceOpen />   {/* Details erzwungen offen */}
+            <div className="page-break"></div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

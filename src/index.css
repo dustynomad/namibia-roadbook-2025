@@ -1,37 +1,32 @@
 /* src/index.css */
 
-/* Nicht mitten auf der Seite „zerreißen“ */
+/* Helferklassen */
 .page-keep { break-inside: avoid; }
-
-/* Erzwungener Seitenumbruch */
 .page-break { break-after: page; }
 
-/* --- Druckansicht --- */
+/* Nur für die Print-Ansicht (Container .print-view) */
 @media print {
-  /* UI-Elemente im PDF ausblenden */
-  nav,
-  .no-print,
-  button,
-  input,
-  select {
+  .print-view nav,
+  .print-view .no-print,
+  .print-view button,
+  .print-view input,
+  .print-view select {
     display: none !important;
   }
 
-  /* iFrames (z. B. Google Maps) im PDF ausblenden */
-  iframe {
+  /* iFrames (z. B. Google Maps) nur in der Print-Ansicht ausblenden */
+  .print-view iframe {
     display: none !important;
   }
 
-  /* Exakte Farben im Print */
-  body {
+  .print-view {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
 
-  /* Optional: Schatten im Druck reduzieren */
-  .shadow,
-  .shadow-md,
-  .shadow-lg {
+  .print-view .shadow,
+  .print-view .shadow-md,
+  .print-view .shadow-lg {
     box-shadow: none !important;
   }
 }
