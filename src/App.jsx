@@ -389,6 +389,7 @@ map: {
   }
 ]
 
+/* DayCard muss forceOpen unterstützen */
 function DayCard({ d, forceOpen = false }) {
   const [open, setOpen] = useState(false);
   const shown = forceOpen || open;
@@ -404,8 +405,8 @@ function DayCard({ d, forceOpen = false }) {
 
       {shown && (
         <div className="mt-2">
-          {/* ... dein Detail-Inhalt ... */}
-          {/* Map(s) – im Print (nur in .print-view) ausgeblendet */}
+          {/* … dein bestehender Detail-Content … */}
+          {/* Falls du MapFrame nutzt: */}
           {Array.isArray(d.map?.embeds) && d.map.embeds.map((url,i)=>(
             <MapFrame key={i} src={url} origin={d.start} destination={d.end} title={`Tag ${d.day} – Karte ${i+1}`} />
           ))}
@@ -418,6 +419,7 @@ function DayCard({ d, forceOpen = false }) {
   );
 }
 
+/* Lokale Print-Ansicht: Styles nur hier, nicht global */
 function PrintView() {
   useEffect(() => {
     const t = setTimeout(() => window.print(), 600);
@@ -425,12 +427,29 @@ function PrintView() {
   }, []);
 
   return (
-    <div className="print-view">       {/*  ⬅️ WICHTIG: Container-Klasse */}
+    <div className="print-view">
+      <style>{`
+        @media print {
+          .print-view nav,
+          .print-view .no-print,
+          .print-view button,
+          .print-view input,
+          .print-view select {
+            display: none !important;
+          }
+          .print-view iframe { display: none !important; } /* Maps nur im PDF ausblenden */
+          .print-view { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+          .print-view .shadow, .print-view .shadow-md, .print-view .shadow-lg { box-shadow: none !important; }
+          .print-view .page-break { break-after: page; }
+          .print-view .page-keep { break-inside: avoid; }
+        }
+      `}</style>
+
       <div className="max-w-3xl mx-auto p-6">
         <h1 className="text-3xl font-bold mb-4">Namibia Roadbook 2025 – PDF</h1>
         {DAYS.map(d => (
           <div key={d.day} className="mb-6">
-            <DayCard d={d} forceOpen />   {/* Details erzwungen offen */}
+            <DayCard d={d} forceOpen />   {/* Details garantiert offen */}
             <div className="page-break"></div>
           </div>
         ))}

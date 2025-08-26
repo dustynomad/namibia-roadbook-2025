@@ -1,32 +1,8 @@
 /* src/index.css */
 
-/* Helferklassen */
+/* Helferklassen für Layout/PDF */
 .page-keep { break-inside: avoid; }
 .page-break { break-after: page; }
 
-/* Nur für die Print-Ansicht (Container .print-view) */
-@media print {
-  .print-view nav,
-  .print-view .no-print,
-  .print-view button,
-  .print-view input,
-  .print-view select {
-    display: none !important;
-  }
-
-  /* iFrames (z. B. Google Maps) nur in der Print-Ansicht ausblenden */
-  .print-view iframe {
-    display: none !important;
-  }
-
-  .print-view {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-
-  .print-view .shadow,
-  .print-view .shadow-md,
-  .print-view .shadow-lg {
-    box-shadow: none !important;
-  }
-}
+/* KEINE @media print Regeln hier!
+   Print-Styles kommen ausschließlich in die Print-Ansicht (Schritt 3). */
