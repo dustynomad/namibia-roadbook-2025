@@ -460,10 +460,6 @@ const ACTIVITIES = [
   ]
 },
 
-
-
-
-
   {
     type: 'Aktivität',
     name: 'Sandwich Harbour 4x4 Tour',
@@ -473,7 +469,47 @@ const ACTIVITIES = [
     email: '',
     website: '',
     mapQuery: 'Sandwich Harbour Walvis Bay',
-    notes: 'Fix einplanen – Dünen treffen auf Atlantik.'
+    notes: 'Fix einplanen – Dünen treffen auf Atlantik.',
+
+  sections: 
+  [
+      {
+      title: 'Info',
+      items: 
+      [
+		{
+		order: 1,
+		label: 'Sandwich Harbour 4×4',
+		notes: ['https://www.sandwich-harbour.com/collections/our-tours',
+			'Sandwich Harbour 4×4 Scenic Excursion - Halbtages‑Tour (~4 h) ab ca. N$ 2 640 p.P.',
+			'Full Day Sandwich Harbour 4×4 Excursion – Ganztagestour (~6 h) ab ca. N$ 3 300 p.P.']
+		},        	
+		{
+		order: 2,
+		label: 'Desert Dunes and Dust Tours',
+		notes: ['https://www.bucketlistly.blog/posts/sandwich-harbor-travel-guide']
+		},
+		{
+		order: 3,
+		label: 'GetYourGuide – Geführte Touren',
+		notes: ['Sandwich Harbour 4×4 Guided Tour; Dauer: ~5 Stunden; Abholung in Walvis Bay; Inklusive Tier‑ und Vogelbeobachtung, Fotostopps, leichter Lunch mit Sekt',
+			'https://www.getyourguide.de/walvis-bay-l105982/sandwich-harbour-4x4-guided-tour-t836740/?utm_source=chatgpt.com&visitor-id=M8O4MCUDD4PXD7ORV669PRVVNELCO0GB&locale_autoredirect_optout=true']
+		},		
+		{
+		order: 4,
+		label: 'GetYourGuide – Private Touren',
+		notes: ['Private Sandwich Harbour 4x4 Tour with Lunch - Walvis Bay',
+			'https://www.getyourguide.com/swakopmund-l850/private-sandwich-harbour-4x4-tour-with-lunch-walvis-bay-t886257/']
+		},		
+		{
+		order: 5,
+		label: 'viator - a tripadvisor company',
+		notes: ['z.B.: Sandwich Harbour 4x4 Tours at Walvisbay, Namibia',
+			'https://www.viator.com/tours/Walvis-Bay/Sandwich-Harbour-4x4-Tours-Walvisbay-Namibia-Adventure-Awaits/d4467-442416P1']
+		}
+	]
+    }
+  ]
   },
   {
     type: 'Aktivität',
@@ -484,7 +520,30 @@ const ACTIVITIES = [
     email: '',
     website: '',
     mapQuery: 'Living Desert Tour Swakopmund',
-    notes: 'Kleintiere der Wüste (Chamäleon, Geckos, …).'
+    notes: 'Kleintiere der Wüste (Chamäleon, Geckos, …).',
+  sections: 
+  [
+      {
+      title: 'Info',
+      items: 
+      [
+		{
+		order: 1,
+		label: 'Anbieter: Living Desert Tours - Tommy',
+		notes: ['https://www.sandwich-harbour.com/collections/our-tours',
+			'Geführte Gruppentour, 4–5 h, N$ 900 p.P',
+			'das Original',
+			'https://livingdeserttours.com.na/']
+		},        	
+		{
+		order: 2,
+		label: 'Anbieter: Living Desert Adventures (Eco Dune Tour)',
+		notes: ['Öko-geführte Tour, 5 h. N$ 1 050 p.P.',
+			'https://thenaturalistcollection.com/dt-eco-dune.php']
+		}
+     ]
+     }
+  ]
   },
 ]
 

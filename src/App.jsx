@@ -77,6 +77,8 @@ const DAYS = [
 },
     plan: [
       "Ankunft Windhoek, Übernahme des Mietwagens",
+      "Fahrt zur Mall. Auswahl: Grove Mall (grösste Mall Namibias, bei 'kleine Kuppe'), Maerua Mall (2. grösste Mall, eher downtown).",
+      "   --> Grove Mall: Chasie Street, Windhoek, Namibia" ,
       "Fahrt zur Krumhuk Guestfarm südlich der Hauptstadt",
       "Nachmittags Erholung oder kleine Farmtour"
     ],
@@ -584,7 +586,7 @@ function PrintView() {
 
   useEffect(() => {
     // Fallback: selbst wenn onLoad nicht für alle feuert, nach 3s drucken
-    const timer = setTimeout(() => window.print(), 3000)
+    const timer = setTimeout(() => window.print(), 5000)
     return () => clearTimeout(timer)
   }, [])
 
