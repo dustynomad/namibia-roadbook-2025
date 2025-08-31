@@ -66,14 +66,17 @@ function MapFrame({ src, origin, destination, title, forceEager = false, onLoad 
 const DAYS = [
   {
     day: 1,
-    title: "Ankunft in Windhoek → Krumhuk Guestfarm",
+    title: "Ankunft in Windhoek → Einkaufen → Krumhuk Guestfarm - Ende",
     date: "04.09",	
     start: "Flughafen Windhoek (Hosea Kutako)",
     end: "Krumhuk Guestfarm",
     distance: "~45 km",
     drive: "~40–50 Min",
     map: {
-	embed: "https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d117830.87205297453!2d17.077474860882663!3d-22.645780407110703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x1c0b073c41ae1da1%3A0x4236762f58848efa!2sSafari%20Car%20Rental%2C%20Kappsfarm%2C%20Namibia!3m2!1d-22.5477217!2d17.253061!4m5!1s0x1c0b12234729fc19%3A0xccc4272e92645962!2sKrumhuk%2C%20P.O.Box%202630%2C%20Windhoek%2C%20Namibia!3m2!1d-22.743655!2d17.072954!5e0!3m2!1sde!2sch!4v1755700593607!5m2!1sde!2sch"
+	embeds: ["https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d117830.87205297453!2d17.077474860882663!3d-22.645780407110703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x1c0b073c41ae1da1%3A0x4236762f58848efa!2sSafari%20Car%20Rental%2C%20Kappsfarm%2C%20Namibia!3m2!1d-22.5477217!2d17.253061!4m5!1s0x1c0b12234729fc19%3A0xccc4272e92645962!2sKrumhuk%2C%20P.O.Box%202630%2C%20Windhoek%2C%20Namibia!3m2!1d-22.743655!2d17.072954!5e0!3m2!1sde!2sch!4v1755700593607!5m2!1sde!2sch",
+
+"https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d10417.321320806159!2d17.09122937809005!3d-22.613514706169404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e0!4m3!3m2!1d-22.602533899999997!2d17.102062!4m5!1s0x1c0b1ab6c9a713fb%3A0x801a082e46372e81!2sThe%20Grove%20Mall%20Of%20Namibia%2C%20Corner%20of%20Chasie%2C%20%26%20Frankie%20Fredericks%20Street%2C%20Windhoek%2C%20Namibia!3m2!1d-22.621145499999997!2d17.0925402!5e0!3m2!1sde!2sch!4v1756667234059!5m2!1sde!2sch" 
+]
 },
     plan: [
       "Ankunft Windhoek, Übernahme des Mietwagens",
