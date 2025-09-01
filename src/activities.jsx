@@ -548,132 +548,148 @@ const ACTIVITIES = [
 ]
 
 function encodeMap(q) {
-  return q ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}` : ''
-}
+   return q ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}` : ''
+ }
 
 function TypeBadge({ type }) {
-  const base = "inline-block text-[11px] px-2 py-[2px] rounded-full border align-middle";
-  const tone =
-    type === 'Aktivität' ? "border-emerald-400 text-emerald-700 bg-emerald-50" :
-    type === 'Info'       ? "border-indigo-400 text-indigo-700 bg-indigo-50" :
-                            "border-gray-300 text-gray-700 bg-gray-50";
-  return <span className={`${base} ${tone}`}>{type}</span>
-}
+   const base = "inline-block text-[11px] px-2 py-[2px] rounded-full border align-middle";
+   const tone =
+     type === 'Aktivität' ? "border-emerald-400 text-emerald-700 bg-emerald-50" :
+     type === 'Info'       ? "border-indigo-400 text-indigo-700 bg-indigo-50" :
+                             "border-gray-300 text-gray-700 bg-gray-50";
+   return <span className={`${base} ${tone}`}>{type}</span>
+ }
 
-function ItemCard({ c }) {
-  const [open, setOpen] = useState(false)
-  const telHref = c.phone ? `tel:${c.phone.replace(/\s+/g,'')}` : null
-  const mailHref = c.email ? `mailto:${c.email}` : null
-  const mapHref = encodeMap(c.mapQuery || c.address || `${c.name} ${c.city}`)
+function ItemCard({ c, printMode = false }) {
+  // Im Druckmodus immer geöffnet starten
+  const [open, setOpen] = useState(!!printMode)
+   const telHref = c.phone ? `tel:${c.phone.replace(/\s+/g,'')}` : null
+   const mailHref = c.email ? `mailto:${c.email}` : null
+   const mapHref = encodeMap(c.mapQuery || c.address || `${c.name} ${c.city}`)
 
-  return (
-    <div className="rounded-2xl shadow p-4 bg-white/70 border">
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <div className="text-sm uppercase tracking-wide text-gray-500">{c.type}</div>
-          <h3 className="text-lg font-semibold">{c.name}</h3>
-          <p className="text-sm text-gray-600">{[c.city, c.address].filter(Boolean).join(' · ')}</p>
-        </div>
-        <button onClick={()=>setOpen(!open)} className="text-sm px-3 py-1 rounded-full border hover:bg-gray-50">
-          {open ? 'Details schließen' : 'Details öffnen'}
-        </button>
-      </div>
+   return (
+    <div className="rounded-2xl shadow p-4 bg-white/70 border page-keep">
+       <div className="flex items-start justify-between gap-4">
+         <div>
+           <div className="text-sm uppercase tracking-wide text-gray-500">{c.type}</div>
+           <h3 className="text-lg font-semibold">{c.name}</h3>
+           <p className="text-sm text-gray-600">{[c.city, c.address].filter(Boolean).join(' · ')}</p>
+         </div>
+        {/* Toggle im Druckmodus ausblenden */}
+        {!printMode && (
+          <button
+            onClick={()=>setOpen(!open)}
+            className="text-sm px-3 py-1 rounded-full border hover:bg-gray-50 no-print"
+          >
+            {open ? 'Details schließen' : 'Details öffnen'}
+          </button>
+        )}
+       </div>
 
       {open && (
-        <div className="mt-3 text-sm space-y-2">
-          {c.phone && <p><span className="font-medium">Telefon:</span> <a className="underline" href={telHref}>{c.phone}</a></p>}
-          {c.email && <p><span className="font-medium">E-Mail:</span> <a className="underline" href={mailHref}>{c.email}</a></p>}
-          {c.website && <p><span className="font-medium">Website:</span> <a className="underline" href={c.website} target="_blank" rel="noreferrer">{c.website}</a></p>}
-          {mapHref && <p><span className="font-medium">Karte:</span> <a className="underline" href={mapHref} target="_blank" rel="noreferrer">In Google Maps öffnen</a></p>}
-          {c.notes && <p><span className="font-medium">Notizen:</span> {c.notes}</p>}
+         <div className="mt-3 text-sm space-y-2">
+           {c.phone && <p><span className="font-medium">Telefon:</span> <a className="underline" href={telHref}>{c.phone}</a></p>}
+           {c.email && <p><span className="font-medium">E-Mail:</span> <a className="underline" href={mailHref}>{c.email}</a></p>}
+           {c.website && <p><span className="font-medium">Website:</span> <a className="underline" href={c.website} target="_blank" rel="noreferrer">{c.website}</a></p>}
+           {mapHref && <p><span className="font-medium">Karte:</span> <a className="underline" href={mapHref} target="_blank" rel="noreferrer">In Google Maps öffnen</a></p>}
+           {c.notes && <p><span className="font-medium">Notizen:</span> {c.notes}</p>}
 
-          {Array.isArray(c.sections) && c.sections.length > 0 && (
-            <div className="mt-4 space-y-4">
-              {c.sections.map((sec, sIdx) => (
-                <div key={sIdx}>
-                  <h4 className="font-medium mb-2">{sec.title}</h4>
-                  <ol className="list-decimal ml-6 space-y-2">
-                    {sec.items?.slice().sort((a,b)=>(a.order??999)-(b.order??999)).map((it, iIdx) => {
-                      const pointHref = encodeMap(it.mapQuery || it.label || '')
-                      return (
-                        <li key={iIdx}>
-                          <div className="font-semibold">{it.label}</div>
-                          {Array.isArray(it.notes) && it.notes.length > 0 && (
-                            <ul className="list-disc ml-5 mt-1">
-                              {it.notes.map((n, nIdx) => <li key={nIdx}>{n}</li>)}
-                            </ul>
-                          )}
-                          {it.mapQuery && (
-                            <div className="mt-1">
-                              <a className="underline text-sm" href={pointHref} target="_blank" rel="noreferrer">
-                                In Google Maps öffnen
-                              </a>
-                            </div>
-                          )}
-                        </li>
-                      )
-                    })}
-                  </ol>
-                </div>
-              ))}
-            </div>
-          )}
-          {/* --- Ende Section-Liste --- */}       
+           {Array.isArray(c.sections) && c.sections.length > 0 && (
+             <div className="mt-4 space-y-4">
+               {c.sections.map((sec, sIdx) => (
+                 <div key={sIdx}>
+                   <h4 className="font-medium mb-2">{sec.title}</h4>
+                   <ol className="list-decimal ml-6 space-y-2">
+                     {sec.items?.slice().sort((a,b)=>(a.order??999)-(b.order??999)).map((it, iIdx) => {
+                       const pointHref = encodeMap(it.mapQuery || it.label || '')
+                       return (
+                         <li key={iIdx}>
+                           <div className="font-semibold">{it.label}</div>
+                           {Array.isArray(it.notes) && it.notes.length > 0 && (
+                             <ul className="list-disc ml-5 mt-1">
+                               {it.notes.map((n, nIdx) => <li key={nIdx}>{n}</li>)}
+                             </ul>
+                           )}
+                           {it.mapQuery && (
+                             <div className="mt-1">
+                               <a className="underline text-sm" href={pointHref} target="_blank" rel="noreferrer">
+                                 In Google Maps öffnen
+                               </a>
+                             </div>
+                           )}
+                         </li>
+                       )
+                     })}
+                   </ol>
+                 </div>
+               ))}
+             </div>
+           )}
+           {/* --- Ende Section-Liste --- */}       
 
- </div>
-      )}
-    </div>
-  )
-}
+  </div>
+       )}
+     </div>
+   )
+ }
 
-export default function Activities() {
+export default function Activities({ printMode = false }) {
   const [query, setQuery]   = useState('')
   const [filter, setFilter] = useState('Alle')
 
-  // Typen-Liste dynamisch aus den Daten (zukunftssicher: neue Typen erscheinen automatisch)
-  const typeOptions = useMemo(() => {
-    const uniq = Array.from(new Set(ACTIVITIES.map(a => a.type))).sort()
-    return ['Alle', ...uniq]
-  }, [])
+   // Typen-Liste dynamisch aus den Daten (zukunftssicher: neue Typen erscheinen automatisch)
+   const typeOptions = useMemo(() => {
+     const uniq = Array.from(new Set(ACTIVITIES.map(a => a.type))).sort()
+     return ['Alle', ...uniq]
+   }, [])
 
-  const filtered = useMemo(() => {
-    const q = query.toLowerCase()
-    return ACTIVITIES.filter(c => {
-      const matchesText =
-        [c.type, c.name, c.city, c.address, c.notes].filter(Boolean)
-          .join(' ').toLowerCase().includes(q)
-      const matchesType = filter === 'Alle' || c.type === filter
-      return matchesText && matchesType
-    })
-  }, [query, filter])
+   const filtered = useMemo(() => {
+     const q = query.toLowerCase()
+     return ACTIVITIES.filter(c => {
+       const matchesText =
+         [c.type, c.name, c.city, c.address, c.notes].filter(Boolean)
+           .join(' ').toLowerCase().includes(q)
+       const matchesType = filter === 'Alle' || c.type === filter
+       return matchesText && matchesType
+     })
+   }, [query, filter])
 
-  return (
+   return (
     <div className="max-w-3xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-2">Aktivitäten & Infos</h1>
-      <p className="text-gray-600 mb-4">Touren, Tipps und Hintergrundinfos entlang eurer Route.</p>
+       <h1 className="text-3xl font-bold mb-2">Aktivitäten & Infos</h1>
+       <p className="text-gray-600 mb-4">Touren, Tipps und Hintergrundinfos entlang eurer Route.</p>
 
-      <div className="flex flex-col md:flex-row gap-2 md:items-center mb-4">
-        <input
-          value={query}
-          onChange={e=>setQuery(e.target.value)}
-          placeholder="Suche nach Name, Ort, Notiz…"
-          className="w-full md:w-80 rounded-xl border px-4 py-2 bg-white/80 focus:outline-none"
-        />
-        <select
-          value={filter}
-          onChange={e=>setFilter(e.target.value)}
-          className="rounded-xl border px-3 py-2 bg-white/80"
-        >
-          {typeOptions.map(t => <option key={t}>{t}</option>)}
-        </select>
-      </div>
+      {/* Suche/Filter im Druck ausblenden */}
+      {!printMode && (
+        <div className="flex flex-col md:flex-row gap-2 md:items-center mb-4 no-print">
+          <input
+            value={query}
+            onChange={e=>setQuery(e.target.value)}
+            placeholder="Suche nach Name, Ort, Notiz…"
+            className="w-full md:w-80 rounded-xl border px-4 py-2 bg-white/80 focus:outline-none"
+          />
+          <select
+            value={filter}
+            onChange={e=>setFilter(e.target.value)}
+            className="rounded-xl border px-3 py-2 bg-white/80"
+          >
+            {typeOptions.map(t => <option key={t}>{t}</option>)}
+          </select>
+        </div>
+      )}
 
       <div className="grid gap-3">
-        {filtered.map((c, i) => <ItemCard key={`${c.type}-${c.name}-${i}`} c={c} />)}
-        {filtered.length === 0 && (
-          <p className="text-sm text-gray-500">Keine Treffer – Suchbegriff ändern oder Filter zurücksetzen.</p>
-        )}
-      </div>
-    </div>
-  )
-}
+        {filtered.map((c, i) => (
+          <React.Fragment key={`${c.type}-${c.name}-${i}`}>
+            <ItemCard c={c} printMode={printMode} />
+            {/* Für klare Trennung im PDF jede Karte auf neue Seite erzwingen (wenn gewünscht) */}
+            {/* <div className="page-break" /> */}
+          </React.Fragment>
+        ))}
+         {filtered.length === 0 && (
+           <p className="text-sm text-gray-500">Keine Treffer – Suchbegriff ändern oder Filter zurücksetzen.</p>
+         )}
+       </div>
+     </div>
+   )
+ }

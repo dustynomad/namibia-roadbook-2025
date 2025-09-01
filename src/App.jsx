@@ -1,6 +1,6 @@
 /*import React from "react";*/
-import React, { useState, useMemo } from "react";
-import { Routes, Route, NavLink, Navigate } from "react-router-dom";
+import React, { useEffect, useMemo, useState } from "react";
+import { Routes, Route, NavLink, Navigate, Link } from "react-router-dom";
 
 import Overview from "./Overview.jsx";
 import Activities from "./activities.jsx";
@@ -605,6 +605,86 @@ function Navbar() {
   );
 }
 
+function PrintShell({ children, waitMs = 200, title }) {
+  useEffect(() => {
+    // Wenn der Browser den Druck beendet hat, einfach zurück zur vorherigen Seite
+    const back = () => window.history.length > 1 && window.history.back();
+    window.addEventListener("afterprint", back);
+    const t = setTimeout(() => window.print(), waitMs);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener("afterprint", back);
+    };
+  }, [waitMs]);
+
+  return (
+    <div className="print-view">
+      <style>{`
+        @media print {
+          .print-view nav,
+          .print-view .no-print,
+          .print-view button,
+          .print-view input,
+          .print-view select {
+            display: none !important;
+          }
+          .print-view { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+          .print-view .shadow, .print-view .shadow-md, .print-view .shadow-lg { box-shadow: none !important; }
+          .print-view .page-break { break-after: page; }
+          .print-view .page-keep { break-inside: avoid; page-break-inside: avoid; }
+          /* WICHTIG: Iframes nicht global verstecken – wir wollen Maps drucken */
+        }
+      `}</style>
+
+      <div className="max-w-4xl mx-auto p-6">
+        {title ? <h1 className="text-2xl font-bold mb-4">{title}</h1> : null}
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function PrintRoadbookView() {
+  const totalIframes = useMemo(() => {
+    return DAYS.reduce((acc, d) => {
+      const n = Array.isArray(d.map?.embeds)
+        ? d.map.embeds.length
+        : (Array.isArray(d.map?.embed) ? d.map.embed.length : (d.map?.embed ? 1 : 0));
+      return acc + n;
+    }, 0);
+  }, []);
+
+  const [loaded, setLoaded] = useState(0);
+  const onMapLoad = () => setLoaded(x => x + 1);
+
+  // Falls iFrames nicht alle feuern, Fallback-Druck nach 5s
+  useEffect(() => {
+    if (!totalIframes) return;
+    const t = setTimeout(() => window.print(), 5000);
+    return () => clearTimeout(t);
+  }, [totalIframes]);
+
+  // Sobald alles geladen ist, sehr kurz warten und drucken
+  const waitMs = totalIframes > 0 && loaded >= totalIframes ? 200 : 800;
+
+  return (
+    <PrintShell title="Roadbook – PDF" waitMs={waitMs}>
+      {totalIframes > 0 && (
+        <p className="text-sm text-gray-500 no-print mb-2">
+          Karten laden… ({loaded}/{totalIframes})
+        </p>
+      )}
+      {DAYS.map(d => (
+        <div key={d.day} className="mb-6 page-keep">
+          <DayCard d={d} forceOpen printMode onMapLoad={onMapLoad} />
+          <div className="page-break" />
+        </div>
+      ))}
+    </PrintShell>
+  );
+}
+
+
 function Roadbook() {
   const [query, setQuery] = useState("")
   const filtered = useMemo(() => {
@@ -658,6 +738,9 @@ export default function App() {
           <Route path="/print" element={<PrintView />} />
 
           {/* Fallback */}
+	  <Route path="/print" element={<PrintRoadbookView />} />
+	  <Route path="/print/activities" element={<PrintActivitiesView />} />
+
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
