@@ -41,7 +41,41 @@ function buildGmapsDirUrl({ origin, destination, waypoints = [] }) {
   return `https://www.google.com/maps/dir/?${p.toString()}`
 }
 
-// Robuste Karte mit optionalem Eager-Load & onLoad-Callback (für Print)
+// ---- Google-Maps URL Normalisierung ----
+function normalizeGoogleMapsUrl(raw) {
+  if (!raw) return { src: "", embeddable: false, reason: "empty" };
+
+  const url = String(raw).trim();
+
+  // 1) Short/Redirect-Links -> NICHT einbettbar
+  if (/^(https?:)?\/\/(maps\.app\.goo\.gl|goo\.gl\/maps)/i.test(url)) {
+    return { src: url, embeddable: false, reason: "shortlink" };
+  }
+
+  // 2) My Maps Embed (korrekt) -> unverändert
+  if (/^https?:\/\/(www\.)?google\.[^/]+\/maps\/d\/embed/i.test(url)) {
+    return { src: url, embeddable: true };
+  }
+
+  // 3) Schon embed?
+  if (/[\?&]output=embed\b/i.test(url) || /\/embed\b/i.test(url)) {
+    return { src: url, embeddable: true };
+  }
+
+  // 4) Normale Google-Maps-Ansichten einbettbar machen
+  if (/^https?:\/\/(www\.)?google\.[^/]+\/maps\//i.test(url)) {
+    // Einfachheits-Regel: output=embed anhängen
+    const hasQuery = url.includes("?");
+    const joined = url + (hasQuery ? "&" : "?") + "output=embed";
+    return { src: joined, embeddable: true };
+  }
+
+  // 5) Anderes (OpenStreetMap, etc.) -> versuchen wie geliefert
+  return { src: url, embeddable: true };
+}
+
+
+
 function MapFrame({
   src,
   title = "Karte",
@@ -50,12 +84,28 @@ function MapFrame({
   forceEager = false,
   onLoad,
 }) {
-  // Im Print-Modus: sofort laden, sonst lazy
+  const info = normalizeGoogleMapsUrl(src);
   const loadingAttr = forceEager ? undefined : "lazy";
+
+  if (!info.embeddable) {
+    // Sichtbarer Fallback statt weißem Kasten
+    return (
+      <div className="rounded-xl border p-4 bg-white/70">
+        <div className="font-medium mb-1">{title}</div>
+        <p className="text-sm text-gray-700">
+          Dieser Kartenlink kann nicht eingebettet werden
+          {info.reason === "shortlink" ? " (maps.app.goo.gl / goo.gl)." : "."}
+        </p>
+        <a href={info.src} target="_blank" rel="noreferrer" className="underline text-sm">
+          In Google Maps öffnen
+        </a>
+      </div>
+    );
+  }
 
   return (
     <iframe
-      src={src}
+      src={info.src}
       title={title}
       className="w-full aspect-video rounded-xl shadow"
       style={{ border: 0 }}
@@ -63,10 +113,11 @@ function MapFrame({
       allowFullScreen
       referrerPolicy="no-referrer-when-downgrade"
       onLoad={onLoad}
-      data-map // Markierung, damit PrintView die iframes ggf. anfassen kann
+      data-map
     />
   );
 }
+
 
 
 const DAYS = [
@@ -461,76 +512,110 @@ map: {
 /* ==================== Komponenten ==================== */
 
 function DayCard({ d, forceOpen = false, printMode = false, onMapLoad }) {
-  const [open, setOpen] = useState(false)
-  const shown = forceOpen || open
+  const [open, setOpen] = useState(!!forceOpen || !!printMode);
+  const shown = forceOpen || printMode || open;
+
+  // Wenn forceOpen/printMode sich ändern, Zustand synchron halten
+  useEffect(() => {
+    if (forceOpen || printMode) setOpen(true);
+  }, [forceOpen, printMode]);
+
+  // Karten-Embeds tolerant einsammeln und bereinigen
+  const embeds = useMemo(() => {
+    const raw = Array.isArray(d?.map?.embeds)
+      ? d.map.embeds
+      : Array.isArray(d?.map?.embed)
+      ? d.map.embed
+      : d?.map?.embed
+      ? [d.map.embed]
+      : [];
+    return raw
+      .map(u => String(u || "").trim())
+      .filter(u => u.length > 0);
+  }, [d]);
 
   return (
     <div className="rounded-2xl shadow p-5 bg-white/70 border page-keep">
       <div className="flex justify-between">
-        <h3 className="text-xl font-semibold">Tag {d.day} – {d.title}</h3>
-        <button onClick={()=>setOpen(!open)} className="text-sm border px-2 no-print">
-          {shown ? "Schließen" : "Details"}
-        </button>
+        <h3 className="text-xl font-semibold">
+          Tag {d.day} – {d.title}
+        </h3>
+
+        {/* Toggle im Print ausblenden */}
+        {!printMode && (
+          <button
+            onClick={() => setOpen(!open)}
+            className="text-sm border px-2 no-print"
+          >
+            {shown ? "Schließen" : "Details"}
+          </button>
+        )}
       </div>
 
       {shown && (
         <div className="mt-2">
-          <p><b>Start:</b> {d.start} · <b>Ziel:</b> {d.end}</p>
-          <p><b>Distanz:</b> {d.distance} · <b>Fahrtzeit:</b> {d.drive}</p>
+          <p>
+            <b>Start:</b> {d.start} · <b>Ziel:</b> {d.end}
+          </p>
+          <p>
+            <b>Distanz:</b> {d.distance} · <b>Fahrtzeit:</b> {d.drive}
+          </p>
 
           {Array.isArray(d.plan) && d.plan.length > 0 && (
             <>
               <h4 className="font-medium mt-2">Tagesplan</h4>
-              <ul className="list-disc ml-5">{d.plan.map((p,i)=><li key={i}>{p}</li>)}</ul>
+              <ul className="list-disc ml-5">
+                {d.plan.map((p, i) => (
+                  <li key={i}>{p}</li>
+                ))}
+              </ul>
             </>
           )}
 
           {Array.isArray(d.highlights) && d.highlights.length > 0 && (
             <>
               <h4 className="font-medium mt-2">Highlights</h4>
-              <ul className="list-disc ml-5">{d.highlights.map((h,i)=><li key={i}>{h}</li>)}</ul>
+              <ul className="list-disc ml-5">
+                {d.highlights.map((h, i) => (
+                  <li key={i}>{h}</li>
+                ))}
+              </ul>
             </>
           )}
 
           {Array.isArray(d.alt) && d.alt.length > 0 && (
             <>
               <h4 className="font-medium mt-2">Alternativen</h4>
-              <ul className="list-disc ml-5">{d.alt.map((a,i)=><li key={i}>{a}</li>)}</ul>
+              <ul className="list-disc ml-5">
+                {d.alt.map((a, i) => (
+                  <li key={i}>{a}</li>
+                ))}
+              </ul>
             </>
           )}
 
-          {/* Karten */}
-          {Array.isArray(d.map?.embeds) && d.map.embeds.length > 0 && (
+          {/* Karten – robust für embed/embeds & Print */}
+          {embeds.length > 0 && (
             <div className="mt-3 grid gap-3">
-              {d.map.embeds.map((url, i) => (
+              {embeds.map((url, i) => (
                 <MapFrame
                   key={i}
                   src={url}
                   origin={d.start}
                   destination={d.end}
-                  title={`Tag ${d.day} – Karte ${i+1}`}
-                  forceEager={printMode}
+                  title={`Tag ${d.day} – Karte ${i + 1}`}
+                  forceEager={printMode}   // <- wichtig für PDF
                   onLoad={onMapLoad}
                 />
               ))}
             </div>
           )}
-          {!d.map?.embeds && d.map?.embed && (
-            <MapFrame
-              src={d.map.embed}
-              origin={d.start}
-              destination={d.end}
-              title={`Tag ${d.day} – Karte`}
-              forceEager={printMode}
-              onLoad={onMapLoad}
-            />
-          )}
 
           {/* Directions */}
           {(() => {
-            const dir = d.map?.dir ?? { origin: d.start, destination: d.end, waypoints: [] }
-            if (!dir.origin || !dir.destination) return null
-            const href = buildGmapsDirUrl(dir)
+            const dir = d?.map?.dir ?? { origin: d.start, destination: d.end, waypoints: [] };
+            if (!dir.origin || !dir.destination) return null;
+            const href = buildGmapsDirUrl(dir);
             return (
               <a
                 href={href}
@@ -541,13 +626,14 @@ function DayCard({ d, forceOpen = false, printMode = false, onMapLoad }) {
               >
                 🗺️ Route in Google Maps öffnen
               </a>
-            )
+            );
           })()}
         </div>
       )}
     </div>
-  )
+  );
 }
+
 
 
 function PrintView() {
