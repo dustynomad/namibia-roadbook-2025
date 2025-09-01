@@ -1,7 +1,5 @@
-//import React, { useEffect, useMemo, useState } from 'react'
-import React from 'react'
-
-import { Routes, Route, Link, Navigate } from 'react-router-dom'
+import React, { useEffect, useMemo, useState } from 'react';
+import { Routes, Route, Link, NavLink, Navigate } from 'react-router-dom';
 import Activities from './activities.jsx'
 import Contacts from './contacts.jsx'
 import Protagonists from './Protagonists.jsx'
