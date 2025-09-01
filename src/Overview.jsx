@@ -13,23 +13,20 @@ export default function Overview({ mapUrl, trip = [] }) {
       <h2 className="text-2xl font-semibold">Overview</h2>
 
       {/* große Karte */}
-      <div className="w-full rounded-xl overflow-hidden shadow">
-        <div className="aspect-video bg-gray-100">
-          <iframe
-            title="Trip Overview Map"
-            src={mapUrl}
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            loading="lazy"
-            allowFullScreen
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-        </div>
+      <div className="w-full rounded-2xl overflow-hidden shadow-lg">
+        <iframe
+          title="Trip Overview Map"
+          src={mapUrl}
+          className="w-full h-[70vh]"   // nimmt 70% der Bildschirmhöhe ein
+          style={{ border: 0 }}
+          loading="lazy"
+          allowFullScreen
+          referrerPolicy="no-referrer-when-downgrade"
+        />
       </div>
 
       {/* Notizen: Stops + Kilometer */}
-      <div className="rounded-xl bg-white/70 p-4 shadow">
+      <div className="rounded-2xl bg-white/70 p-4 shadow-lg">
         <h3 className="text-lg font-semibold mb-3">Etappen &amp; Distanzen</h3>
         <ul className="space-y-2">
           {trip.map((t, i) => (
