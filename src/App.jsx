@@ -585,6 +585,22 @@ function Navbar() {
   );
 }
 
+const Footer = () => (
+  <footer className="mt-12 border-t pt-4 text-sm text-gray-600 max-w-5xl mx-auto px-4 print:pt-2 print:text-xs print:block">
+    <div className="flex flex-wrap items-center gap-3">
+      <span>© {new Date().getFullYear()} Dusty Nomads</span>
+      <span className="text-gray-300">·</span>
+      {/* absolute Links, da außerhalb der SPA */}
+      <a href="/impressum/" className="underline hover:no-underline">Impressum</a>
+      <span className="text-gray-300">·</span>
+      <a href="/datenschutz/" className="underline hover:no-underline">Datenschutz</a>
+      <span className="ml-auto">
+        <a href="/" className="underline hover:no-underline">Zur Übersicht</a>
+      </span>
+    </div>
+  </footer>
+);
+
 /* ==================== Print-Ansicht ==================== */
 /* - Keine globalen Print-CSS mehr! 
    - Wir warten, bis die meisten iFrames geladen sind (oder 3s Fallback), dann window.print().
@@ -674,6 +690,7 @@ export default function App() {
         <Route path="/protagonists" element={<Protagonists />} />
         <Route path="/print" element={<PrintView />} />
       </Routes>
+      <Footer />
     </div>
   )
 }
