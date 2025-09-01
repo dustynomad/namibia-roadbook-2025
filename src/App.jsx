@@ -1,4 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react'
+//import React, { useEffect, useMemo, useState } from 'react'
+import React from 'react'
+
 import { Routes, Route, Link, Navigate } from 'react-router-dom'
 import Activities from './activities.jsx'
 import Contacts from './contacts.jsx'
@@ -578,10 +580,23 @@ const Footer = () => (
 );
 
 
+/** Platzhalter für dein Roadbook-Start (ersetzbar durch deinen echten Content) */
+const RoadbookHome = () => (
+  <div className="space-y-4">
+    <h2 className="text-xl font-semibold">Roadbook – Übersicht</h2>
+    <p className="text-gray-700">
+      Willkommen im Namibia Roadbook 2025. Wähle oben eine Rubrik aus.
+    </p>
+    {/* Hier kann dein vorhandener Roadbook-Content/Tagesliste stehen */}
+  </div>
+);
+
 // GROSSE KARTE (ersetze durch deine eigene Google-My-Maps-Embed-URL, wenn vorhanden)
 
-const MAP_EMBED_URL = "https://www.google.com/maps/embed?pb=!1m76!1m12!1m3!1d1861100.4746728798!2d14.30063499553313!3d-24.3478210363867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m61!3e0!4m5!1s0x1c0b1b5cb30c01ed%3A0xe4b84940cc445d3b!2sWindhuk%2C%20Namibia!3m2!1d-22.5649344!2d17.0842147!4m5!1s0x1c3e1d74933b20a9%3A0xc10f2ec8410425ab!2sCanyon%20Roadhouse%2C%20Gondwana%20Collection%20Namibia!3m2!1d-27.5242786!2d17.814786899999998!4m5!1s0x1c3e47fac1dfa4ad%3A0x106de3c347f417f0!2sAis-Ais%2C%20Namibia!3m2!1d-27.9222424!2d17.4898699!4m5!1s0x1c6be6998f0e1a13%3A0xbe2d3687ec30cd56!2sL%C3%BCderitz%2C%20Namibia!3m2!1d-26.6420382!2d15.1639082!4m5!1s0x1c6cbdfc5ef202ad%3A0x9db89c3a9c44b630!2sCamping%20Namtib%20Desert%20Lodge%2C%20Namibia!3m2!1d-26.019517999999998!2d16.2476277!4m5!1s0x1c728a8a381f514d%3A0x31f0efdc1e74c89!2sSesriem%2C%20Namibia!3m2!1d-24.486698!2d15.8011445!4m5!1s0x1c73f4645af483d1%3A0xb3d3be92f94565db!2sMirabib%20Campsite%2C%20Namibia!3m2!1d-23.4540538!2d15.3520069!4m5!1s0x1c76ef00d003fbb1%3A0x7b2b78577c36fede!2sWalvis%20Bay%2C%20Namibia!3m2!1d-22.9585126!2d14.503872099999999!4m5!1s0x1b8982c1554e71f5%3A0xce3e792c0ae6a91a!2sUis%2C%20Namibia!3m2!1d-21.2186578!2d14.867353099999999!4m5!1s0x1c0b1b5cb30c01ed%3A0xe4b84940cc445d3b!2sWindhoek%2C%20Namibia!3m2!1d-22.5649344!2d17.0842147!5e0!3m2!1sde!2sch!4v1756732260625!5m2!1sde!2sch" ;
+const MAP_EMBED_URL = "https://maps.google.com/maps?q=Namibia&z=5&output=embed";
 
+/* "https://www.google.com/maps/embed?pb=!1m76!1m12!1m3!1d1861100.4746728798!2d14.30063499553313!3d-24.3478210363867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m61!3e0!4m5!1s0x1c0b1b5cb30c01ed%3A0xe4b84940cc445d3b!2sWindhuk%2C%20Namibia!3m2!1d-22.5649344!2d17.0842147!4m5!1s0x1c3e1d74933b20a9%3A0xc10f2ec8410425ab!2sCanyon%20Roadhouse%2C%20Gondwana%20Collection%20Namibia!3m2!1d-27.5242786!2d17.814786899999998!4m5!1s0x1c3e47fac1dfa4ad%3A0x106de3c347f417f0!2sAis-Ais%2C%20Namibia!3m2!1d-27.9222424!2d17.4898699!4m5!1s0x1c6be6998f0e1a13%3A0xbe2d3687ec30cd56!2sL%C3%BCderitz%2C%20Namibia!3m2!1d-26.6420382!2d15.1639082!4m5!1s0x1c6cbdfc5ef202ad%3A0x9db89c3a9c44b630!2sCamping%20Namtib%20Desert%20Lodge%2C%20Namibia!3m2!1d-26.019517999999998!2d16.2476277!4m5!1s0x1c728a8a381f514d%3A0x31f0efdc1e74c89!2sSesriem%2C%20Namibia!3m2!1d-24.486698!2d15.8011445!4m5!1s0x1c73f4645af483d1%3A0xb3d3be92f94565db!2sMirabib%20Campsite%2C%20Namibia!3m2!1d-23.4540538!2d15.3520069!4m5!1s0x1c76ef00d003fbb1%3A0x7b2b78577c36fede!2sWalvis%20Bay%2C%20Namibia!3m2!1d-22.9585126!2d14.503872099999999!4m5!1s0x1b8982c1554e71f5%3A0xce3e792c0ae6a91a!2sUis%2C%20Namibia!3m2!1d-21.2186578!2d14.867353099999999!4m5!1s0x1c0b1b5cb30c01ed%3A0xe4b84940cc445d3b!2sWindhoek%2C%20Namibia!3m2!1d-22.5649344!2d17.0842147!5e0!3m2!1sde!2sch!4v1756732260625!5m2!1sde!2sch" ;
+*/
 
 // MANUELLES TRIP-ARRAY (nur dieses wird verwendet)
 const OVERVIEW_TRIP = [
@@ -599,26 +614,30 @@ const OVERVIEW_TRIP = [
 ];
 
 function Navbar() {
+  // Optional: aktiven Tab hervorheben via NavLink
+  const linkCls = ({ isActive }) =>
+    "hover:underline" + (isActive ? " font-semibold text-amber-800" : "");
   return (
     <>
       {/* Header mit Zur-Übersicht-Link */}
       <div className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
         <div className="max-w-5xl mx-auto px-4 py-2 flex items-center justify-between">
           <h1 className="text-base font-semibold">Namibia Roadbook 2025</h1>
-          {/* WICHTIG: absoluter Link zur Landing-Page am Domain-Root */}
+          {/* absoluter Link zur Landing-Page */}
           <a href="/" className="text-sm underline hover:no-underline">
             ← Zur Übersicht
           </a>
         </div>
       </div>
 
-      <nav className="flex gap-4 mb-6 border-b pb-2">
-	<Link to="/overview" className="hover:underline">Overview</Link>
-        <Link to="/" className="hover:underline">Roadbook</Link>
-        <Link to="/activities" className="hover:underline">Aktivitäten</Link>
-        <Link to="/contacts" className="hover:underline">Infos</Link>
-        <Link to="/protagonists" className="hover:underline">Protagonisten</Link>
-        <Link to="/print" className="hover:underline no-print">PDF</Link>
+      {/* Tabs / Navigation */}
+      <nav className="max-w-5xl mx-auto px-4 flex gap-4 mb-6 border-b pb-2">
+        <NavLink to="/overview" className={linkCls}>Overview</NavLink>
+        <NavLink to="/" className={linkCls}>Roadbook</NavLink>
+        <NavLink to="/activities" className={linkCls}>Aktivitäten</NavLink>
+        <NavLink to="/contacts" className={linkCls}>Infos</NavLink>
+        <NavLink to="/protagonists" className={linkCls}>Protagonisten</NavLink>
+        <NavLink to="/print" className="hover:underline no-print">PDF</NavLink>
       </nav>
     </>
   );
@@ -709,18 +728,25 @@ export default function App() {
 
       <main className="flex-1 max-w-5xl mx-auto px-4">
         <Routes>
-	  <Route path="/overview" element={<Overview mapUrl={MAP_EMBED_URL} trip={OVERVIEW_TRIP} />} />
+          {/* Roadbook bleibt Startseite */}
           <Route path="/" element={<RoadbookHome />} />
+
+          {/* NEU: Overview-Route */}
+          <Route
+            path="/overview"
+            element={<Overview mapUrl={MAP_EMBED_URL} trip={OVERVIEW_TRIP} />}
+          />
+
           <Route path="/activities" element={<Activities />} />
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/protagonists" element={<Protagonists />} />
           <Route path="/print" element={<PrintView />} />
-          {/* Fallback: unbekannte Routen zurück zur Startseite */}
+
+          {/* Fallback */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
 
-      {/* Footer immer sichtbar (auch im Print) */}
       <Footer />
     </div>
   );
