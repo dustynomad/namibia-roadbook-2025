@@ -681,16 +681,23 @@ function PrintView() {
 
 export default function App() {
   return (
-    <div className="max-w-3xl mx-auto p-6">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-amber-50 to-orange-100 text-gray-900">
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Roadbook />} />
-        <Route path="/activities" element={<Activities />} />
-        <Route path="/contacts" element={<Contacts />} />
-        <Route path="/protagonists" element={<Protagonists />} />
-        <Route path="/print" element={<PrintView />} />
-      </Routes>
+
+      <main className="flex-1 max-w-5xl mx-auto px-4">
+        <Routes>
+          <Route path="/" element={<RoadbookHome />} />
+          <Route path="/activities" element={<Activities />} />
+          <Route path="/contacts" element={<Contacts />} />
+          <Route path="/protagonists" element={<Protagonists />} />
+          <Route path="/print" element={<PrintView />} />
+          {/* Fallback: unbekannte Routen zurück zur Startseite */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </main>
+
+      {/* Footer immer sichtbar (auch im Print) */}
       <Footer />
     </div>
-  )
+  );
 }
