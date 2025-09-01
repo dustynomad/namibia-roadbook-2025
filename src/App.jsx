@@ -4,6 +4,13 @@ import Activities from './activities.jsx'
 import Contacts from './contacts.jsx'
 import Protagonists from './Protagonists.jsx'
 
+<header className="px-4 py-3 flex items-center justify-between">
+  <h1 className="text-xl font-bold">Namibia Roadbook 2025</h1>
+  <nav className="text-sm">
+    <a href="/" className="underline text-amber-700 hover:text-amber-900">Zur Übersicht</a>
+  </nav>
+</header>
+
 /* ==================== Helpers ==================== */
 
 // Directions-URL bauen (für Button)
