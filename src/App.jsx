@@ -4,13 +4,6 @@ import Activities from './activities.jsx'
 import Contacts from './contacts.jsx'
 import Protagonists from './Protagonists.jsx'
 
-<header className="px-4 py-3 flex items-center justify-between">
-  <h1 className="text-xl font-bold">Namibia Roadbook 2025</h1>
-  <nav className="text-sm">
-    <a href="/" className="underline text-amber-700 hover:text-amber-900">Zur Übersicht</a>
-  </nav>
-</header>
-
 /* ==================== Helpers ==================== */
 
 // Directions-URL bauen (für Button)
@@ -569,6 +562,18 @@ function Roadbook() {
 
 function Navbar() {
   return (
+
+{/* Header mit Zur-Übersicht-Link */}
+<div className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
+  <div className="max-w-5xl mx-auto px-4 py-2 flex items-center justify-between">
+    <h1 className="text-base font-semibold">Namibia Roadbook 2025</h1>
+    {/* WICHTIG: absoluter Link zur Landing-Page am Domain-Root */}
+    <a href="/" className="text-sm underline hover:no-underline">
+      ← Zur Übersicht
+    </a>
+  </div>
+</div>
+
     <nav className="flex gap-4 mb-6 border-b pb-2">
       <Link to="/" className="hover:underline">Roadbook</Link>
       <Link to="/activities" className="hover:underline">Aktivitäten</Link>
