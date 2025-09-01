@@ -561,32 +561,6 @@ function Roadbook() {
   )
 }
 
-function Navbar() {
-  return (
-    <>
-      {/* Header mit Zur-Übersicht-Link */}
-      <div className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
-        <div className="max-w-5xl mx-auto px-4 py-2 flex items-center justify-between">
-          <h1 className="text-base font-semibold">Namibia Roadbook 2025</h1>
-          {/* WICHTIG: absoluter Link zur Landing-Page am Domain-Root */}
-          <a href="/" className="text-sm underline hover:no-underline">
-            ← Zur Übersicht
-          </a>
-        </div>
-      </div>
-
-      <nav className="flex gap-4 mb-6 border-b pb-2">
-	<Link to="/overview" className="hover:underline">Overview</Link>
-        <Link to="/" className="hover:underline">Roadbook</Link>
-        <Link to="/activities" className="hover:underline">Aktivitäten</Link>
-        <Link to="/contacts" className="hover:underline">Infos</Link>
-        <Link to="/protagonists" className="hover:underline">Protagonisten</Link>
-        <Link to="/print" className="hover:underline no-print">PDF</Link>
-      </nav>
-    </>
-  );
-}
-
 const Footer = () => (
   <footer className="mt-12 border-t pt-4 text-sm text-gray-600 max-w-5xl mx-auto px-4 print:pt-2 print:text-xs print:block">
     <div className="flex flex-wrap items-center gap-3">
@@ -624,6 +598,31 @@ const OVERVIEW_TRIP = [
   { day: 11, from: "Waterberg",           to: "Windhoek",                       distanceKm: 300 },
 ];
 
+function Navbar() {
+  return (
+    <>
+      {/* Header mit Zur-Übersicht-Link */}
+      <div className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
+        <div className="max-w-5xl mx-auto px-4 py-2 flex items-center justify-between">
+          <h1 className="text-base font-semibold">Namibia Roadbook 2025</h1>
+          {/* WICHTIG: absoluter Link zur Landing-Page am Domain-Root */}
+          <a href="/" className="text-sm underline hover:no-underline">
+            ← Zur Übersicht
+          </a>
+        </div>
+      </div>
+
+      <nav className="flex gap-4 mb-6 border-b pb-2">
+	<Link to="/overview" className="hover:underline">Overview</Link>
+        <Link to="/" className="hover:underline">Roadbook</Link>
+        <Link to="/activities" className="hover:underline">Aktivitäten</Link>
+        <Link to="/contacts" className="hover:underline">Infos</Link>
+        <Link to="/protagonists" className="hover:underline">Protagonisten</Link>
+        <Link to="/print" className="hover:underline no-print">PDF</Link>
+      </nav>
+    </>
+  );
+}
 
 /* ==================== Print-Ansicht ==================== */
 /* - Keine globalen Print-CSS mehr! 
@@ -710,12 +709,12 @@ export default function App() {
 
       <main className="flex-1 max-w-5xl mx-auto px-4">
         <Routes>
+	  <Route path="/overview" element={<Overview mapUrl={MAP_EMBED_URL} trip={OVERVIEW_TRIP} />} />
           <Route path="/" element={<RoadbookHome />} />
           <Route path="/activities" element={<Activities />} />
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/protagonists" element={<Protagonists />} />
           <Route path="/print" element={<PrintView />} />
-	  <Route path="/overview" element={<Overview mapUrl={MAP_EMBED_URL} trip={trip} />} />
           {/* Fallback: unbekannte Routen zurück zur Startseite */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
