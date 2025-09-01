@@ -2,7 +2,7 @@ import React from 'react'
 import thomas from './assets/people/thomas.jpg'
 import eve   from './assets/people/eve.jpg'
 
-export default function Protagonists() {
+export default function Overview() {
   const people = [
     { name: 'Thomas', role: 'Navigator & Fahrer',  	img: thomas },
     { name: 'Eve',    role: 'Fotografin & Co-Pilotin', 	img: eve },
