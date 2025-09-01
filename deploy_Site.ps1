@@ -24,7 +24,7 @@ if (-not $SkipBuild) {
   Push-Location $ProjectPath
   if (-not (Get-Command npm -ErrorAction SilentlyContinue)) { throw 'npm nicht gefunden.' }
   try { npm ci } catch { npm install }
-  npm run build -- --force
+  npm run build -- --emptyOutDir
   if (-not (Test-Path (Join-Path $ProjectPath 'dist'))) { Pop-Location; throw 'Build fehlgeschlagen: dist/ fehlt.' }
   Pop-Location
 }

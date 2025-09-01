@@ -562,26 +562,27 @@ function Roadbook() {
 
 function Navbar() {
   return (
+    <>
+      {/* Header mit Zur-Übersicht-Link */}
+      <div className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
+        <div className="max-w-5xl mx-auto px-4 py-2 flex items-center justify-between">
+          <h1 className="text-base font-semibold">Namibia Roadbook 2025</h1>
+          {/* WICHTIG: absoluter Link zur Landing-Page am Domain-Root */}
+          <a href="/" className="text-sm underline hover:no-underline">
+            ← Zur Übersicht
+          </a>
+        </div>
+      </div>
 
-{/* Header mit Zur-Übersicht-Link */}
-<div className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
-  <div className="max-w-5xl mx-auto px-4 py-2 flex items-center justify-between">
-    <h1 className="text-base font-semibold">Namibia Roadbook 2025</h1>
-    {/* WICHTIG: absoluter Link zur Landing-Page am Domain-Root */}
-    <a href="/" className="text-sm underline hover:no-underline">
-      ← Zur Übersicht
-    </a>
-  </div>
-</div>
-
-    <nav className="flex gap-4 mb-6 border-b pb-2">
-      <Link to="/" className="hover:underline">Roadbook</Link>
-      <Link to="/activities" className="hover:underline">Aktivitäten</Link>
-      <Link to="/contacts" className="hover:underline">Infos</Link>
-      <Link to="/protagonists" className="hover:underline">Protagonisten</Link>
-      <Link to="/print" className="hover:underline no-print">PDF</Link>
-    </nav>
-  )
+      <nav className="flex gap-4 mb-6 border-b pb-2">
+        <Link to="/" className="hover:underline">Roadbook</Link>
+        <Link to="/activities" className="hover:underline">Aktivitäten</Link>
+        <Link to="/contacts" className="hover:underline">Infos</Link>
+        <Link to="/protagonists" className="hover:underline">Protagonisten</Link>
+        <Link to="/print" className="hover:underline no-print">PDF</Link>
+      </nav>
+    </>
+  );
 }
 
 /* ==================== Print-Ansicht ==================== */
