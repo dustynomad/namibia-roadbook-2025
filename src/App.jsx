@@ -175,9 +175,8 @@ map: {
     distance: "~180 km",
     drive: "~2 h",
  map: {
-	embed:  [
+	embed:  
 "https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d910340.9989927384!2d17.345361636977415!3d-26.96628093149138!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x1c1699a81dd74323%3A0xa7cf4e866221b827!2sGaras%20Park%20Camp%20-%20Quivertree%20Park%20Camp%2C%20Keetmanshoop%2C%20Namibia!3m2!1d-26.418754399999997!2d18.1904304!4m5!1s0x1c3e1d74933b20a9%3A0xc10f2ec8410425ab!2sCanyon%20Roadhouse%2C%20Gondwana%20Collection%20Namibia%2C%20Namibia!3m2!1d-27.5242786!2d17.814786899999998!5e0!3m2!1sde!2sch!4v1755705473686!5m2!1sde!2sch"
-]
 },
     plan: [
       "Gemütliche Fahrt Richtung Süden",
@@ -354,9 +353,9 @@ map: {
     distance: "~241 km ",
     drive: "~3,5 h",
  map: {
-	embed:  [
+	embed:  
 "https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d1465545.1586719186!2d15.19749224996463!3d-23.97335359909229!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x1c729b2c224ee73d%3A0xdac4d718df58ddbf!2sLittle%20Sossus%20Campsite%2C%20Namibia!3m2!1d-24.6616343!2d15.975375099999999!4m5!1s0x1c73f4645af483d1%3A0xb3d3be92f94565db!2sMirabib%20Campsite%2C%20Namibia!3m2!1d-23.4540538!2d15.3520069!5e1!3m2!1sde!2sch!4v1755729577131!5m2!1sde!2sch"
-]},
+},
     plan: [
 	"07:30 Abfahrt Little Sossus",
 	"08:00–09:30 Sesriem Canyon oder Elim Dune",
@@ -378,8 +377,8 @@ map: {
     distance: "~135 km",
     drive: "~2 h",
 map: {
-	embed:  [
-"https://www.google.com/maps/embed?pb=!1m42!1m12!1m3!1d738001.5567153336!2d14.618462182196886!3d-23.258706092291302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m27!3e0!4m5!1s0x1c73f4645af483d1%3A0xb3d3be92f94565db!2sMirabib%20Campsite%2C%20Namibia!3m2!1d-23.4540538!2d15.3520069!4m5!1s0x1c73fd6ee01372f9%3A0x96ec515a9b127377!2sC2QW%2B8R3%20Namib%20Desert%20Atmospheric%20Observatory%20(NDAO)%2C%20Gobabeb%2C%20Namibia!3m2!1d-23.561744599999997!2d15.0470575!4m3!3m2!1d-23.3361219!2d14.826174199999999!4m5!1s0x1c76b1c66aa379db%3A0xe596d081b1be7b16!2sMount%20Swartbankberg%2C%20Nuhoab%2C%20Namibia!3m2!1d-23.3016223!2d14.8265272!4m3!3m2!1d-22.955135799999997!2d14.519480699999999!5e1!3m2!1sde!2sch!4v1755875130348!5m2!1sde!2sch"]},
+	embed:  
+"https://www.google.com/maps/embed?pb=!1m42!1m12!1m3!1d738001.5567153336!2d14.618462182196886!3d-23.258706092291302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m27!3e0!4m5!1s0x1c73f4645af483d1%3A0xb3d3be92f94565db!2sMirabib%20Campsite%2C%20Namibia!3m2!1d-23.4540538!2d15.3520069!4m5!1s0x1c73fd6ee01372f9%3A0x96ec515a9b127377!2sC2QW%2B8R3%20Namib%20Desert%20Atmospheric%20Observatory%20(NDAO)%2C%20Gobabeb%2C%20Namibia!3m2!1d-23.561744599999997!2d15.0470575!4m3!3m2!1d-23.3361219!2d14.826174199999999!4m5!1s0x1c76b1c66aa379db%3A0xe596d081b1be7b16!2sMount%20Swartbankberg%2C%20Nuhoab%2C%20Namibia!3m2!1d-23.3016223!2d14.8265272!4m3!3m2!1d-22.955135799999997!2d14.519480699999999!5e1!3m2!1sde!2sch!4v1755875130348!5m2!1sde!2sch"},
     plan: [
       "Brennholz vorher besorgen! Im Campingplatz wahrscheinlich kein Brennholz vorhanden --> Lagerfeuer am Abend",
       "Zurück zur D2186, nach 3.1 km rechts abbiegen",
@@ -780,6 +779,42 @@ const Footer = () => (
   </footer>
 );
 
+function PrintActivitiesView() {
+  React.useEffect(() => {
+    const back = () => window.history.length > 1 && window.history.back();
+    window.addEventListener("afterprint", back);
+    const t = setTimeout(() => window.print(), 400);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener("afterprint", back);
+    };
+  }, []);
+
+  return (
+    <div className="print-view">
+      <style>{`
+        @media print {
+          .print-view nav,
+          .print-view .no-print,
+          .print-view button,
+          .print-view input,
+          .print-view select { display: none !important; }
+          .print-view { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+          .print-view .shadow, .print-view .shadow-md, .print-view .shadow-lg { box-shadow: none !important; }
+          .print-view .page-break { break-after: page; }
+          .print-view .page-keep { break-inside: avoid; page-break-inside: avoid; }
+        }
+      `}</style>
+
+      <div className="max-w-3xl mx-auto p-6">
+        <h1 className="text-3xl font-bold mb-4">Aktivitäten – PDF</h1>
+        <Activities printMode />
+      </div>
+    </div>
+  );
+}
+
+
 export default function App() {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-amber-50 to-orange-100 text-gray-900">
@@ -799,10 +834,8 @@ export default function App() {
           <Route path="/activities" element={<Activities />} />
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/protagonists" element={<Protagonists />} />
-          <Route path="/print" element={<PrintView />} />
+          <Route path="/print" element={<PrintRoadbookView />} />
 
-          {/* Fallback */}
-	  <Route path="/print" element={<PrintRoadbookView />} />
 	  <Route path="/print/activities" element={<PrintActivitiesView />} />
 
           <Route path="*" element={<Navigate to="/" replace />} />
