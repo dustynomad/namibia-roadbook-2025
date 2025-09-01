@@ -3,6 +3,7 @@ import { Routes, Route, Link } from 'react-router-dom'
 import Activities from './activities.jsx'
 import Contacts from './contacts.jsx'
 import Protagonists from './Protagonists.jsx'
+import Overview from './Overview.jsx'
 
 /* ==================== Helpers ==================== */
 
@@ -575,6 +576,7 @@ function Navbar() {
       </div>
 
       <nav className="flex gap-4 mb-6 border-b pb-2">
+        <Link to="/overview" className="hover:underline">Overview</Link>
         <Link to="/" className="hover:underline">Roadbook</Link>
         <Link to="/activities" className="hover:underline">Aktivitäten</Link>
         <Link to="/contacts" className="hover:underline">Infos</Link>
@@ -691,6 +693,7 @@ export default function App() {
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/protagonists" element={<Protagonists />} />
           <Route path="/print" element={<PrintView />} />
+          <Route path="/overview" element={<Overview />} />
           {/* Fallback: unbekannte Routen zurück zur Startseite */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
