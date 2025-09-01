@@ -567,21 +567,6 @@ function DayCard({ d, forceOpen = false, printMode = false, onMapLoad }) {
 }
 
 
-
-
-
-
-const RoadbookHome = () => (
-  <div className="space-y-4">
-    <h2 className="text-xl font-semibold">Roadbook – Übersicht</h2>
-    <p className="text-gray-700">
-      Willkommen im Namibia Roadbook 2025. Wähle oben eine Rubrik aus
-      (z. B. <span className="font-medium">Overview</span> für Karte & Distanzen).
-    </p>
-    {/* Hier kannst du deine Tagesliste / bestehenden Inhalt einfügen */}
-  </div>
-);
-
 /** Optionaler Print-View (falls du einen hast, Import/Komponente ersetzen) */
 const PrintView = () => (
   <div>
@@ -617,6 +602,22 @@ function Navbar() {
   );
 }
 
+function Roadbook() {
+  const [query, setQuery] = useState("")
+  const filtered = useMemo(() => {
+    if (!query.trim()) return DAYS
+    const q = query.toLowerCase()
+    return DAYS.filter(d => (d.title + d.start + d.end).toLowerCase().includes(q))
+  }, [query])
+  return (
+    <>
+      <h1 className="text-3xl font-bold mb-4">Namibia Roadbook 2025</h1>
+      <input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Suche..." className="border px-2 py-1 mb-4 w-full"/>
+      <div className="space-y-4">{filtered.map(d => <DayCard key={d.day} d={d} />)}</div>
+    </>
+  )
+}
+
 const Footer = () => (
   <footer className="mt-12 border-t pt-4 text-sm text-gray-600">
     <div className="max-w-5xl mx-auto px-4 flex flex-wrap items-center gap-3">
@@ -639,8 +640,8 @@ export default function App() {
 
       <main className="flex-1 max-w-5xl mx-auto px-4">
         <Routes>
-          {/* Startseite bleibt Roadbook */}
-          <Route path="/" element={<RoadbookHome />} />
+
+          <Route path="/" element={<Roadbook />} />
 
           {/* NEU: Overview-Route */}
           <Route
