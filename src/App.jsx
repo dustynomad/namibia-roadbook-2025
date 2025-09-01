@@ -42,51 +42,32 @@ function buildGmapsDirUrl({ origin, destination, waypoints = [] }) {
 }
 
 // Robuste Karte mit optionalem Eager-Load & onLoad-Callback (für Print)
-function MapFrame({ src, origin, destination, title, forceEager = false, onLoad }) {
-  const [ok, setOk] = useState(true)
-
-  const fallbackEmbed = `https://maps.google.com/maps?q=${encodeURIComponent(
-    (origin ? origin + ' to ' : '') + (destination || '')
-  )}&z=9&output=embed`
-
-  const dirLink = buildGmapsDirUrl({ origin, destination })
-
-  if (!ok) {
-    return (
-      <div className="mt-3 rounded-xl border p-3 bg-white/60">
-        <iframe
-          loading={forceEager ? 'eager' : 'lazy'}
-          onLoad={onLoad}
-          title={`${title || 'Route'} (Fallback)`}
-          src={fallbackEmbed}
-          className="w-full h-[360px] rounded-md border mb-3"
-        />
-        <a
-          href={dirLink}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full border hover:bg-gray-50"
-          title="Route in Google Maps öffnen"
-        >
-          🗺️ Route in Google Maps öffnen
-        </a>
-      </div>
-    )
-  }
+function MapFrame({
+  src,
+  title = "Karte",
+  origin,
+  destination,
+  forceEager = false,
+  onLoad,
+}) {
+  // Im Print-Modus: sofort laden, sonst lazy
+  const loadingAttr = forceEager ? undefined : "lazy";
 
   return (
     <iframe
-      loading={forceEager ? 'eager' : 'lazy'}   // <<< im Print eager
-      onLoad={onLoad}
-      title={title || 'Route'}
-      referrerPolicy="no-referrer-when-downgrade"
       src={src}
-      className="w-full h-[360px] rounded-xl border mt-3"
-      onError={() => setOk(false)}
+      title={title}
+      className="w-full aspect-video rounded-xl shadow"
+      style={{ border: 0 }}
+      loading={loadingAttr}
       allowFullScreen
+      referrerPolicy="no-referrer-when-downgrade"
+      onLoad={onLoad}
+      data-map // Markierung, damit PrintView die iframes ggf. anfassen kann
     />
-  )
+  );
 }
+
 
 const DAYS = [
   {
