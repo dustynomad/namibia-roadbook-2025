@@ -570,13 +570,77 @@ function DayCard({ d, forceOpen = false, printMode = false, onMapLoad }) {
 }
 
 
-/** Optionaler Print-View (falls du einen hast, Import/Komponente ersetzen) */
-const PrintView = () => (
-  <div>
-    <h2 className="text-xl font-semibold">PDF / Druckansicht</h2>
-    <p className="text-gray-700">Druckfreundliche Ansicht deines Roadbooks.</p>
-  </div>
-);
+function PrintView() {
+  const totalIframes = useMemo(() => {
+    return DAYS.reduce((acc, d) => {
+      const n =
+        Array.isArray(d.map?.embeds) ? d.map.embeds.length :
+        Array.isArray(d.map?.embed)  ? d.map.embed.length  :
+        d.map?.embed ? 1 : 0;
+      return acc + n;
+    }, 0);
+  }, []);
+
+  const [loaded, setLoaded] = useState(0);
+  const handleMapLoad = () => setLoaded(x => x + 1);
+
+  // Fallback: wenn iframe onLoad nicht überall feuert
+  useEffect(() => {
+    if (!totalIframes) return;
+    const t = setTimeout(() => window.print(), 5000);
+    return () => clearTimeout(t);
+  }, [totalIframes]);
+
+  // Sobald alles geladen ist → kurz warten → drucken
+  useEffect(() => {
+    if (totalIframes > 0 && loaded >= totalIframes) {
+      const t = setTimeout(() => window.print(), 200);
+      return () => clearTimeout(t);
+    }
+  }, [loaded, totalIframes]);
+
+  // Wenn gar keine Karten vorhanden sind
+  useEffect(() => {
+    if (totalIframes === 0) {
+      const t = setTimeout(() => window.print(), 600);
+      return () => clearTimeout(t);
+    }
+  }, [totalIframes]);
+
+  return (
+    <div className="print-view">
+      <style>{`
+        @media print {
+          .print-view nav,
+          .print-view .no-print,
+          .print-view button,
+          .print-view input,
+          .print-view select { display: none !important; }
+          .print-view { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+          .print-view .shadow, .print-view .shadow-md, .print-view .shadow-lg { box-shadow: none !important; }
+          .print-view .page-break { break-after: page; }
+          .print-view .page-keep { break-inside: avoid; }
+          /* Wichtig: iFrames NICHT verstecken, damit Google-Maps im PDF auftaucht */
+        }
+      `}</style>
+
+      <div className="max-w-3xl mx-auto p-6">
+        <h1 className="text-3xl font-bold mb-2">Namibia Roadbook 2025 – PDF</h1>
+        {totalIframes > 0 && (
+          <p className="text-sm text-gray-500 no-print">
+            Karten laden… ({loaded}/{totalIframes})
+          </p>
+        )}
+        {DAYS.map(d => (
+          <div key={d.day} className="mb-6">
+            <DayCard d={d} forceOpen printMode onMapLoad={handleMapLoad} />
+            <div className="page-break" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function Navbar() {
   const linkCls = ({ isActive }) =>
