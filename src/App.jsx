@@ -11,17 +11,19 @@ import Protagonists from "./Protagonists.jsx";
 const MAP_EMBED_URL ="https://www.google.com/maps/embed?pb=!1m74!1m12!1m3!1d1854359.8703432735!2d14.71262230022062!3d-24.80241673061553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m59!3e0!4m5!1s0x1c0b1b5cb30c01ed%3A0xe4b84940cc445d3b!2sWindhuk%2C%20Namibia!3m2!1d-22.5649344!2d17.0842147!4m5!1s0x1c3e1d74933b20a9%3A0xc10f2ec8410425ab!2sCanyon%20Roadhouse%2C%20Gondwana%20Collection%20Namibia!3m2!1d-27.5242786!2d17.814786899999998!4m5!1s0x1c3e47fac1dfa4ad%3A0x106de3c347f417f0!2sAis-Ais%2C%20Namibia!3m2!1d-27.9222424!2d17.4898699!4m5!1s0x1c6be6998f0e1a13%3A0xbe2d3687ec30cd56!2sL%C3%BCderitz%2C%20Namibia!3m2!1d-26.6420382!2d15.1639082!4m5!1s0x1c6cbdfc5ef202ad%3A0x9db89c3a9c44b630!2sCamping%20Namtib%20Desert%20Lodge%2C%20Namibia!3m2!1d-26.019517999999998!2d16.2476277!4m5!1s0x1c73f4645af483d1%3A0xb3d3be92f94565db!2sMirabib%20Campsite%2C%20Namibia!3m2!1d-23.4540538!2d15.3520069!4m3!3m2!1d-23.1208849!2d14.6576907!4m5!1s0x1c76ef00d003fbb1%3A0x7b2b78577c36fede!2sWalvis%20Bay%2C%20Namibia!3m2!1d-22.9585126!2d14.503872099999999!4m5!1s0x1b8982c1554e71f5%3A0xce3e792c0ae6a91a!2sUis%2C%20Namibia!3m2!1d-21.2186578!2d14.867353099999999!4m5!1s0x1c0b1b5cb30c01ed%3A0xe4b84940cc445d3b!2sWindhoek%2C%20Namibia!3m2!1d-22.5649344!2d17.0842147!5e0!3m2!1sde!2sch!4v1756745294889!5m2!1sde!2sch";
 
 const OVERVIEW_TRIP = [
-  { day: 1,  from: "Windhoek",          to: "Kalahari (Mariental/Bagatelle)", distanceKm: 280 },
-  { day: 2,  from: "Kalahari",          to: "Keetmanshoop",                   distanceKm: 335 },
-  { day: 3,  from: "Keetmanshoop",      to: "Fish River Canyon (Hobas)",      distanceKm: 160 },
-  { day: 4,  from: "Fish River Canyon", to: "Aus / Lüderitz",                 distanceKm: 280 },
-  { day: 5,  from: "Aus / Lüderitz",    to: "Sesriem / Sossusvlei",           distanceKm: 480 },
-  { day: 6,  from: "Sesriem",           to: "Swakopmund / Walvis Bay",        distanceKm: 350 },
-  { day: 7,  from: "Swakopmund",        to: "Twyfelfontein (Damaraland)",     distanceKm: 320 },
-  { day: 8,  from: "Damaraland",        to: "Etosha Süd (Okaukuejo)",         distanceKm: 270 },
-  { day: 9,  from: "Etosha Süd",        to: "Etosha Ost (Namutoni)",          distanceKm: 150 },
-  { day: 10, from: "Etosha Ost",        to: "Waterberg",                      distanceKm: 330 },
-  { day: 11, from: "Waterberg",         to: "Windhoek",                       distanceKm: 300 },
+  { day: 1,  from: "Windhoek",          to: "Krumhuk Guestfarm", 	      distanceKm: 40 },
+  { day: 2,  from: "Krumhuk Guestfarm", to: "Kalahari (Mariental/Bagatelle)", distanceKm: 245 },
+  { day: 3,  from: "Kalahari ",      to: "Garas Camp",      distanceKm: 257 },
+  { day: 4,  from: "Garas Camp",      to: "Fish River Canyon",      distanceKm: 151 },
+  { day: 6,  from: "Fish River Canyon", to: "Aus / Lüderitz",                 distanceKm: 401 },
+  { day: 9,  from: "Lüderitz",    to: "Hunters Rest namtib",           distanceKm: 240 },
+  { day: 11,  from: "namtib",  to: "Little Sossus Campsite",        distanceKm: 241 },
+  { day: 13,  from: "Sesriem",        to: "Namib Naukluft Mirabib Campsite",     distanceKm: 241 },
+  { day: 14,  from: "Namib Naukluft",        to: "Walvis Bay",         distanceKm: 152 },
+  { day: 15,  from: "Walvis Bay",        to: "Swakopmund",          distanceKm: 35 },
+  { day: 17, from: "Swakopmund",        to: "Uis / Campsite",                      distanceKm: 350 },
+  { day: 18, from: "Uis / Campsite",         to: "Ai Aiba Rockpainting Lodge",                       distanceKm: 104 },
+  { day: 19, from: "Ai Aiba ",         to: "Windhoek",                       distanceKm: 269 },
 ];
 
 /** === Platzhalter für deine Roadbook-Startseite ===
@@ -430,7 +432,7 @@ map: {
     title: "Swakopmund → Community Campsite",
     date: "20.09",
     start: "Driftwood Guesthouse",
-    end: "Uis, Elephanat Rock Community Campsite",
+    end: "Uis, Elephant Rock Community Campsite",
     distance: "~180 km",
     drive: "~2,5 h",
     plan: [
@@ -444,7 +446,7 @@ map: {
   },
   {
     day: 18,
-    title: "Community Campsite/Uis → Ai Aiba Rockpinating Lodge",
+    title: "Community Campsite/Uis → Ai Aiba Rockpainting Lodge",
     date: "21.09",
     start: "Uis",
     end: "50 km vor Windhoek",
