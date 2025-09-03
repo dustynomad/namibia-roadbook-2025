@@ -510,15 +510,16 @@ map: {
 /* ==================== Komponenten ==================== */
 
 function DayCard({ d, forceOpen = false, printMode = false, onMapLoad }) {
+  // im Print/forceOpen immer offen starten
   const [open, setOpen] = useState(!!forceOpen || !!printMode);
   const shown = forceOpen || printMode || open;
 
-  // Wenn forceOpen/printMode sich ändern, Zustand synchron halten
+  // falls sich die Flags später ändern → offen bleiben
   useEffect(() => {
     if (forceOpen || printMode) setOpen(true);
   }, [forceOpen, printMode]);
 
-  // Karten-Embeds tolerant einsammeln und bereinigen
+  // Karten-Embeds tolerant einsammeln, säubern & deduplizieren
   const embeds = useMemo(() => {
     const raw = Array.isArray(d?.map?.embeds)
       ? d.map.embeds
@@ -527,16 +528,24 @@ function DayCard({ d, forceOpen = false, printMode = false, onMapLoad }) {
       : d?.map?.embed
       ? [d.map.embed]
       : [];
-    return raw
-      .map(u => String(u || "").trim())
+    const cleaned = raw
+      .map(u => (u == null ? "" : String(u).trim()))
       .filter(u => u.length > 0);
+    return Array.from(new Set(cleaned)); // Duplikate raus
   }, [d]);
 
+  const safeList = (arr) =>
+    Array.isArray(arr) && arr.length > 0 ? arr : null;
+
   return (
-    <div className="rounded-2xl shadow p-5 bg-white/70 border page-keep">
+    <div
+      className="rounded-2xl shadow p-5 bg-white/70 border page-keep"
+      data-day={d?.day}
+      aria-expanded={shown}
+    >
       <div className="flex justify-between">
         <h3 className="text-xl font-semibold">
-          Tag {d.day} – {d.title}
+          {d?.day != null ? `Tag ${d.day} – ` : ""}{d?.title || "Ohne Titel"}
         </h3>
 
         {/* Toggle im Print ausblenden */}
@@ -552,42 +561,42 @@ function DayCard({ d, forceOpen = false, printMode = false, onMapLoad }) {
 
       {shown && (
         <div className="mt-2">
-          <p>
-            <b>Start:</b> {d.start} · <b>Ziel:</b> {d.end}
-          </p>
-          <p>
-            <b>Distanz:</b> {d.distance} · <b>Fahrtzeit:</b> {d.drive}
-          </p>
+          {(d?.start || d?.end) && (
+            <p>
+              {d?.start && (<><b>Start:</b> {d.start}</>)}{d?.start && d?.end && " · "}
+              {d?.end && (<><b>Ziel:</b> {d.end}</>)}
+            </p>
+          )}
+          {(d?.distance || d?.drive) && (
+            <p>
+              {d?.distance && (<><b>Distanz:</b> {d.distance}</>)}{d?.distance && d?.drive && " · "}
+              {d?.drive && (<><b>Fahrtzeit:</b> {d.drive}</>)}
+            </p>
+          )}
 
-          {Array.isArray(d.plan) && d.plan.length > 0 && (
+          {safeList(d?.plan) && (
             <>
               <h4 className="font-medium mt-2">Tagesplan</h4>
               <ul className="list-disc ml-5">
-                {d.plan.map((p, i) => (
-                  <li key={i}>{p}</li>
-                ))}
+                {d.plan.map((p, i) => <li key={i}>{p}</li>)}
               </ul>
             </>
           )}
 
-          {Array.isArray(d.highlights) && d.highlights.length > 0 && (
+          {safeList(d?.highlights) && (
             <>
               <h4 className="font-medium mt-2">Highlights</h4>
               <ul className="list-disc ml-5">
-                {d.highlights.map((h, i) => (
-                  <li key={i}>{h}</li>
-                ))}
+                {d.highlights.map((h, i) => <li key={i}>{h}</li>)}
               </ul>
             </>
           )}
 
-          {Array.isArray(d.alt) && d.alt.length > 0 && (
+          {safeList(d?.alt) && (
             <>
               <h4 className="font-medium mt-2">Alternativen</h4>
               <ul className="list-disc ml-5">
-                {d.alt.map((a, i) => (
-                  <li key={i}>{a}</li>
-                ))}
+                {d.alt.map((a, i) => <li key={i}>{a}</li>)}
               </ul>
             </>
           )}
@@ -601,8 +610,8 @@ function DayCard({ d, forceOpen = false, printMode = false, onMapLoad }) {
                   src={url}
                   origin={d.start}
                   destination={d.end}
-                  title={`Tag ${d.day} – Karte ${i + 1}`}
-                  forceEager={printMode}   // <- wichtig für PDF
+                  title={`Tag ${d?.day ?? ""} – Karte ${i + 1}`}
+                  forceEager={printMode}     // wichtig für PDF/Print
                   onLoad={onMapLoad}
                 />
               ))}
@@ -611,7 +620,7 @@ function DayCard({ d, forceOpen = false, printMode = false, onMapLoad }) {
 
           {/* Directions */}
           {(() => {
-            const dir = d?.map?.dir ?? { origin: d.start, destination: d.end, waypoints: [] };
+            const dir = d?.map?.dir ?? { origin: d?.start, destination: d?.end, waypoints: [] };
             if (!dir.origin || !dir.destination) return null;
             const href = buildGmapsDirUrl(dir);
             return (
@@ -846,39 +855,28 @@ const Footer = () => (
 
 function PrintActivitiesView() {
   React.useEffect(() => {
-    const back = () => window.history.length > 1 && window.history.back();
-    window.addEventListener("afterprint", back);
-    const t = setTimeout(() => window.print(), 400);
-    return () => {
-      clearTimeout(t);
-      window.removeEventListener("afterprint", back);
-    };
+    // Kein Auto window.print in der App; Puppeteer übernimmt das
+    // (oder auskommentieren, falls ihr doch in der UI drucken wollt)
   }, []);
 
   return (
     <div className="print-view">
       <style>{`
+        /* Nur ein paar Druck-Styles, NICHT .no-print vorher ausblenden */
         @media print {
-          .print-view nav,
-          .print-view .no-print,
-          .print-view button,
-          .print-view input,
-          .print-view select { display: none !important; }
-          .print-view { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-          .print-view .shadow, .print-view .shadow-md, .print-view .shadow-lg { box-shadow: none !important; }
-          .print-view .page-break { break-after: page; }
-          .print-view .page-keep { break-inside: avoid; page-break-inside: avoid; }
+          .page-break { break-after: page; }
+          .page-keep  { break-inside: avoid; page-break-inside: avoid; }
         }
       `}</style>
 
-      <div className="max-w-3xl mx-auto p-6">
-        <h1 className="text-3xl font-bold mb-4">Aktivitäten – PDF</h1>
+      <div className="max-w-4xl mx-auto p-6">
+        <h1 className="text-2xl font-bold mb-4">Aktivitäten – PDF</h1>
+        {/* WICHTIG: wirklich Activities rendern, nicht Roadbook */}
         <Activities printMode />
       </div>
     </div>
   );
 }
-
 
 export default function App() {
   return (
@@ -896,12 +894,11 @@ export default function App() {
             element={<Overview mapUrl={MAP_EMBED_URL} trip={OVERVIEW_TRIP} />}
           />
 
-          <Route path="/activities" element={<Activities />} />
+          <Route path="/print" element={<PrintRoadbookView />} />
+          <Route path="/print/activities" element={<PrintActivitiesView />} />
+
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/protagonists" element={<Protagonists />} />
-          <Route path="/print" element={<PrintRoadbookView />} />
-
-	  <Route path="/print/activities" element={<PrintActivitiesView />} />
 
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

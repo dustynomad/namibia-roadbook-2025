@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "print:roadbook": "node scripts/print-roadbook.js",
+    "print:activities": "node scripts/print-activities.js"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -15,6 +17,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.2.0",
+    "puppeteer": "^24.18.0",
     "vite": "^7.1.3"
   }
 }
